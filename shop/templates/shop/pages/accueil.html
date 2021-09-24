@@ -1,0 +1,79 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'shop/layouts/searchbar.html' %}
+    <!-- Carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/savonBody.jpg' %}" style="height: 700 ; width:1000" class="d-block w-100 "
+                     alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/WAX.png' %}" style="height: 700 ; width:1000; background: white"
+                     class="d-block w-100" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/AmathaCaroussel.png' %}" style="height: 700 ; width:1000" class="d-block w-100"
+                     alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+           data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+           data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+
+    <div class="ArticlesAccueil">
+
+
+                {% for cos in cosmetiques %}
+                    {% if somme.produit == cos.produit_ptr and pho.produitId == cos.produit_ptr %}
+                        <div class="card m-3 d-inline-flex" style="width: 25%;">
+                            <span class="card-notify-year">
+                                <a href="{% url 'account:favourite_add' cos.id %}">
+                                        <i class="far fa-heart"></i>
+                                </a>
+                            </span>
+                            <div class="card-body">
+                                <a class="text-decoration-none" href="{% url 'shop:detailsCos' cos.id %}">
+                                    {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
+                                    <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}"
+                                         style="height:auto;">
+                                    <p class="text-uppercase text-center fs-5">
+                                        {{ cos.nom }}
+                                    </p>
+
+                                    <p class="text-center">{{ somme.montant }} CHF</p>
+                                    <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
+                                </a>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        {# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au
+                                        panier{# </a>#}</button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+
+    </div>
+
+
+{% endblock content %}

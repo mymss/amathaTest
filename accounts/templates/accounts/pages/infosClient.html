@@ -1,0 +1,27 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock title %}
+
+
+{% block content%}
+    <div class="containerMax">
+    <div class="container">
+<h3>Vos informations personnelles: </h3>
+<br />
+<p>Adresse</p>
+  <p> {{  infos.nom }}  {{  infos.prenom }} <br/>
+ {{  infos.adresse }}  <br />
+ {{  infos.codePostal }}, {{  infos.localite }} </p>
+
+<p> Mobile : {{  infos.numerosMobile }} </p>
+<br />
+<p> Mail : {{  infos.mail }} </p>
+<br />
+<p> Date de naissance : {{  infos.dateNaissance }} </p>
+
+    <a href="{% url 'account:UpdateInfos' %}">mettre a jour</a>
+
+
+ {% endblock content %}
+
+

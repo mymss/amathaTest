@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="row m-4">Détail concernant : {{ vetements.nom }}</h2>
+<!--    Ajouter une boucle après avoir les images avec le produit concerné-->
+<img src="{% static photVet.url %}" alt = {{photVet.nomFichier}} width="300" style="margin-left: 2%">
+
+<p style="margin-left: 2%"> Nom Produit :{{ vetements.nom }} </p>
+<p style="margin-left: 2%"> Prix :{{ somVet.montant }} CHF</p>
+<p style="margin-left: 2%" >Sexe : {{ vetements.sexe }}</p>
+<p style="margin-left: 2%" >Type de tissu : {{ vetements.typeTissu }}</p>
+<p style="margin-left: 2%" >Couleur: {{ vetements.couleur }}</p>
+<p style="margin-left: 2%" >Taille : {{ vetements.taille }}</p>
+
+{% endblock %}

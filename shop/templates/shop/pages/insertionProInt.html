@@ -1,0 +1,32 @@
+<!-- Header -->
+
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+    <br/>
+    <div class="container-xxl" style="margin-left: 20%; ">
+        <div class="container-sm">
+            <h2 class="p-3">Insertion Produits Intérieurs</h2>
+            <hr/>
+            <div class="order-4 p-4 bd-highlight">
+                <form action="{% url 'shop:insertionProInt' %}" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    {{ formInsertProInt.as_p }}
+                    <br/>
+                    <input type="submit" class="btn btn-secondary" value="Ajouter">
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

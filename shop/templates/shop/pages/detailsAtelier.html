@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="row m-4">Détail concernant : {{ atelier.titre }}</h2>
+    <!--    Ajouter une boucle après avoir les images avec le atelier concerné-->
+     <img src="{% static 'img/img_01.jpg'%}" alt = "img_01" width="300" style="margin-left: 2%">
+
+    <p style="margin-left: 2%">Titre : {{ atel.titre }} </p>
+    <p style="margin-left: 2%">prix : {{ atel.prix }} CHF</p>
+    <p style="margin-left: 2%">Adresse : {{ atel.adresse }}</p>
+    <p style="margin-left: 2%">Description : {{ atel.description }} </p>
+    <p style="margin-left: 2%">Nombre de Personne Max : {{ atel.nbrPersonneMax }}</p>
+    <p style="margin-left: 2%">Date Debut : {{ atel.dateDebut }}</p>
+    <p style="margin-left: 2%">Heure Debut : {{ atel.heureDebut }}</p>
+    <p style="margin-left: 2%">Heure Fin : {{ atel.heureFin }}</p>
+
+
+
+
+{% endblock %}

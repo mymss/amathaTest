@@ -1,0 +1,31 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock title %}
+
+
+{% block content%}
+
+
+    <h1>Votre wish list</h1>
+    <br />
+  <div class="row row-cols-md-3 row-cols-sm-2" >
+
+    {% for produit in new  %}
+    <div class="col">
+    <div class="card mb-3 ">
+          <h5 class="card-title"> {{ produit.nom }}</h5>
+
+    </div>
+  </div>
+
+{% endfor %}
+  </div>
+  {% if bool %}
+    <div class="row" >
+      <h1>Vous n'avez pas de favoris enregistré !</h1>
+      <p>Selectionnez vos articles favoris et commandez les plus tard !</p>
+    </div>
+  {% endif %}
+
+
+{% endblock content %}

@@ -1,0 +1,103 @@
+<!-- Header -->
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+
+    <br/><br/><br/>
+<div class="container-xxl" style="margin-left: 20%; ">
+    <div class="container-sm">
+        <h2>Détails Atelier</h2>
+        <hr/>
+        <table class="table">
+            <tr>
+                <td style="font-weight: bold">
+                    Titre :
+                </td>
+                <td>
+                    {{ detailsAtelier.titre}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Description :
+                </td>
+                <td>
+                    {{ detailsAtelier.description }}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Nombre max de personne :
+                </td>
+                <td>
+                    {{ detailsAtelier.nbrPersonneMax}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Date début :
+                </td>
+                <td>
+                    {{ detailsAtelier.dateDebut}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Heure début :
+                </td>
+                <td>
+                    {{ detailsAtelier.heureDebut}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Heure fin :
+                </td>
+                <td>
+                    {{ detailsAtelier.heureFin}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Adresse :
+                </td>
+                <td>
+                    {{ detailsAtelier.adresse}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Prix :
+                </td>
+                <td>
+                    {{ detailsAtelier.prix}}
+                </td>
+            </tr>
+
+
+        </table>
+
+
+
+    </div>
+   </div>
+
+
+
+
+    <br/><br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

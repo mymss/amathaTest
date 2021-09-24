@@ -1,0 +1,68 @@
+<!-- Header -->
+
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+    <br/>
+    <div class="container-xxl" style="margin-left: 20%; ">
+        <div class="container-sm">
+            <h2 class="p-3">Insertion Vetêments</h2>
+            <hr/>
+            <div class="order-4 p-4 bd-highlight">
+                <form action="{% url 'shop:insertionVetement' %}" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+<table class="table">
+    <tr>
+        <td>
+            {{ formInsertVet.as_p }}
+        </td>
+
+        <td >
+        {{ formInsertPhoto.as_p }}
+    </td>
+    </tr>
+</table>
+
+                    <br/>
+
+                    <input type="submit" class="btn btn-secondary" value="Ajouter">
+                </form>
+            </div>
+
+
+            <!--
+<div class="order-5 p-5 bd-highlight">
+<table>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in formInsertVet %}
+        <div class="form-group pb-4">
+            <tr>
+                <td>{{field.label_tag}}</td>
+                {% if field.field.required %} <span class="required"></span>
+                {% endif %}
+                <td>
+                    {{ field }}
+                </td>
+            </tr>
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text }} </p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Ajouter">
+    </form>
+</table>
+</div>
+-->
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

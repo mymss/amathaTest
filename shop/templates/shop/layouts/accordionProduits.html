@@ -1,0 +1,87 @@
+{% block content %}
+
+    <div id="accordion">
+        <div class="card">
+
+
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseUn" aria-expanded="false">
+                    Ajout vetêment
+                </a>
+            </div>
+            <div id="collapseUn" class="collapse show" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="row g-3 align-items-center">
+
+                            <!-- Ajouter un Form ici -->
+
+                            <form action="{% url 'shop:accueilAdmin' %}" method="post" enctype="multipart/form-data" >
+
+                                {% csrf_token %}
+
+                                {{ form.as_p }}
+
+                                <input type="submit" class="btn btn-primary" value="Ajouter">
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ajouter Produits intérieurs -->
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseDeux">
+                    Ajout produit intérieur
+                </a>
+            </div>
+
+            <div id="collapseDeux" class="collapse show" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="row g-3 align-items-center">
+                            <form action="{% url 'shop:accueilAdmin' %}" method="post" enctype="multipart/form-data" >
+
+                                {% csrf_token %}
+
+                                {{ form2.as_p }}
+
+                                <input type="submit" class="btn btn-primary" value="Ajouter">
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseTRO">
+                    Ajout produit cosmétique
+                </a>
+            </div>
+            <div id="collapseTRO" class="collapse show" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="row g-3 align-items-center">
+                            <form action="{% url 'shop:accueilAdmin' %}" method="post" enctype="multipart/form-data" >
+
+                                {% csrf_token %}
+
+                                {{ form3.as_p }}
+
+                                <input type="submit" class="btn btn-primary" value="Ajouter">
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock content %}

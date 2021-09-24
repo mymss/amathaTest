@@ -1,0 +1,40 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock title %}
+
+{% block content%}
+    <div class="containerMax">
+    <h1> Login </h1>
+  </br>
+
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-8 mx-auto">
+        <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+          {% if form.errors %}
+          <p>Your username and password didn't match. Please try again.</p>
+          {% endif %}
+          {% for field in form %}
+          <div class="form-group pb-4">
+            {{field.label_tag}} {% if field.field.required %} <span class="required"></span> {% endif %}
+            <br/>
+            {{ field }}
+            {% if field.help_text %}
+              <p class="help">{{ field.help_text }} </p>
+            {% endif %}
+          </div>
+          {% endfor %}
+          <input type="submit" class="btn btn-primary" value="Login !">
+        </form>
+      </div>
+      <div class="col-md-4">
+
+      </div>
+    </div>
+        <p class="mt-2">Pas encore de compte ?  <a href="{% url 'account:register' %}">Créer un compte... </a></p>
+  </div>
+  </body>
+
+    </div>
+
+{% endblock content%}

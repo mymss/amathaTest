@@ -1,16 +1,35 @@
-html {
+/*Squelette du site*/
+
+body{
 	height: 100%;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+
 }
 
+.imageBackGround{
+    background: url('../img/logoGauche.png') left no-repeat  , url('../img/logoDroit.png') right no-repeat ;
+    background-size: 20%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header{
+    height: 20%;
+}
 /* CSS de la navbar*/
 .far fa-user{
     width: 5px;
 }
 .firstNav{
-    margin-top: 1%;
+    margin-bottom: 19px;
     text-align: center;
-    border: 1px solid #128C9F;
+    border: 1px solid #EBA427;
 }
+
 .nav-link{
     color: #000;
 }
@@ -22,7 +41,6 @@ html {
 #navHeader{
     background-color: rgba(18, 140, 159, 0.5);
 }
-
 /* CSS de la searchbar*/
 .search-bar{
     z-index:1;
@@ -71,12 +89,24 @@ html {
 }
 /* CSS de la base */
 main{
-	height: 100%;
-    font-family: 'Raleway', sans-serif;
-    background: url('../img/logoGauche.png') left no-repeat , url('../img/logoDroit.png') right no-repeat;
-    background-size: 20%;
+
 }
+
+/*form login*/
+
+
+.containerLogin{
+    padding-left: 25%;
+    padding-right: 25%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80%;
+
+}
+
 /*CSS du carousel*/
+
 
 .carousel{
     margin-top: 20px;
@@ -93,33 +123,43 @@ main{
     margin-right: auto;
 }
 
+
 /*CSS du footer*/
 footer{
-    background-color: rgba(18, 140, 159, 0.5);
+    background-color: white;
+    color: rgba(18, 140, 159, 0.5);
     padding-top: 3px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    margin-top: 10%;
+    height: 20%;
+
+    /*position: relative;*!*/
+    /*display: inline-block;*!*/
+    /*width: 100%;*/
+    /*margin-top: 10%;*/
 
 }
 
 .fa-instagram{
-    color:black;
+    color: rgba(18, 140, 159, 0.5);
 }
 
 /* CSS du catalogue*/
 .containerMax {
     width: 70% ;
-    height: 1200px ; /* provisoire !!!!*/
-    margin:auto;
-    padding-top: 2%;
-    padding-bottom:2%;
-
+    margin-right:auto;
+    margin-left: auto;
 }
+.containerMax h1{
+    padding-top: 10px;
+    margin-left: 35%;
+}
+
 .container {
+    margin-right:10%;
+    margin-left: 10%;
     text-align: center;
     margin:auto;
+
+
 }
 .cadre {
   height: 150px;
@@ -215,6 +255,7 @@ div [class^="col-"] {
     color:rgba(235,164,39,0.25) ;
 }
 
+.fab fa-instagram fa-3x{}
 
 /*!* articles accueil *!*/
 
@@ -225,49 +266,3 @@ div [class^="col-"] {
     margin: auto;
     border: 2px solid rgba(235,164,39,0.25);
 }
-
-
-
-
-
-
-
-/*!* pop up*!*/
-/*!* The Modal (background) *!*/
-/*.modal {*/
-/*  display: none; !* Hidden by default *!*/
-/*  position: fixed; !* Stay in place *!*/
-/*  z-index: 1; !* Sit on top *!*/
-/*  left: 0;*/
-/*  top: 0;*/
-/*  width: 100%; !* Full width *!*/
-/*  height: 100%; !* Full height *!*/
-/*  overflow: auto; !* Enable scroll if needed *!*/
-/*  background-color: rgb(0,0,0); !* Fallback color *!*/
-/*  background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
-/*}*!*/
-
-/*!* Modal Content/Box *!*/
-/*.modal-content {*/
-/*  background-color: #fefefe;*/
-/*  margin: 15% auto; !* 15% from the top and centered *!*/
-/*  padding: 20px;*/
-/*  border: 1px solid #888;*/
-/*  width: 50%; !* Could be more or less, depending on screen size *!*/
-/*}*/
-
-/*!* The Close Button *!*/
-/*.close {*/
-/*  color: #aaa;*/
-/*  float: right;*/
-/*  font-size: 28px;*/
-/*  font-weight: bold;*/
-/*}*/
-
-
-/*.close:hover,*/
-/*.close:focus {*/
-/*  color: black;*/
-/*  text-decoration: none;*/
-/*  cursor: pointer;*/
-/*}

@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a46de78-8f82-4838-ac79-03acbf6f5c02" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/accueilAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/accueilAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/gestionAtelier.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/gestionAtelier.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/gestionProduit.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/gestionProduit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/gestionStock.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/gestionStock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/insertionProCos.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/insertionProCos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/insertionProInt.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/insertionProInt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/insertionVetement.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/insertionVetement.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/updateAtelier.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/updateAtelier.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/updateProCos.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/updateProCos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/updateProInt.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/updateProInt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/updateStockProCos.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/updateStockProCos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/updateStockProInt.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/updateStockProInt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/updateStockVet.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/updateStockVet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/updateVet.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/updateVet.html" afterDir="false" />
-    </list>
+    <list default="true" id="7a46de78-8f82-4838-ac79-03acbf6f5c02" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +89,7 @@
       <workItem from="1632560413442" duration="1167000" />
       <workItem from="1632564549613" duration="107000" />
       <workItem from="1632564659256" duration="352000" />
-      <workItem from="1632610455772" duration="966000" />
+      <workItem from="1632610455772" duration="1426000" />
     </task>
     <servers />
   </component>

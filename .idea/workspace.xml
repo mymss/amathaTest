@@ -30,7 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../amatha_test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -87,6 +87,7 @@
       <workItem from="1632512270493" duration="1654000" />
       <workItem from="1632551282658" duration="16000" />
       <workItem from="1632560413442" duration="1167000" />
+      <workItem from="1632564549613" duration="107000" />
     </task>
     <servers />
   </component>

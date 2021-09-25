@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+<div class="containerMax">
+    <div class="container">
 <h2 class="row m-4">Détail concernant : {{ produitInt.nom }}</h2>
 <!--    Ajouter une boucle après avoir les images avec le produit concerné-->
 <img src= "{% static phoProInt.url %}"  alt = {{phoProInt.nomFichier}} width="300" style="margin-left: 2%">
@@ -10,5 +12,6 @@
 <p style="margin-left: 2%">Nom Produit : {{ produitInt.nom }} </p>
 <p style="margin-left: 2%"> Prix : {{ sommesProInt.montant }} CHF</p>
 <p style="margin-left: 2%">Type : {{ produitInt.type }}</p>
-
+</div>
+</div>
 {% endblock %}>

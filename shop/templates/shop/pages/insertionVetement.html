@@ -8,7 +8,7 @@
 {% block content %}
 
     <br/>
-    <div class="container-xxl" style="margin-left: 20%; ">
+    <div class="container-xxl" style="margin-top: 60px">
         <div class="container-sm">
             <h2 class="p-3">Insertion Vetêments</h2>
             <hr/>
@@ -16,14 +16,9 @@
                 <form action="{% url 'shop:insertionVetement' %}" method="post" enctype="multipart/form-data">
 
                     {% csrf_token %}
-<table class="table">
-    <tr>
-        <td>
-            {{ formInsertVet.as_p }}
-        </td>
 
-    </tr>
-</table>
+            {{ formInsertVet.as_p }}
+
 
                     <br/>
 

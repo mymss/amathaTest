@@ -26,6 +26,7 @@ urlpatterns = [
     path('insertionProInt', views.insertionProInt, name='insertionProInt'),
     path('insertionProCos', views.insertionProCos, name='insertionProCos'),
     path('insertionAtelier', views.insertionAtelier, name='insertionAtelier'),
+    path('insertionPhoto', views.insertionPhoto, name='insertionPhoto'),
 
     path('updateVet/<int:id>', views.updateVet, name='updateVet'),
     path('updateProInt/<int:id>', views.updateProInt, name='updateProInt'),

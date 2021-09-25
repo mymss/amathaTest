@@ -1,12 +1,12 @@
 <!-- Header -->
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+{#<head>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>#}
+{#</head>#}
 
 {% extends 'shop/layouts/base.html' %}
 {% load static %}
@@ -15,31 +15,51 @@
 {% block content %}
 
 
-<br/><br/><br/>
-<br/><br/><br/>
+    <br/><br/><br/>
 
-<div class="container">
-  <div class="row g-2">
-    <div class="col-6">
-      <a href="{% url 'shop:gestionStock' %}" class="text-decoration-none" class="text-dark"><div class="p-3 border bg-light">Stock</div></a>
-    </div>
-    <div class="col-6">
-      <a href="{% url 'shop:gestionProduit' %}" class="text-decoration-none" class="text-dark"><div class="p-3 border bg-light">Produit</div></a>
-    </div>
-    <div class="col-6">
-      <a href="{% url 'shop:gestionAtelier' %}" class="text-decoration-none" class="text-dark"><div class="p-3 border bg-light">Atelier</div></a>
-    </div>
-    <div class="col-6">
-      <a href="{% url 'shop:accueilAdmin' %}" class="text-decoration-none" class="text-dark"><div class="p-3 border bg-light">Client</div></a>
-    </div>
-    <div class="col-6">
-      <a href="{% url 'shop:accueilAdmin' %}" class="text-decoration-none" class="text-dark"><div class="p-3 border bg-light">Commande</div></a>
-    </div>
-  </div>
-</div>
 
-<br/><br/><br/>
-<br/><br/><br/>
+    <div class="container" style="margin-left: 310px">
+        <div class="row g-2">
+            <div class="col-6">
+                <a href="{% url 'shop:gestionStock' %}" class="text-decoration-none" class="text-dark">
+                    <div class="p-3 border bg-light">Stock</div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'shop:gestionProduit' %}" class="text-decoration-none" class="text-dark">
+                    <div class="p-3 border bg-light">Produit</div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'shop:gestionAtelier' %}" class="text-decoration-none" class="text-dark">
+                    <div class="p-3 border bg-light">Atelier</div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'shop:accueilAdmin' %}" class="text-decoration-none" class="text-dark">
+                    <div class="p-3 border bg-light">Client</div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'shop:accueilAdmin' %}" class="text-decoration-none" class="text-dark">
+                    <div class="p-3 border bg-light">Commande</div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'shop:insertionPhoto' %}" class="text-decoration-none" class="text-dark">
+                    <div class="p-3 border bg-light">Photo</div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'shop:accueilAdmin' %}" class="text-decoration-none" class="text-dark">
+                    <div class="p-3 border bg-light">Prix</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <br/><br/><br/>
+    <br/><br/><br/>
 {% endblock content %}
 
 <!-- Footer -->

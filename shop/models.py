@@ -75,7 +75,7 @@ class Photo(models.Model):
     url = models.CharField(max_length=30)
     nomFichier = models.CharField(max_length=30)
     produitId = models.ForeignKey(Produit, on_delete=models.CASCADE, blank=True,null=True)
-    # atelierId = models.ForeignKey(Atelier, on_delete=models.CASCADE, blank=True,null=True)
+    atelierId = models.ForeignKey(Atelier, on_delete=models.CASCADE, blank=True,null=True)
 
     def __str__(self):
         return self.nomFichier

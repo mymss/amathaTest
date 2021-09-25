@@ -156,6 +156,25 @@ def insertionAtelier(request):
                   {'formInsertAtelier': formInsertAtelier})
 
 
+### Insertion photo
+def insertionPhoto(request):
+    if request.method == "POST":
+        formInsertPhoto = PosteInsertPhoto(request.POST)
+
+        if formInsertPhoto.is_valid():
+            formInsertPhoto = formInsertPhoto.save(commit=False)
+            formInsertPhoto.author = request.user
+            formInsertPhoto.save()
+
+            return redirect('shop:insertionPhoto')
+
+    else:
+        formInsertPhoto = PosteInsertPhoto()
+
+    return render(request, "shop/pages/insertionPhoto.html",
+                  {'formInsertPhoto': formInsertPhoto})
+
+
 ### Update Vetêment
 def updateVet(request, id):
     vetementUpdate = Vetement.objects.get(id=id)
@@ -199,6 +218,7 @@ def updateAtelier(request, id):
     return render(request, "shop/pages/updateAtelier.html",
                   {'atelierUpdate': atelierUpdate, 'formUpdateAtelier': formUpdateAtelier})
 
+
 ### Update stock de Vetêment
 def updateStockVet(request, id):
     stockVetementUpdate = Vetement.objects.get(id=id)
@@ -231,6 +251,7 @@ def updateStockProCos(request, id):
     return render(request, "shop/pages/updateStockProCos.html",
                   {'stockProCosUpdate': stockProCosUpdate, 'formUpdateStockProCos': formUpdateStockProCos})
 
+
 ### Détails Vetêments Admin
 def adminVetDetails(request, id):
     detailsVet = Vetement.objects.get(id=id)
@@ -242,10 +263,12 @@ def adminProIntDetails(request, id):
     detailsProInt = ProduitInterieur.objects.get(id=id)
     return render(request, "shop/pages/adminProIntDetails.html", {'detailsProInt': detailsProInt})
 
+
 ### Détails ProCos Admin
 def adminProCosDetails(request, id):
     detailsProCos = Cosmetique.objects.get(id=id)
     return render(request, "shop/pages/adminProCosDetails.html", {'detailsProCos': detailsProCos})
+
 
 ### Détails Atelier Admin
 def adminAtelierDetails(request, id):

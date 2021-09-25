@@ -41,7 +41,7 @@ class PosteInsertPhoto(forms.ModelForm):
     class Meta:
         model = Photo
         fields = (
-            'url', 'nomFichier', )
+            'url', 'nomFichier', 'produitId', 'atelierId')
 
 
 ### Form Update Stock Vetêment

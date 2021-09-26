@@ -108,8 +108,9 @@ main{
 /*CSS du carousel*/
 
 
+
 .carousel{
-    margin-top: 20px;
+    margin-top : 6%;
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -117,14 +118,13 @@ main{
 }
 
 .carousel.inner{
-
     width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .carousel-item {
-	margin-top: 8%;
+	margin-top: 4%;
 	margin-bottom: 20px;
 		height: 80%;
 }

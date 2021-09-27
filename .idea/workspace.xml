@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a46de78-8f82-4838-ac79-03acbf6f5c02" name="Default Changelist" comment="" />
+    <list default="true" id="7a46de78-8f82-4838-ac79-03acbf6f5c02" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/amatha_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/amatha_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amatha/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/amatha/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/Activate.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/activate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/deactivate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/django-admin.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/django-admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip3.9.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip3.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/python.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pythonw.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/sqlformat.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/pyvenv.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/cosmetique.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/cosmetique.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +110,7 @@
       <workItem from="1632564659256" duration="352000" />
       <workItem from="1632610455772" duration="1426000" />
       <workItem from="1632611946793" duration="54000" />
+      <workItem from="1632727429380" duration="1305000" />
     </task>
     <servers />
   </component>

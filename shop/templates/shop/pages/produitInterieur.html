@@ -5,33 +5,33 @@
 
 
 {% block content %}
-    <h2 class="row m-2">Catégorie des produits interieur</h2>
-    <div class="containerMax">
+      <div class="containerMax">
         <div class="container">
             {% for somme in sommesProInt %}
-                {#                <div class="col m-2">#}
                 {% for pho in photos %}
                     {% for proInt in produitInt %}
-                        {% if somme.produit == proInt.produit_ptr and pho.produitId == proInt.produit_ptr %}
-                            <div class="card m-1 d-inline-flex" style="width: 25%;">
+                        {% if somme.produit == proInt.produit_ptr and pho.produitId == proInt.produit_ptr and proInt.produitActif == 1 %}
+                            <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
                                 <a href="{% url 'account:favourite_add' proInt.id %}">
                                         <i class="far fa-heart"></i>
                                 </a>
                             </span>
-                            <div class="card-body">
-                            <a class="text-decoration-none" href="{% url 'shop:detailsProInt' proInt.id %}"">
-                            <img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:250px;">
+                                <div class="card-body">
+                                    <a class="text-decoration-none" href="{% url 'shop:detailsProInt' proInt.id %}">
+                                        {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
+                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}" style="height:auto;">
+                                        <p class="text-uppercase text-center fs-5">
+                                            {{ proInt.nom }}
+                                        </p>
 
-                            <p class="text-uppercase text-center fs-5">
-                                {{ proInt.nom }}
-                            </p>
-                            <p class="text-center">{{ somme.montant }} CHF</p>
-                            <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
-                            </a>
-                            <div class="text-center">
-                            <button type="button" class="btn btn-outline-secondary">
-                                {# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au panier{# </a>#}</button>
+                                        <p class="text-center">{{ somme.montant }} CHF</p>
+                                        <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
+                                    </a>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-outline-secondary">
+                                            {# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au
+                                            panier{# </a>#}</button>
                                     </div>
                                 </div>
                             </div>
@@ -40,4 +40,5 @@
                 {% endfor %}
             {% endfor %}
         </div>
+      </div>
 {% endblock %}

@@ -4,21 +4,38 @@
 
 
 {% block content %}
-    <h2 class="row m-4">Les ateliers à venir</h2>
-    <div class="row m-5 p-4">
-      <div class="containerMax">
+    <div class="containerMax">
         <div class="container">
+            {#                {% for pho in photos %}#}
+            {% for ate in ateliers %}
+                {% if ate.AtelierActif == 1 %}
+                    <div class="card m-3 d-inline-flex" style="width: 25%;">
+                            <span class="card-notify-year">
+                                <a href="{% url 'account:favourite_add' ate.id %}">
+                                        <i class="far fa-heart"></i>
+                                </a>
+                            </span>
+                        <div class="card-body">
+                            <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' ate.id %}">
+                                {#                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}" style="height:auto;">#}
+                                <img src="../../../../staticfiles/img/img_01.jpg">
+                                <p class="text-uppercase text-center fs-5">
+                                    {{ ate.titre }}
+                                </p>
 
-            {% for atelier in ateliers %}
-        <div class="col m-2">
-                        <img src="{% static 'img/img_01.jpg'%}" alt = "img_01" width="300" style="margin-left: 2%">
-                        <p  style="margin-left: 2%">Nom de l'atelier : <a href="{% url 'shop:detailsAtelier' atelier.id %}">{{atelier.titre}}</a></p>
-                        <p style="margin-left: 2%">Prix : {{atelier.prix}} CHF</p>
-            <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
-                        <button type="button" class="btn btn-ajoute" style="margin-left: 2%">{# <a href="{% url '#' atelier.id %}">#} Ajouter au panier{# </a>#}</button>
-            <!--Un if sera créé pour savoir quand un atelier est en fav ou non avec un coeur vide et plein-->
-            <p style="margin-left: 2%"><i class="far fa-heart"></i></p>
+                                <p class="text-center">{{ ate.prix }} CHF</p>
 
-        {% endfor  %}
-        </div></div>
+                            </a>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-outline-secondary">
+                                    {# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au
+                                    panier{# </a>#}</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {#            {% endfor %}#}
+        </div>
+    </div>
 {% endblock %}

@@ -4,24 +4,40 @@
 
 
 {% block content %}
-<h2 class="row m-4">Catégorie des vêtements</h2>
-<div class="row m-5 p-4">
-    {% for somme in sommesVet %}
-    <div class="col m-2">
-        {% for pho in photos %}
-        {% for vetement in vetements %}
-        {% if somme.produit == vetement.produit_ptr and pho.produitId == vetement.produit_ptr %}
-       <img src="{{pho.url}}" alt = "{{pho.nomFichier}}" >
-        <p align="center" style="margin: auto">Nom produit: <a href="{% url 'shop:detailsVet' vetement.id %}"> {{vetement.nom}}</a></p>
-        <p align = "center" style="margin: auto"> Prix: {{somme.montant}} CHF</p>
-        <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
-        <button type="button" class="btn btn-ajoute" style="margin-left: 25%">{# <a href="{% url '#' vetement.produit_ptr %}">#} Ajouter au panier{# </a>#}</button>
-        <!--Un if sera créé pour savoir quand l'article est en fav ou non avec un coeur vide et plein-->
-        <p align = "center"><i class="far fa-heart"></i></p>
-        {%  endif%}
-        {% endfor  %}
-    </div>
-    {% endfor  %}{% endfor  %}
-</div>
-</div>
+     <div class="containerMax">
+        <div class="container">
+            {% for somme in sommesVet %}
+                {% for pho in photos %}
+                    {% for vetement in vetements %}
+                        {% if somme.produit == vetement.produit_ptr and pho.produitId == vetement.produit_ptr and vetement.produitActif == 1 %}
+                            <div class="card m-3 d-inline-flex" style="width: 25%;">
+                            <span class="card-notify-year">
+                                <a href="{% url 'account:favourite_add' vetement.id %}">
+                                        <i class="far fa-heart"></i>
+                                </a>
+                            </span>
+                                <div class="card-body">
+                                    <a class="text-decoration-none" href="{% url 'shop:detailsVet' vetement.id %}">
+                                        {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
+                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}" style="height:auto;">
+                                        <p class="text-uppercase text-center fs-5">
+                                            {{ vetement.nom }}
+                                        </p>
+
+                                        <p class="text-center">{{ somme.montant }} CHF</p>
+                                        <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
+                                    </a>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-outline-secondary">
+                                            {# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au
+                                            panier{# </a>#}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+      </div>
 {% endblock %}

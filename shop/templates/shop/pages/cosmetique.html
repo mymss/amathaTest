@@ -10,7 +10,7 @@
             {% for somme in sommesCos %}
                 {% for pho in photos %}
                     {% for cos in cosmetiques %}
-                        {% if somme.produit == cos.produit_ptr and pho.produitId == cos.produit_ptr %}
+                        {% if somme.produit == cos.produit_ptr and pho.produitId == cos.produit_ptr and cos.produitActif == 1 %}
                             <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
                                 <a href="{% url 'account:favourite_add' cos.id %}">

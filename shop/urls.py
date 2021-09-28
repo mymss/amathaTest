@@ -22,6 +22,8 @@ urlpatterns = [
     path('gestionStock', views.gestionStock, name='gestionStock'),
     path('gestionProduit', views.gestionProduit, name='gestionProduit'),
     path('gestionAtelier', views.gestionAtelier, name='gestionAtelier'),
+    path('gestionClient', views.gestionClient, name='gestionClient'),
+
     path('insertionVetement', views.insertionVetement, name='insertionVetement'),
     path('insertionProInt', views.insertionProInt, name='insertionProInt'),
     path('insertionProCos', views.insertionProCos, name='insertionProCos'),

@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a46de78-8f82-4838-ac79-03acbf6f5c02" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/shop/templates/shop/pages/gestionClient.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/accueilAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/accueilAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/gestionAtelier.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/gestionAtelier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/gestionClient.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/gestionClient.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

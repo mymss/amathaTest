@@ -4,6 +4,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 
+from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
     PosteUpdateStockProInt, PosteUpdateStockVet, PosteInsertPhoto
 from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo
@@ -55,6 +56,14 @@ def gestionProduit(request):
 def gestionAtelier(request):
     atelier = Atelier.objects.all()
     return render(request, "shop/pages/gestionAtelier.html", {'atelier': atelier})
+
+
+###############################################
+## View Gestion de client Test
+###############################################
+def gestionClient(request):
+    client = Client.objects.all()
+    return render(request, "shop/pages/gestionClient.html", {'client': client})
 
 
 ###############################################

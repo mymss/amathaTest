@@ -1,10 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
 
-</body>
-</html>
+<!-- Body -->
+{% block content %}
+
+    <br/>
+    <div class="container-xxl" style="margin-top: 25px; margin-left: 18%">
+        <div class="container-sm">
+            <h1>Gestion de client</h1>
+            <hr/>
+            <br/>
+
+            <div class="border border-2" class="d-grid gap-3" p-3 mb-5>
+
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                <h5 class="shadow-none  bg-light rounded">Clients</h5>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingThree"
+                             data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <table class="table table-bordered" style="width: 500px;">
+                                    <tr>
+                                        <th colspan="2">Atelier titre</th>
+                                    </tr>
+                                    <!-- Boucle pour afficher les nom de vetements -->
+                                    {% for atel in atelier %}
+                                        <tr>
+                                            {#                                            <td for="insertStock" class="col-form-label">{{ atel.titre }}</td>#}
+
+                                            <td for="insertStock" class="col-form-label">
+                                                <a href="{% url 'shop:adminAtelierDetails' atel.id %}">
+                                                    {{ atel.titre }}
+                                                </a>
+                                            </td>
+
+                                            <td align="right">
+                                                <a href="{% url 'shop:updateAtelier' atel.id %}"
+                                                   class="btn-outline-secondary btn-sm"
+                                                   class="text-decoration-none">Modifier</a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+
+                                    {% endfor %}
+                                </table>
+                            </div>
+                            <!--Button Insertion -->
+                            <div class="container" style="margin-left: 75%; ">
+                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                                    <div class="col">
+                                        <a href="{% url 'shop:insertionAtelier' %}" class="text-decoration-none">
+                                            <div class="p-3 border bg-light">Créer un nouveau atelier</div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br/>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

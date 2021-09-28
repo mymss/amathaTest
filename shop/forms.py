@@ -7,7 +7,7 @@ class PosteInsertVet(forms.ModelForm):
     class Meta:
         model = Vetement
         fields = (
-            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'sexe', 'typeTissu', 'couleur',
+            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'sexe', 'typeTissu', 'couleur',
             'taille')
 
 
@@ -16,7 +16,7 @@ class PosteInsertProInt(forms.ModelForm):
     class Meta:
         model = ProduitInterieur
         fields = (
-            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'type')
+            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'type')
 
 
 ### Form Insertion Produit Cosmétique
@@ -24,7 +24,7 @@ class PosteInsertProCos(forms.ModelForm):
     class Meta:
         model = Cosmetique
         fields = (
-            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'ingredient', 'gamme', 'categorie')
+            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'ingredient', 'gamme', 'categorie')
 
 
 ### Form Insertion Atelier

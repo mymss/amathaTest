@@ -68,6 +68,7 @@ class Atelier(models.Model):
     heureFin = models.TimeField(auto_now_add=False)
     adresse = models.CharField(max_length=150)
     prix = models.IntegerField()
+    AtelierActif = models.BooleanField(default=True)
 
     def __str__(self):
         return self.titre

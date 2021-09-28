@@ -17,6 +17,7 @@ class Client(models.Model):
     localite = models.CharField(max_length=500,null=True, blank=True)
     dateNaissance = models.DateField()
     numerosMobile = models.CharField(max_length=12)
+    clientActif = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nom

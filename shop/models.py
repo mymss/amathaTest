@@ -1,10 +1,13 @@
+from django.contrib.postgres import constraints
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.urls import reverse
 
-
 # Create your models here.
+from accounts.models import Client
+
 
 class Produit(models.Model):
     nom = models.CharField(max_length=50)
@@ -82,3 +85,29 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.nomFichier
+
+
+class Commande(models.Model):
+    comNumero = models.IntegerField()
+    comTotal = models.DecimalField(max_digits=5, decimal_places=3)
+    # comStaut = models.PositiveSmallIntegerField(choices=StatutChoix)
+    comDatePaiement = models.DateField(auto_now_add=False)
+    comPoidsFinal = models.DecimalField(max_digits=4, decimal_places=2)
+    envoye = models.BooleanField(default=True)
+    enAttente = models.BooleanField(default=False)
+    clientId = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.comNumero + " " + self.comTotal + " " + self.comDatePaiement
+
+
+class LigneCommande(models.Model):
+    quantite = models.IntegerField()
+    produitId = models.ForeignKey(Produit, on_delete=models.CASCADE, blank=True, null=True)
+    commandeId = models.ForeignKey(Commande, on_delete=models.CASCADE, blank=True, null=True)
+
+
+class LigneAtelier(models.Model):
+    nbrPersonne = models.IntegerField()
+    atelierId = models.ForeignKey(Atelier, on_delete=models.CASCADE, blank=True, null=True)
+    commandeId = models.ForeignKey(Commande, on_delete=models.CASCADE, blank=True, null=True)

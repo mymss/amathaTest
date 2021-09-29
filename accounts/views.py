@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from .forms import ProfileForm, InfosUpdateForm
+from .forms import ProfileForm, InfosUpdateForm, UserForm, EmailUpdateForm
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from shop.models import Produit
 
+<<<<<<< Updated upstream
 @login_required
 def favourite_add(request, id):
     produit = Produit.objects.get(id=id)
@@ -55,12 +54,15 @@ def informations(request):
     return render(request, 'accounts/pages/infosClient.html', context)
 
 # Create your views here.
+=======
+# Register
+>>>>>>> Stashed changes
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        profile_form= ProfileForm(request.POST)
+        form = UserForm(request.POST)
+        profile_form = ProfileForm(request.POST)
 
-        if form.is_valid() and profile_form.is_valid():
+        if form.is_valid():
             user = form.save(commit=False)
             user.save()
             profile = profile_form.save(commit=False)
@@ -70,17 +72,25 @@ def register(request):
             return redirect('account:login')
 
     else:
-        form = UserCreationForm()
+        form = UserForm()
         profile_form = ProfileForm()
 
 
     context = {
-     'form': form ,
+     'form': form,
      'profile': profile_form,
     }
 
     return render(request, 'accounts/pages/register.html', context)
 
+# Infos client
+@login_required
+def informations(request):
+    infos = request.user.client
+    context = {
+        'infos': infos,
+    }
+    return render(request, 'accounts/pages/infosClient.html', context)
 
 # /* Update infos personnelles */
 @login_required
@@ -95,7 +105,54 @@ def UpdateInfos(request):
         form = InfosUpdateForm(request.POST, instance=request.user.client)
     context={
         'form': form,
-
     }
     return render(request, 'accounts/pages/update_infosClient.html',context)
 
+# /* Update email */
+@login_required
+def UpdateEmail(request):
+    if request.method =='POST':
+        form = EmailUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('account:informations')
+    else :
+        form = EmailUpdateForm(request.POST, instance=request.user)
+    context={
+        'form': form,
+    }
+    return render(request, 'accounts/pages/update_email.html', context)
+
+@login_required
+def favourite_add(request, id):
+    produit = Produit.objects.get(id=id)
+    if produit.favoris.filter(id=request.user.pk).exists():
+        produit.favoris.remove(request.user)
+
+    else:
+        produit.favoris.add(request.user)
+
+    context = {
+        'produit': produit,
+
+    }
+    return redirect('shop:cosmetique')
+
+
+@login_required
+def favourite_list(request):
+    produit = Produit.objects.all()
+
+    new = produit.filter(favoris=request.user.pk)
+    fav_number = new.count()
+    bool = False
+
+    if fav_number <= 0:
+        bool = True
+
+    context={
+        'new': new,
+        'bool': bool,
+        'fav_number': fav_number,
+    }
+    return render(request, 'accounts/pages/favoris.html', context)

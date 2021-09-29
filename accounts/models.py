@@ -1,14 +1,14 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
+
 
 # Create your models here.
 
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='client')
+<<<<<<< Updated upstream
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     mail = models.EmailField(max_length=254, null=True, blank=True)
@@ -18,9 +18,18 @@ class Client(models.Model):
     dateNaissance = models.DateField()
     numerosMobile = models.CharField(max_length=12)
     clientActif = models.BooleanField(default=True)
+=======
+    nom = models.CharField(max_length=100, null=True, blank=True)
+    prenom = models.CharField(max_length=100, null=True, blank=True)
+    adresse = models.CharField(max_length=500, null=True, blank=True)
+    codePostal = models.CharField(max_length=4, null=True, blank=True)
+    localite = models.CharField(max_length=500, null=True, blank=True)
+    dateNaissance = models.DateField(null=True, blank=True)
+    numerosMobile = models.CharField(max_length=12, null=True, blank=True)
+>>>>>>> Stashed changes
 
     def __str__(self):
-        return self.nom
-
-
-
+        if self.nom is None and self.prenom is None:
+            return str(self.user.email)
+        else:
+            return self.nom + " " + self.prenom

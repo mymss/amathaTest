@@ -1,12 +1,12 @@
 {% extends 'shop/layouts/base.html' %}
 {% load static %}
-{% block title %} Changer MDP {% endblock title %}
+{% block title %} Sign up {% endblock title %}
 
 {% block content %}
-     <div class="container">
+    <div class="container">
         <div class="container h-100">
             <div class="d-flex justify-content-center h-100">
-                <div class="user_card_register">
+                <div class="user_card_login">
                     <div class="d-flex justify-content-center">
                         <div class="brand_logo_container">
                             <img src="{% static 'img/logo.png' %}" class="brand_logo" alt="Logo">
@@ -31,11 +31,12 @@
                             <a href="{% url 'account:informations' %}" class="ml-2">Voir vos informations</a>
                         </div>
                         <div class="d-flex justify-content-center links">
-                            Change email?<a href="{% url 'account:email_change' %}" class="ml-2">Click here</a>
+                            Change password?<a href="{% url 'account:password_change' %}" class="ml-2">Click here</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock content %}
+

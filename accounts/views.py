@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import ProfileForm, InfosUpdateForm, UserForm, EmailUpdateForm
 from django.contrib.auth.decorators import login_required
-from shop.models import Produit
+from shop.models import Produit, Photo
 
-<<<<<<< Updated upstream
 @login_required
 def favourite_add(request, id):
     produit = Produit.objects.get(id=id)
@@ -44,19 +43,10 @@ def favourite_list(request):
     }
     return render(request, 'accounts/pages/favs.html', context)
 
-@login_required
-def informations(request):
-    #infos = Client.objects.all()
-    infos = request.user.client
-    context = {
-        'infos': infos,
-    }
-    return render(request, 'accounts/pages/infosClient.html', context)
-
 # Create your views here.
-=======
+
 # Register
->>>>>>> Stashed changes
+
 def register(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
@@ -122,37 +112,3 @@ def UpdateEmail(request):
         'form': form,
     }
     return render(request, 'accounts/pages/update_email.html', context)
-
-@login_required
-def favourite_add(request, id):
-    produit = Produit.objects.get(id=id)
-    if produit.favoris.filter(id=request.user.pk).exists():
-        produit.favoris.remove(request.user)
-
-    else:
-        produit.favoris.add(request.user)
-
-    context = {
-        'produit': produit,
-
-    }
-    return redirect('shop:cosmetique')
-
-
-@login_required
-def favourite_list(request):
-    produit = Produit.objects.all()
-
-    new = produit.filter(favoris=request.user.pk)
-    fav_number = new.count()
-    bool = False
-
-    if fav_number <= 0:
-        bool = True
-
-    context={
-        'new': new,
-        'bool': bool,
-        'fav_number': fav_number,
-    }
-    return render(request, 'accounts/pages/favoris.html', context)

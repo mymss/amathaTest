@@ -3,12 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="7a46de78-8f82-4838-ac79-03acbf6f5c02" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/atelier.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/atelier.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/cosmetique.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/cosmetique.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/detailsAtelier.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/detailsAtelier.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/detailsCos.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/detailsCos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/produitInterieur.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/produitInterieur.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/pages/vetements.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/pages/vetements.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/pages/favoris.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/pages/favs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/Activate.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/activate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/deactivate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/django-admin.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/django-admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip3.9.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip3.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/python.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pythonw.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/sqlformat.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/pyvenv.cfg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +112,7 @@
       <workItem from="1632742063923" duration="1512000" />
       <workItem from="1632744570617" duration="147000" />
       <workItem from="1632840397536" duration="771000" />
+      <workItem from="1632896803098" duration="968000" />
     </task>
     <servers />
   </component>

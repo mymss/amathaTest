@@ -24,20 +24,26 @@ def favourite_add(request, id):
 @login_required
 def favourite_list(request):
     produit = Produit.objects.all()
-
     new = produit.filter(favoris=request.user.pk)
+    listePhoto = []
+
+    for pro in new:
+        photos = Photo.objects.all().get(produitId_id=pro.id)
+        listePhoto.append(photos)
+
     fav_number = new.count()
     bool = False
 
     if fav_number <= 0:
         bool = True
 
-    context={
+    context = {
         'new': new,
         'bool': bool,
         'fav_number': fav_number,
+        'listePhoto': listePhoto,
     }
-    return render(request, 'accounts/pages/favoris.html', context)
+    return render(request, 'accounts/pages/favs.html', context)
 
 @login_required
 def informations(request):

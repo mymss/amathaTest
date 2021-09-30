@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Produit, Prix, Atelier, Photo, Commande, LigneCommande, LigneAtelier
+from .models import Produit, Prix, Atelier, Photo, Commande, LigneProduitCommande, LigneAtelierCommande
 from .models import ProduitInterieur
 from .models import Cosmetique
 from .models import Vetement
@@ -14,5 +14,6 @@ admin.site.register(Prix)
 admin.site.register(Atelier)
 admin.site.register(Photo)
 admin.site.register(Commande)
-admin.site.register(LigneCommande)
-admin.site.register(LigneAtelier)
+admin.site.register(LigneProduitCommande)
+admin.site.register(LigneAtelierCommande)
+

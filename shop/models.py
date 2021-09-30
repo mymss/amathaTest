@@ -86,19 +86,33 @@ class Commande(models.Model):
     comPoidsFinal = models.DecimalField(max_digits=4, decimal_places=2)
     envoye = models.BooleanField(default=True)
     enAttente = models.BooleanField(default=False)
+    produit = models.ManyToManyField(Produit)
+    atelier = models.ManyToManyField(Atelier)
     clientId = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.comNumero + " " + self.comTotal + " " + self.comDatePaiement
+        return str(self.comNumero) + " " + str(self.comTotal) + " " + str(self.comDatePaiement)
 
 
-class LigneCommande(models.Model):
+class LigneProduitCommande(models.Model):
+    produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
+    commande = models.ForeignKey(Commande, on_delete=models.CASCADE)
     quantite = models.IntegerField()
-    produitId = models.ForeignKey(Produit, on_delete=models.CASCADE, blank=True, null=True)
-    commandeId = models.ForeignKey(Commande, on_delete=models.CASCADE, blank=True, null=True)
+
+    class Meta:
+        unique_together = [['produit', 'commande']]
+
+    # def __str__(self):
+    #     return str(self.produit) + " " + str(self.commande) + " " + str(self.quantite)
 
 
-class LigneAtelier(models.Model):
+class LigneAtelierCommande(models.Model):
+    atelier = models.ForeignKey(Atelier, on_delete=models.CASCADE)
+    commande = models.ForeignKey(Commande, on_delete=models.CASCADE)
     nbrPersonne = models.IntegerField()
-    atelierId = models.ForeignKey(Atelier, on_delete=models.CASCADE, blank=True, null=True)
-    commandeId = models.ForeignKey(Commande, on_delete=models.CASCADE, blank=True, null=True)
+
+    class Meta:
+        unique_together = [['atelier', 'commande']]
+
+    # def __str__(self):
+    #     return str(self.atelier) + " " + str(self.commande) + " " + str(self.nbrPersonne)

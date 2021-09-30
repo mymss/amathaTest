@@ -17,7 +17,7 @@
                         {% for pho in listePhoto %}
                             {% if pho.produitId_id == produit.id %}
                                 <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
-                                <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}" style="auto">
+                                <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}">
                             {% endif %}
                         {% endfor %}
                         <p class="text-uppercase text-center fs-5">

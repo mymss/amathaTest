@@ -142,3 +142,5 @@ def UpdateEmail(request):
         'form': form,
     }
     return render(request, 'accounts/pages/update_email.html', context)
+
+

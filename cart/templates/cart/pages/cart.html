@@ -1,0 +1,36 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="containerMax">
+        <div class="container">
+    <h1>Votre panier</h1>
+    <br />
+
+
+    {% for produit in panier %}
+    <div class="card m-3 d-inline-flex" style="width: 25%;">
+                    <div class="card-body">
+                        {% for pho in temp %}
+                            {% if pho.produitId_id == produit.product.pk %}
+                                <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
+                                <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}">
+                            {% endif %}
+                        {% endfor %}
+                        <p class="text-uppercase text-center fs-5">
+                            {{ produit.product.nom }}
+                        </p>
+                        </a>
+                        <p><a href="{% url 'cart:delete_from_cart' produit.id%}"><i class="far fa-times-circle" style="font-size: 200%;"></i></a></p>
+                    </div>
+                </div>
+{% endfor %}
+  </div>
+  {% if bool %}
+    <div class="row" >
+      <h1>Vous n'avez pas de produits dans votre panier !</h1>
+      <p>Selectionnez vos articles et commandez les plus tard !</p>
+    </div>
+  {% endif %}
+  </div>
+
+{% endblock %}

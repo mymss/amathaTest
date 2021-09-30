@@ -21,8 +21,8 @@
                                             <a class="dropdown-item" href="#">Produits</a>
                                             <a class="dropdown-item" href="#">Intérieur</a>
                                             <a class="dropdown-item" href="#">Vêtements</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Test Link</a>
+                                            {#                                            <div class="dropdown-divider"></div>#}
+                                            {#                                            <a class="dropdown-item" href="#">Test Link</a>#}
                                         </div>
                                     </div>
                                 </div>
@@ -35,6 +35,7 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="col-4 py-4">
                     {#    Logo en entête #}
                     <a class="navbar-brand .d-print-inline-block" href="/">
@@ -42,13 +43,26 @@
                              class="img-fluid" width="270"> </a>
                 </div>
 
+                {# Menu account #}
                 <div class="col-4 py-5 ps-5">
-                    {# Menu account #}
-                    <div class="btn-group">
+                    <div class="btn-group header"  style="width:5%;margin:5px">
+                        {%  if request.user.is_authenticated  %}
+                        <div >
+                            <a href="{% url 'account:favourite_list' %}"
+                               title="Vos favoris !"> <i class="far fa-heart xs " style="color:#EBA427;"></i> </a>
+                     
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="btn-group header" style="width:5%;margin:5px">
+
                         <button type="button" class="btn navbar-toggler" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                            <i class="far fa-user"></i>
+                            <i class="far fa-user" style="color:#EBA427"></i>
                         </button>
+                    <div class=""></div>
+
                         <ul class="dropdown-menu dropdown-menu-end">
                             <!--si l'utilisateur est authentifié et que ce n'est pas un membre des administrateurs du site-->
                             {% if request.user.is_authenticated and not user.is_staff %}
@@ -85,57 +99,47 @@
                             {% endif %}
                         </ul>
                     </div>
-                    <div class="btn-group">
+
+                    <div class="btn-group header"  style=" width:5%; margin:5px">
                         <button type="button" class="btn navbar-toggler" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                            <i class="fas fa-shopping-cart fa-1x"></i>
+                            <i class="fas fa-shopping-cart fa-1x " style="color:#EBA427;"></i>
                         </button>
                     </div>
 
                 </div>
 
 
-                    <nav class="navbar navbar-expand-lg navbar-light" id="navHeader">
-                        <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg navbar-light" id="navHeader">
+                    <div class="container-fluid">
 
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNav"
-                                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav mx-auto">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navProDropdown" role="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false">Produits</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="{% url 'shop:produitInterieur' %}">Produits
-                                                Interieur</a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item"
-                                                   href="{% url 'shop:cosmetique' %}">Cosmetiques</a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="{% url 'shop:vetements' %}">Vetements</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{% url 'shop:atelier' %}">Réservations</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{% url 'account:favourite_list' %}">Favoris</a>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mx-auto">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'shop:produitInterieur' %}">Les produits d'intérieur</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'shop:cosmetique' %}">Les cosmétiques</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'shop:vetements' %}">Les Vêtements</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'shop:atelier' %}">Les Ateliers</a>
+                                </li>
+
+
+                            </ul>
                         </div>
-                    </nav>
+                    </div>
+                </nav>
             </div>
         </div>
     </section>

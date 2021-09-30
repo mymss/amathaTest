@@ -1,6 +1,7 @@
 ###############################################
 # Import
 ###############################################
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.shortcuts import render
@@ -10,14 +11,33 @@ from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, Pos
     PosteUpdateStockProInt, PosteUpdateStockVet, PosteInsertPhoto
 from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo
 
+@login_required
+def header(request):
+    infos = request.user.client
+    context = {
+        'infos': infos,
+    }
+    return render(request, 'shop/layouts/header', context)
+
 
 def accueil(request):
-    cosmetique = Cosmetique.objects.all()
+    produits = Produit.objects.all()[:4]
+    prix = Prix.objects.all()
+    photos = Photo.objects.all()
+
+    vetements = Vetement.objects.all()
+    produitsInterieurs = ProduitInterieur.objects.all()
+    produitsCosmetiques = Cosmetique.objects.all()
+
     context = {
-        'cosmetique': cosmetique,
+        'produits':produits,
+        'prix':prix,
+        'photos':photos,
+        'vetements':vetements,
+        'produitsInterieurs':produitsInterieurs,
+        'produitsCosmetiques':produitsCosmetiques,
     }
     return render(request, "shop/pages/accueil.html", context)
-
 
 ###############################################
 ## View Accueil Admin Test

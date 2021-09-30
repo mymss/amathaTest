@@ -86,8 +86,8 @@ class Commande(models.Model):
     comPoidsFinal = models.DecimalField(max_digits=4, decimal_places=2)
     envoye = models.BooleanField(default=True)
     enAttente = models.BooleanField(default=False)
-    produit = models.ManyToManyField(Produit)
-    atelier = models.ManyToManyField(Atelier)
+    produit = models.ManyToManyField(Produit, blank=True)
+    atelier = models.ManyToManyField(Atelier, blank=True)
     clientId = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

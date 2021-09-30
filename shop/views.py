@@ -1,6 +1,7 @@
 ###############################################
 # Import
 ###############################################
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 
@@ -307,16 +308,46 @@ def produitsCosmetiques(request):
 ###############################################
 # Page Produit
 ###############################################
+def cosmetique(request):
+    cosmetiques = Cosmetique.objects.all()
+    sommesCos = Prix.objects.all()
+    photos = Photo.objects.all()
+
+    num = request.user.pk
+    qsProduitsFavs = Cosmetique.objects.filter(favoris=num)
+
+    cosFav = []
+    for produit in qsProduitsFavs:
+        cosFav.append(Cosmetique.objects.get(produit_ptr = produit.pk))
+
+    context = {
+        'photos': photos,
+        'cosmetiques': cosmetiques,
+        'sommesCos': sommesCos,
+        'cosFav':cosFav,
+    }
+
+    return render(request, 'shop/pages/cosmetique.html', context)
+
 def vetement(request):
     vetements = Vetement.objects.all()
     sommesVet = Prix.objects.all()
     photVet = Photo.objects.all()
 
+    num = request.user.pk
+    qsVetementFavs = Vetement.objects.filter(favoris=num)
+
+    vetFav = []
+    for produit in qsVetementFavs:
+        vetFav.append(Vetement.objects.get(produit_ptr = produit.pk))
+
     context = {
         'photVet': photVet,
         'vetements': vetements,
         'sommesVet': sommesVet,
+        'vetFav': vetFav,
     }
+
     return render(request, 'shop/pages/vetements.html', context)
 
 
@@ -325,29 +356,20 @@ def produitInterieur(request):
     sommesProInt = Prix.objects.all()
     photos = Photo.objects.all()
 
+    num = request.user.pk
+    qsProduitsFavs = ProduitInterieur.objects.filter(favoris=num)
+
+    proIntFav = []
+    for produit in qsProduitsFavs:
+        proIntFav.append(ProduitInterieur.objects.get(produit_ptr=produit.pk))
+
     context = {
         'photos': photos,
         'produitInt': produitInt,
         'sommesProInt': sommesProInt,
+        'proIntFav':proIntFav,
     }
     return render(request, 'shop/pages/produitInterieur.html', context)
-
-
-def cosmetique(request):
-    cosmetiques = Cosmetique.objects.all()
-    sommesCos = Prix.objects.all()
-    photos = Photo.objects.all()
-    fav = bool
-    context = {
-        'photos': photos,
-        'cosmetiques': cosmetiques,
-        'sommesCos': sommesCos,
-        'fav': fav,
-    }
-    if cosmetiques.filter(favoris=request.user.pk):
-        fav = True
-    return render(request, 'shop/pages/cosmetique.html', context)
-
 
 ###############################################
 # Detail produit
@@ -408,3 +430,4 @@ def detailsAtelier(request, id):
         'atel': atel,
     }
     return render(request, 'shop/pages/detailsAtelier.html', context)
+

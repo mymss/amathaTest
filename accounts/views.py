@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from shop.models import Produit, Photo
 
 @login_required
-def favourite_add(request, id):
+def favourite_add_cos(request, id):
     produit = Produit.objects.get(id=id)
     if produit.favoris.filter(id=request.user.pk).exists():
         produit.favoris.remove(request.user)
@@ -17,6 +17,36 @@ def favourite_add(request, id):
 
     }
     return redirect('shop:cosmetique')
+
+@login_required
+def favourite_add_vet(request, id):
+    produit = Produit.objects.get(id=id)
+    if produit.favoris.filter(id=request.user.pk).exists():
+        produit.favoris.remove(request.user)
+
+    else:
+        produit.favoris.add(request.user)
+
+    context = {
+        'produit': produit,
+
+    }
+    return redirect('shop:vetements')
+
+@login_required
+def favourite_add_proInt(request, id):
+    produit = Produit.objects.get(id=id)
+    if produit.favoris.filter(id=request.user.pk).exists():
+        produit.favoris.remove(request.user)
+
+    else:
+        produit.favoris.add(request.user)
+
+    context = {
+        'produit': produit,
+
+    }
+    return redirect('shop:produitInterieur')
 
 
 @login_required

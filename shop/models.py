@@ -1,14 +1,9 @@
-from django.contrib.postgres import constraints
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import Q
 from django.urls import reverse
-
-# Create your models here.
 from accounts.models import Client
 
-
+# Create your models here.
 class Produit(models.Model):
     nom = models.CharField(max_length=50)
     description = models.CharField(max_length=150)
@@ -42,7 +37,6 @@ class ProduitInterieur(Produit):
     def __str__(self):
         return self.nom + " " + self.type
 
-
 class Cosmetique(Produit):
     ingredient = models.CharField(max_length=100)
     gamme = models.CharField(max_length=50)
@@ -50,17 +44,6 @@ class Cosmetique(Produit):
 
     def __str__(self):
         return self.nom + " " + self.gamme + " " + self.categorie
-
-
-class Prix(models.Model):
-    montant = models.IntegerField()
-    reduction = models.IntegerField()
-    date = models.DateField(auto_now_add=False)
-    produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.montant)
-
 
 class Atelier(models.Model):
     titre = models.CharField(max_length=30)
@@ -76,6 +59,14 @@ class Atelier(models.Model):
     def __str__(self):
         return self.titre
 
+class Prix(models.Model):
+    montant = models.IntegerField()
+    reduction = models.IntegerField()
+    date = models.DateField(auto_now_add=False)
+    produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.montant)
 
 class Photo(models.Model):
     url = models.CharField(max_length=30)

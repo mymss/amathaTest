@@ -13,14 +13,21 @@
                         {% if somme.produit == cos.produit_ptr and pho.produitId == cos.produit_ptr and cos.produitActif == 1 %}
                             <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
-                                <a href="{% url 'account:favourite_add' cos.id %}">
-                                        <i class="far fa-heart"></i>
+                            {% if cos in cosFav %}
+                                <a href="{% url 'account:favourite_add_cos' cos.id %}">
+                                    <i class="fas fa-heart"></i>
                                 </a>
+                            {% else %}
+                                <a href="{% url 'account:favourite_add_cos' cos.id %}">
+                                    <i class="far fa-heart"></i>
+                                </a>
+                            {% endif %}
                             </span>
                                 <div class="card-body">
                                     <a class="text-decoration-none" href="{% url 'shop:detailsCos' cos.id %}">
                                         {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
-                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}" style="height:auto;">
+                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}"
+                                             style="height:auto;">
                                         <p class="text-uppercase text-center fs-5">
                                             {{ cos.nom }}
                                         </p>
@@ -40,5 +47,5 @@
                 {% endfor %}
             {% endfor %}
         </div>
-      </div>
+    </div>
 {% endblock %}

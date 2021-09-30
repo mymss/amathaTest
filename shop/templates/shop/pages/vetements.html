@@ -1,27 +1,35 @@
 <!DOCTYPE html>
+
 {% extends 'shop/layouts/base.html' %}
 {% load static %}
 
 
 {% block content %}
-     <div class="containerMax">
+    <div class="containerMax">
         <div class="container">
             {% for somme in sommesVet %}
-                {% for pho in photos %}
-                    {% for vetement in vetements %}
-                        {% if somme.produit == vetement.produit_ptr and pho.produitId == vetement.produit_ptr and vetement.produitActif == 1 %}
+                {% for pho in photVet %}
+                    {% for vet in vetements %}
+                        {% if somme.produit == vet.produit_ptr and pho.produitId == vet.produit_ptr and vet.produitActif == 1 %}
                             <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
-                                <a href="{% url 'account:favourite_add' vetement.id %}">
-                                        <i class="far fa-heart"></i>
+                            {% if vet in vetFav %}
+                                <a href="{% url 'account:favourite_add_vet' vet.id %}">
+                                    <i class="fas fa-heart"></i>
                                 </a>
+                            {% else %}
+                                <a href="{% url 'account:favourite_add_vet' vet.id %}">
+                                    <i class="far fa-heart"></i>
+                                </a>
+                            {% endif %}
                             </span>
                                 <div class="card-body">
-                                    <a class="text-decoration-none" href="{% url 'shop:detailsVet' vetement.id %}">
+                                    <a class="text-decoration-none" href="{% url 'shop:detailsVet' vet.id %}">
                                         {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
-                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}" style="height:auto;">
+                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}"
+                                             style="height:auto;">
                                         <p class="text-uppercase text-center fs-5">
-                                            {{ vetement.nom }}
+                                            {{ vet.nom }}
                                         </p>
 
                                         <p class="text-center">{{ somme.montant }} CHF</p>
@@ -29,7 +37,7 @@
                                     </a>
                                     <div class="text-center">
                                         <button type="button" class="btn btn-outline-secondary">
-                                            {# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au
+                                            {# <a href="{% url '#' vet.produit_ptr %}">#} Ajouter au
                                             panier{# </a>#}</button>
                                     </div>
                                 </div>
@@ -39,5 +47,5 @@
                 {% endfor %}
             {% endfor %}
         </div>
-      </div>
+    </div>
 {% endblock %}

@@ -15,7 +15,15 @@
                     <p >Ingredient : {{ cosmetiques.ingredient }}</p>
 
                     <button type="button" class="btn btn-outline-secondary " >{# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au panier{# </a>#}</button>
-                    <i class="far fa-heart" style="margin-left: 2%;color: black;"></i>
+                    {% if cosmetiques in cosFav %}
+                        <a href="{% url 'account:favourite_add_cos' cosmetiques.id %}">
+                            <i class="fas fa-heart" style="margin-left: 2%;color: black;"></i>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'account:favourite_add_cos' cosmetiques.id %}">
+                            <i class="far fa-heart" style="margin-left: 2%;color: black;"></i>
+                        </a>
+                    {% endif %}
                     {#            Accordion pour plus d'information#}
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item" style="margin-left: -2%;">

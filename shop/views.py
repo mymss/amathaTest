@@ -379,10 +379,18 @@ def detailsVet(request, id):
     somVet = Prix.objects.get(produit=id)
     photVet = Photo.objects.get(produitId=id)
 
+    num = request.user.pk
+    qsProduitsFavs = Vetement.objects.filter(favoris=num)
+
+    vetFav = []
+    for produit in qsProduitsFavs:
+        vetFav.append(Vetement.objects.get(produit_ptr=produit.pk))
+
     context = {
         'vetements': vetements,
         'somVet': somVet,
         'photVet': photVet,
+        'vetFav': vetFav,
     }
     return render(request, 'shop/pages/detailsVet.html', context)
 
@@ -392,10 +400,18 @@ def detailsProInt(request, id):
     sommesProInt = Prix.objects.get(produit=id)
     phoProInt = Photo.objects.get(produitId=id)
 
+    num = request.user.pk
+    qsProduitsFavs = ProduitInterieur.objects.filter(favoris=num)
+
+    proIntFav = []
+    for produit in qsProduitsFavs:
+        proIntFav.append(ProduitInterieur.objects.get(produit_ptr=produit.pk))
+
     context = {
         'phoProInt': phoProInt,
         'produitInt': produitInt,
         'sommesProInt': sommesProInt,
+        'proIntFav': proIntFav,
     }
     return render(request, 'shop/pages/detailsProInt.html', context)
 
@@ -405,10 +421,18 @@ def detailsCos(request, id):
     sommesCos = Prix.objects.get(produit=id)
     phoCos = Photo.objects.get(produitId=id)
 
+    num = request.user.pk
+    qsProduitsFavs = Cosmetique.objects.filter(favoris=num)
+
+    cosFav = []
+    for produit in qsProduitsFavs:
+        cosFav.append(Cosmetique.objects.get(produit_ptr=produit.pk))
+
     context = {
         'phoCos': phoCos,
         'cosmetiques': cosmetiques,
         'sommesCos': sommesCos,
+        'cosFav': cosFav,
     }
     return render(request, 'shop/pages/detailsCos.html', context)
 

@@ -43,11 +43,6 @@ urlpatterns = [
     path('adminProIntDetails/<int:id>', views.adminProIntDetails, name='adminProIntDetails'),
     path('adminProCosDetails/<int:id>', views.adminProCosDetails, name='adminProCosDetails'),
     path('adminAtelierDetails/<int:id>', views.adminAtelierDetails, name='adminAtelierDetails'),
-
-
-
-
-
-
+    path('adminClientDetails/<int:id>', views.adminClientDetails, name='adminClientDetails'),
 
 ]

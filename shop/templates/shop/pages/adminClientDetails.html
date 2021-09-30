@@ -1,0 +1,45 @@
+<!-- Header -->
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+
+    <br/><br/><br/>
+
+    <div class="container-xxl" style="margin-left: 20%; ">
+        <div class="container-sm">
+
+            <h2>Détails Client</h2>
+            <hr/>
+
+            <script>
+                var cptCommande = 0;
+            </script>
+            {% for com in commande %}
+                <script>
+                    var cptCommande = cptCommande + 1;
+                </script>
+                <p>
+                    {{ com.comNumero }} {{ com.comTotal }}
+                </p>
+            {% endfor %}
+
+        <p>
+            Ce client a commandé:
+               <script>
+                    document.write(cptCommande)
+                </script>
+            commandes
+        </p>
+
+
+        </div>
+    </div>
+    <br/><br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

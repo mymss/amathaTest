@@ -29,42 +29,38 @@
                             <div class="accordion-body">
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
-                                        <th colspan="2">Atelier titre</th>
+                                        <th colspan="2">Client nom</th>
                                     </tr>
                                     <!-- Boucle pour afficher les nom de vetements -->
-                                    {% for atel in atelier %}
+                                    {% for cli in client %}
                                         <tr>
-                                            {#                                            <td for="insertStock" class="col-form-label">{{ atel.titre }}</td>#}
 
                                             <td for="insertStock" class="col-form-label">
-                                                <a href="{% url 'shop:adminAtelierDetails' atel.id %}">
-                                                    {{ atel.titre }}
-                                                </a>
+
+                                                    {{ cli.prenom }} {{ cli.nom }}
                                             </td>
 
                                             <td align="right">
-                                                <a href="{% url 'shop:updateAtelier' atel.id %}"
+                                                <a href="{% url 'shop:adminClientDetails' cli.id %}"
                                                    class="btn-outline-secondary btn-sm"
-                                                   class="text-decoration-none">Modifier</a>
+                                                   class="text-decoration-none">Voir commandes</a>
                                             </td>
                                         </tr>
-
-                                        <tr>
 
                                     {% endfor %}
                                 </table>
                             </div>
                             <!--Button Insertion -->
-                            <div class="container" style="margin-left: 75%; ">
-                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                    <div class="col">
-                                        <a href="{% url 'shop:insertionAtelier' %}" class="text-decoration-none">
-                                            <div class="p-3 border bg-light">Créer un nouveau atelier</div>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
+{#                            <div class="container" style="margin-left: 75%; ">#}
+{#                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">#}
+{#                                    <div class="col">#}
+{#                                        <a href="{% url 'shop:insertionAtelier' %}" class="text-decoration-none">#}
+{#                                            <div class="p-3 border bg-light">Créer un nouveau atelier</div>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
                             <br/>
 
                         </div>

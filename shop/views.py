@@ -9,7 +9,8 @@ from django.shortcuts import render
 from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
     PosteUpdateStockProInt, PosteUpdateStockVet, PosteInsertPhoto
-from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo
+from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo, Commande
+
 
 @login_required
 def header(request):
@@ -305,6 +306,21 @@ def adminAtelierDetails(request, id):
     detailsAtelier = Atelier.objects.get(id=id)
     return render(request, "shop/pages/adminAtelierDetails.html", {'detailsAtelier': detailsAtelier})
 
+
+### Détails client Admin
+def adminClientDetails(request, id):
+    detailsClient = Client.objects.get(id=id)
+    commande = Commande.objects.filter(clientId=id)
+    cptCommande = 0
+    # commande = Commande.objects.all().filter(clientId=id)
+    # commandeCli = Commande.objects.get(clientId=id)
+    context = {
+        'detailsClient': detailsClient,
+        'commande': commande,
+        'cptCommande': cptCommande,
+        # 'commandeCli':commandeCli,
+    }
+    return render(request, "shop/pages/adminClientDetails.html", context)
 
 ############################################
 

@@ -17,24 +17,61 @@
 
             <script>
                 var cptCommande = 0;
+                const commande = "commande";
+                const commandes = "commandes";
             </script>
+
+
             {% for com in commande %}
+
                 <script>
                     var cptCommande = cptCommande + 1;
                 </script>
-                <p>
-                    {{ com.comNumero }} {{ com.comTotal }}
-                </p>
+
             {% endfor %}
 
-        <p>
-            Ce client a commandé:
-               <script>
-                    document.write(cptCommande)
-                </script>
-            commandes
-        </p>
+            <p>
+                <span style="font-weight: bold">{{ detailsClient.prenom }} {{ detailsClient.nom }}</span> a commandé
+                <span style="color: #CC3434; font-weight: bold">
+                        <script>
+                            document.write(cptCommande)
+                        </script>
+                    </span>
 
+                <script>
+                    if (cptCommande <= 1) {
+                        document.write(commande)
+                    } else {
+                        document.write(" ", commandes)
+                    }
+                </script>
+            </p>
+
+            <table class="table table-bordered" style="width: 500px;">
+                <tr>
+                    <th>N° commande</th>
+                    <th>Total</th>
+                    <th>Satut</th>
+                    <th>Date de paiement</th>
+                </tr>
+
+                {% for com in commande %}
+                    <tr>
+                        <td>{{ com.comNumero }}</td>
+                        <td>{{ com.comTotal }}</td>
+
+                        {% if com.envoye == True %}
+                            <td>Envoyé</td>
+                        {% else %}
+                            <td>En attente</td>
+                        {% endif %}
+
+                        <td>{{ com.comDatePaiement }}</td>
+                    </tr>
+
+
+                {% endfor %}
+            </table>
 
         </div>
     </div>

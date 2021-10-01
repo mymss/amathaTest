@@ -75,6 +75,11 @@
                                             href="{% url 'account:informations' %}">
                                         Mon compte</a></button>
                                 </li>
+                                 <li>
+                                    <button class="dropdown-item" type="button"><a
+                                            href="{% url 'shop:commande' %}">
+                                        Mes commandes</a></button>
+                                </li>
 
                             {% elif request.user.is_authenticated and user.is_staff %}
                                 <li>

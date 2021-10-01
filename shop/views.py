@@ -10,7 +10,7 @@ from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
     PosteUpdateStockProInt, PosteUpdateStockVet, PosteInsertPhoto
 from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo, Commande, \
-    LigneProduitCommande
+    LigneProduitCommande, LigneAtelierCommande
 
 
 @login_required
@@ -509,3 +509,47 @@ def detailsAtelier(request, id):
         'atel': atel,
     }
     return render(request, 'shop/pages/detailsAtelier.html', context)
+def commande(request):
+    infos = request.user.client
+    commandes = Commande.objects.filter(clientId_id=infos.id)
+    quantitAte = LigneAtelierCommande.objects.filter(commande__clientId_id=infos.id)
+    ateliers = Atelier.objects.filter(ligneateliercommande__commande__clientId_id=infos.id)
+    quantitpro = LigneProduitCommande.objects.filter(commande__clientId_id=infos.id)
+    produits = Produit.objects.filter(ligneproduitcommande__commande__clientId_id=infos.id)
+    prixPro = Prix.objects.filter(produit__ligneproduitcommande__commande_id=infos.id)
+    for qua in quantitpro:
+        for quan in quantitAte:
+            for priPro in prixPro:
+                for at in ateliers:
+                    for pro in produits:
+                        nbPer = quan.nbrPersonne
+                        nomAteliers = at.titre
+                        prix = at.prix
+                        totalAte = at.prix * quan.nbrPersonne
+                        nomProduits = pro.nom
+                        quantite = qua.quantite
+                        priProduit = priPro.montant
+                        totalPro = quantite * priProduit
+    context = {
+        'commandes': commandes,
+        'nbPer': nbPer,
+        'nomAteliers': nomAteliers,
+        'totalAte': totalAte,
+        'prix':prix,
+        'nomProduits': nomProduits,
+        'quantite':quantite,
+        'priProduit':priProduit,
+        'totalPro': totalPro,
+        'totalfinal': totalPro + totalAte,
+
+
+    }
+    return render(request, 'shop/pages/commande.html', context)
+
+
+def detailsCommande(request, id):
+    com = Commande.objects.get(id=id)
+    context = {
+        'com': com,
+    }
+    return render(request, 'shop/pages/detailsCommande.html', context)

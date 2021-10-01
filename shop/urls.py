@@ -18,6 +18,8 @@ urlpatterns = [
     path('detailsProInt/<int:id>', views.detailsProInt, name='detailsProInt'),
     path('atelier', views.atelier, name='atelier'),
     path('detailsAtelier/<int:id>', views.detailsAtelier, name='detailsAtelier'),
+    path('commande', views.commande, name='commande'),
+    path('detailsCommande/<int:id>', views.detailsCommande, name='detailsCommande'),
 
     path('gestionStock', views.gestionStock, name='gestionStock'),
     path('gestionProduit', views.gestionProduit, name='gestionProduit'),

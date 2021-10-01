@@ -9,7 +9,8 @@ from django.shortcuts import render
 from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
     PosteUpdateStockProInt, PosteUpdateStockVet, PosteInsertPhoto
-from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo, Commande
+from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo, Commande, \
+    LigneProduitCommande
 
 
 @login_required
@@ -31,14 +32,15 @@ def accueil(request):
     produitsCosmetiques = Cosmetique.objects.all()
 
     context = {
-        'produits':produits,
-        'prix':prix,
-        'photos':photos,
-        'vetements':vetements,
-        'produitsInterieurs':produitsInterieurs,
-        'produitsCosmetiques':produitsCosmetiques,
+        'produits': produits,
+        'prix': prix,
+        'photos': photos,
+        'vetements': vetements,
+        'produitsInterieurs': produitsInterieurs,
+        'produitsCosmetiques': produitsCosmetiques,
     }
     return render(request, "shop/pages/accueil.html", context)
+
 
 ###############################################
 ## View Accueil Admin Test
@@ -86,6 +88,14 @@ def gestionAtelier(request):
 def gestionClient(request):
     client = Client.objects.all()
     return render(request, "shop/pages/gestionClient.html", {'client': client})
+
+
+###############################################
+## View Gestion de client Test
+###############################################
+def gestionCommande(request):
+    commande = Commande.objects.all()
+    return render(request, "shop/pages/gestionCommande.html", {'commande': commande})
 
 
 ###############################################
@@ -311,16 +321,23 @@ def adminAtelierDetails(request, id):
 def adminClientDetails(request, id):
     detailsClient = Client.objects.get(id=id)
     commande = Commande.objects.filter(clientId=id)
-    cptCommande = 0
-    # commande = Commande.objects.all().filter(clientId=id)
-    # commandeCli = Commande.objects.get(clientId=id)
     context = {
         'detailsClient': detailsClient,
         'commande': commande,
-        'cptCommande': cptCommande,
-        # 'commandeCli':commandeCli,
     }
     return render(request, "shop/pages/adminClientDetails.html", context)
+
+
+### Détails commande Admin
+def adminCommandeDetails(request, id):
+    detailsCommande = Commande.objects.get(id=id)
+    ligneCom = LigneProduitCommande.objects.filter(commande=id)
+    context = {
+        'detailsCommande': detailsCommande,
+        'ligneCom': ligneCom,
+    }
+    return render(request, "shop/pages/adminCommandeDetails.html", context)
+
 
 ############################################
 
@@ -354,16 +371,17 @@ def cosmetique(request):
 
     cosFav = []
     for produit in qsProduitsFavs:
-        cosFav.append(Cosmetique.objects.get(produit_ptr = produit.pk))
+        cosFav.append(Cosmetique.objects.get(produit_ptr=produit.pk))
 
     context = {
         'photos': photos,
         'cosmetiques': cosmetiques,
         'sommesCos': sommesCos,
-        'cosFav':cosFav,
+        'cosFav': cosFav,
     }
 
     return render(request, 'shop/pages/cosmetique.html', context)
+
 
 def vetement(request):
     vetements = Vetement.objects.all()
@@ -375,7 +393,7 @@ def vetement(request):
 
     vetFav = []
     for produit in qsVetementFavs:
-        vetFav.append(Vetement.objects.get(produit_ptr = produit.pk))
+        vetFav.append(Vetement.objects.get(produit_ptr=produit.pk))
 
     context = {
         'photVet': photVet,
@@ -403,9 +421,10 @@ def produitInterieur(request):
         'photos': photos,
         'produitInt': produitInt,
         'sommesProInt': sommesProInt,
-        'proIntFav':proIntFav,
+        'proIntFav': proIntFav,
     }
     return render(request, 'shop/pages/produitInterieur.html', context)
+
 
 ###############################################
 # Detail produit
@@ -490,4 +509,3 @@ def detailsAtelier(request, id):
         'atel': atel,
     }
     return render(request, 'shop/pages/detailsAtelier.html', context)
-

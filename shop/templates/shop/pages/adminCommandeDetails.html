@@ -1,0 +1,27 @@
+<!-- Header -->
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+
+    <br/><br/><br/>
+
+    <div class="container-xxl" style="margin-left: 20%; ">
+        <div class="container-sm">
+
+            {{ detailsCommande.comNumero }}
+
+            {% for pro in ligneCom %}
+                {{ pro.produit.nom }} {{ pro.quantite }}
+            {% endfor %}
+
+        </div>
+    </div>
+    <br/><br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

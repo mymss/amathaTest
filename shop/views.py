@@ -517,6 +517,14 @@ def commande(request):
     quantitpro = LigneProduitCommande.objects.filter(commande__clientId_id=infos.id)
     produits = Produit.objects.filter(ligneproduitcommande__commande__clientId_id=infos.id)
     prixPro = Prix.objects.filter(produit__ligneproduitcommande__commande_id=infos.id)
+    nbPer= 0
+    nomAteliers = 0
+    prix = 0
+    totalAte = 0
+    nomProduits = 0
+    quantite = 0
+    priProduit = 0
+    totalPro = 0
     for qua in quantitpro:
         for quan in quantitAte:
             for priPro in prixPro:

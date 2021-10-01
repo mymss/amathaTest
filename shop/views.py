@@ -22,7 +22,7 @@ def header(request):
 
 
 def accueil(request):
-    produits = Produit.objects.all()[:4]
+    produits = Produit.objects.all()[:3]
     prix = Prix.objects.all()
     photos = Photo.objects.all()
 

@@ -138,10 +138,12 @@ footer{
 }
 
 /* CSS du catalogue*/
+
 .containerMax {
     width: 70% ;
     margin-right:auto;
     margin-left: auto;
+    margin-top: 50px;
 }
 .containerMax h1{
     padding-top: 10px;

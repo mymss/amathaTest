@@ -3,7 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="7a46de78-8f82-4838-ac79-03acbf6f5c02" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/Activate.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/activate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/deactivate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/django-admin.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/django-admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip3.9.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pip3.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/python.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/pythonw.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/Scripts/sqlformat.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myvenv/pyvenv.cfg" beforeDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,9 +124,15 @@
       <workItem from="1633073569014" duration="69000" />
       <workItem from="1633074654812" duration="368000" />
       <workItem from="1633081205242" duration="5017000" />
+<<<<<<< Updated upstream
       <workItem from="1633091094517" duration="6647000" />
       <workItem from="1633099042495" duration="1145000" />
       <workItem from="1633100565002" duration="519000" />
+=======
+      <workItem from="1633091094517" duration="7297000" />
+      <workItem from="1633329892797" duration="56000" />
+      <workItem from="1633329952137" duration="70000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

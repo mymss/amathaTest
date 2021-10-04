@@ -7,23 +7,23 @@
 <!-- Body -->
 {% block content %}
 
-<br/>
-<div class="container-xxl" style="margin-top: 60px; margin-left: 60px">
+    <br/>
+    <div class="container-xxl" style="margin-top: 20px; margin-left: 15%">
         <div class="container-sm">
-<h2 class="p-3">Insertion Photo</h2>
-<hr/>
-<div class="order-4 p-4 bd-highlight">
-    <form action="{% url 'shop:insertionPhoto' %}" method="post" enctype="multipart/form-data">
+            <h2 class="p-3">Insertion Photo</h2>
+            <hr/>
+            <div class="order-4 p-4 bd-highlight" style=" margin-left: 60px">
+                <form action="{% url 'shop:insertionPhoto' %}" method="post" enctype="multipart/form-data">
 
-        {% csrf_token %}
+                    {% csrf_token %}
 
-        {{ formInsertPhoto.as_p }}
-        <br/>
-        <input type="submit" class="btn btn-secondary" value="Ajouter">
-    </form>
-</div>
-</div>
-</div>
+                    {{ formInsertPhoto.as_p }}
+                    <br/>
+                    <input type="submit" class="btn btn-secondary" value="Ajouter">
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock content %}

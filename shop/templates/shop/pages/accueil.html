@@ -45,12 +45,11 @@
     </div>
     <div class="d-flex" style="width:80%;margin:auto;margin-top:10px;text-align:center">
 
-    {% for pho in photos %}
+
       {% for produit in produits %}
-          {% if pho.produitId_id == produit.id %}
 
             <div  style="width: 20%; margin: auto; padding-top: 20px">
-               <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}"
+               <img class="cadre" src="{% static produit.nomFichier %}" alt="{{ produit.nomFichier }}"
                                              style="height:auto;">
 
                 {% for cos in produitsCosmetiques %}
@@ -71,18 +70,7 @@
                     <a class="text-decoration-none" href="{% url 'shop:detailsVet' vet.id %}"> {{ produit.nom}} </a>
                 {% endif %}
             {% endfor %}
-
-
-
             </div>
-
-        {% endif %}
       {% endfor%}
-    {% endfor %}
-
   </div>
-
-
-
-
 {% endblock content %}

@@ -4,15 +4,15 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse
 from cart.models import PanierItem, Panier
-from shop.models import Produit, Photo
+from shop.models import Produit
 
 def panier(request):
     panier = PanierItem.objects.filter(user = request.user)
     temp = []
     for pro in panier:
         produitPho = pro.product.id
-        produitPho2 = Photo.objects.get(produitId=produitPho)
-        temp.append(produitPho2)
+        # # produitPho2 = Photo.objects.get(produitId=produitPho)
+        # temp.append(produitPho2)
 
     item_number = panier.count()
     bool = False

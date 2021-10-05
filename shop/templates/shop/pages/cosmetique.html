@@ -8,10 +8,8 @@
     <div class="containerMax">
         <div class="container">
             {% for somme in sommesCos %}
-                {% for pho in photos %}
                     {% for cos in cosmetiques %}
-                        {% if somme.produit == cos.produit_ptr and pho.produitId == cos.produit_ptr and cos.produitActif == 1 %}
-
+                        {% if somme.produit == cos.produit_ptr and cos.produitActif == 1 %}
                             <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
                             {% if cos in cosFav %}
@@ -26,7 +24,7 @@
                             </span>
                                 <div class="card-body">
                                     <a class="text-decoration-none" href="{% url 'shop:detailsCos' cos.id %}">
-                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}"
+                                        <img class="cadre" src="{% static cosmetiques.nomFichier %}" alt="{{ cosmetiques.nomFichier }}"
                                              style="height:auto;">
                                         <p class="text-uppercase text-center fs-5">
                                             {{ cos.nom }}
@@ -37,15 +35,13 @@
                                     </a>
                                     <div class="text-center">
                                         <button type="button" class="btn btn-outline-secondary">
-                                            <a href="{% url 'cart:add_to_cart_cos' cos.id %}">Ajouter au panier</a>
-                                        </button>
+                                            <a href="{% url 'cart:add_to_cart_cos' cos.id %}">Ajouter au panier</a></button>
                                     </div>
                                 </div>
                             </div>
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
-            {% endfor %}
         </div>
     </div>
 {% endblock %}

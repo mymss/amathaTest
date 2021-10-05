@@ -7,12 +7,12 @@
         <div class="container">
             <div class="row g-0 mx-auto rounded"  style="width: 80%;height: 50%; ">
                 <div class="col-6 col-md-5 "  >
-                    <img src= "{% static photVet.url %}"  alt = "{{photVet.nomFichier}}"  class="rounded mx-auto d-block" style=" margin-top: 3%;margin-left: 5%; margin-bottom:3%; width:400px; height: 270px;">
+                    <img src= "{% static vetements.nomFichier %}"  alt = "{{vetements.nomFichier}}"  class="rounded mx-auto d-block" style=" margin-top: 3%;margin-left: 5%; margin-bottom:3%; width:400px; height: 270px;">
                 </div>
                 <div class="col-sm-6 col-md-7 fs-5 " style="margin-top: 1%;">
                     <p class="text-uppercase">{{ vetements.nom }} </p>
                     <p style="">Prix : {{ somVet.montant }} CHF</p>
-                    <p >Ingredient : {{ vetements.ingredient }}</p>
+                    <p >Sexe : {{ vetements.sexe }}</p>
 
                     <button type="button" class="btn btn-outline-secondary " >{# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au panier{# </a>#}</button>
                     {% if vetements in vetFav %}
@@ -35,8 +35,10 @@
                             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <p >Description : {{ vetements.description }}</p>
-                                    <p >Categorie : {{ vetements.categorie }}</p>
-                                    <p >Gamme : {{ vetements.gamme }}</p>
+                                    <p >Type de tissu : {{ vetements.typeTissu }}</p>
+                                    <p >Couleur : {{ vetements.couleur }}</p>
+                                    <p >Taille : {{ vetements.taille }}</p>
+                                    <p >Poid : {{ vetements.poid }}</p>
                                 </div>
                             </div>
                         </div>

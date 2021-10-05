@@ -8,8 +8,8 @@ from django.shortcuts import render
 
 from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
-    PosteUpdateStockProInt, PosteUpdateStockVet, PosteInsertPhoto
-from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Photo, Commande, \
+    PosteUpdateStockProInt, PosteUpdateStockVet
+from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Commande, \
     LigneProduitCommande, LigneAtelierCommande
 
 
@@ -23,9 +23,8 @@ def header(request):
 
 
 def accueil(request):
-    produits = Produit.objects.all()[:3]
+    produits = Produit.objects.all()[:4]
     prix = Prix.objects.all()
-    photos = Photo.objects.all()
 
     vetements = Vetement.objects.all()
     produitsInterieurs = ProduitInterieur.objects.all()
@@ -34,7 +33,6 @@ def accueil(request):
     context = {
         'produits': produits,
         'prix': prix,
-        'photos': photos,
         'vetements': vetements,
         'produitsInterieurs': produitsInterieurs,
         'produitsCosmetiques': produitsCosmetiques,
@@ -115,23 +113,9 @@ def insertionVetement(request):
     else:
         formInsertVet = PosteInsertVet()
 
-    ## Insertion Photo
-    if request.method == "POST":
-        formInsertPhoto = PosteInsertPhoto(request.POST)
-
-        if formInsertPhoto.is_valid():
-            formInsertPhoto = formInsertPhoto.save(commit=False)
-            formInsertPhoto.author = request.user
-            formInsertPhoto.save()
-
-            return redirect('shop:insertionVetement')
-
-    else:
-        formInsertVet = PosteInsertVet()
-        formInsertPhoto = PosteInsertPhoto()
 
     return render(request, "shop/pages/insertionVetement.html",
-                  {'formInsertVet': formInsertVet, 'formInsertPhoto': formInsertPhoto})
+                  {'formInsertVet': formInsertVet})
 
 
 ###############################################
@@ -196,24 +180,6 @@ def insertionAtelier(request):
     return render(request, "shop/pages/insertionAtelier.html",
                   {'formInsertAtelier': formInsertAtelier})
 
-
-### Insertion photo
-def insertionPhoto(request):
-    if request.method == "POST":
-        formInsertPhoto = PosteInsertPhoto(request.POST)
-
-        if formInsertPhoto.is_valid():
-            formInsertPhoto = formInsertPhoto.save(commit=False)
-            formInsertPhoto.author = request.user
-            formInsertPhoto.save()
-
-            return redirect('shop:insertionPhoto')
-
-    else:
-        formInsertPhoto = PosteInsertPhoto()
-
-    return render(request, "shop/pages/insertionPhoto.html",
-                  {'formInsertPhoto': formInsertPhoto})
 
 
 ### Update Vetêment
@@ -364,7 +330,6 @@ def produitsCosmetiques(request):
 def cosmetique(request):
     cosmetiques = Cosmetique.objects.all()
     sommesCos = Prix.objects.all()
-    photos = Photo.objects.all()
 
     num = request.user.pk
     qsProduitsFavs = Cosmetique.objects.filter(favoris=num)
@@ -374,7 +339,6 @@ def cosmetique(request):
         cosFav.append(Cosmetique.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'photos': photos,
         'cosmetiques': cosmetiques,
         'sommesCos': sommesCos,
         'cosFav': cosFav,
@@ -386,7 +350,6 @@ def cosmetique(request):
 def vetement(request):
     vetements = Vetement.objects.all()
     sommesVet = Prix.objects.all()
-    photVet = Photo.objects.all()
 
     num = request.user.pk
     qsVetementFavs = Vetement.objects.filter(favoris=num)
@@ -396,7 +359,6 @@ def vetement(request):
         vetFav.append(Vetement.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'photVet': photVet,
         'vetements': vetements,
         'sommesVet': sommesVet,
         'vetFav': vetFav,
@@ -408,7 +370,6 @@ def vetement(request):
 def produitInterieur(request):
     produitInt = ProduitInterieur.objects.all()
     sommesProInt = Prix.objects.all()
-    photos = Photo.objects.all()
 
     num = request.user.pk
     qsProduitsFavs = ProduitInterieur.objects.filter(favoris=num)
@@ -418,7 +379,6 @@ def produitInterieur(request):
         proIntFav.append(ProduitInterieur.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'photos': photos,
         'produitInt': produitInt,
         'sommesProInt': sommesProInt,
         'proIntFav': proIntFav,
@@ -432,7 +392,6 @@ def produitInterieur(request):
 def detailsVet(request, id):
     vetements = Vetement.objects.get(id=id)
     somVet = Prix.objects.get(produit=id)
-    photVet = Photo.objects.get(produitId=id)
 
     num = request.user.pk
     qsProduitsFavs = Vetement.objects.filter(favoris=num)
@@ -444,7 +403,6 @@ def detailsVet(request, id):
     context = {
         'vetements': vetements,
         'somVet': somVet,
-        'photVet': photVet,
         'vetFav': vetFav,
     }
     return render(request, 'shop/pages/detailsVet.html', context)
@@ -453,7 +411,6 @@ def detailsVet(request, id):
 def detailsProInt(request, id):
     produitInt = ProduitInterieur.objects.get(id=id)
     sommesProInt = Prix.objects.get(produit=id)
-    phoProInt = Photo.objects.get(produitId=id)
 
     num = request.user.pk
     qsProduitsFavs = ProduitInterieur.objects.filter(favoris=num)
@@ -463,7 +420,6 @@ def detailsProInt(request, id):
         proIntFav.append(ProduitInterieur.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'phoProInt': phoProInt,
         'produitInt': produitInt,
         'sommesProInt': sommesProInt,
         'proIntFav': proIntFav,
@@ -474,7 +430,6 @@ def detailsProInt(request, id):
 def detailsCos(request, id):
     cosmetiques = Cosmetique.objects.get(id=id)
     sommesCos = Prix.objects.get(produit=id)
-    phoCos = Photo.objects.get(produitId=id)
 
     num = request.user.pk
     qsProduitsFavs = Cosmetique.objects.filter(favoris=num)
@@ -484,7 +439,6 @@ def detailsCos(request, id):
         cosFav.append(Cosmetique.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'phoCos': phoCos,
         'cosmetiques': cosmetiques,
         'sommesCos': sommesCos,
         'cosFav': cosFav,
@@ -509,55 +463,62 @@ def detailsAtelier(request, id):
         'atel': atel,
     }
     return render(request, 'shop/pages/detailsAtelier.html', context)
+
+
+###############################################
+# Page Commande + Détail commande
+###############################################
+
+
 def commande(request):
     infos = request.user.client
-    commandes = Commande.objects.filter(clientId_id=infos.id)
-    quantitAte = LigneAtelierCommande.objects.filter(commande__clientId_id=infos.id)
-    ateliers = Atelier.objects.filter(ligneateliercommande__commande__clientId_id=infos.id)
-    quantitpro = LigneProduitCommande.objects.filter(commande__clientId_id=infos.id)
-    produits = Produit.objects.filter(ligneproduitcommande__commande__clientId_id=infos.id)
-    prixPro = Prix.objects.filter(produit__ligneproduitcommande__commande_id=infos.id)
-    nbPer= 0
-    nomAteliers = 0
-    prix = 0
-    totalAte = 0
-    nomProduits = 0
-    quantite = 0
-    priProduit = 0
-    totalPro = 0
-    for qua in quantitpro:
-        for quan in quantitAte:
-            for priPro in prixPro:
-                for at in ateliers:
-                    for pro in produits:
-                        nbPer = quan.nbrPersonne
-                        nomAteliers = at.titre
-                        prix = at.prix
-                        totalAte = at.prix * quan.nbrPersonne
-                        nomProduits = pro.nom
-                        quantite = qua.quantite
-                        priProduit = priPro.montant
-                        totalPro = quantite * priProduit
-    context = {
+    commandes = Commande.objects.filter(clientId_id=request.user.client.id)
+    context={
         'commandes': commandes,
-        'nbPer': nbPer,
-        'nomAteliers': nomAteliers,
-        'totalAte': totalAte,
-        'prix':prix,
-        'nomProduits': nomProduits,
-        'quantite':quantite,
-        'priProduit':priProduit,
-        'totalPro': totalPro,
-        'totalfinal': totalPro + totalAte,
-
-
     }
     return render(request, 'shop/pages/commande.html', context)
 
 
+# def calculCommande(idCom):
+#     # Commnde Id
+#     commande_id = Commande.objects.get(id=idCom)
+#     # Produit
+#     ligneProduit = LigneProduitCommande.objects.filter(produit__commande__ligneproduitcommande=commande_id)
+#     montant = Prix.objects.filter(produit__ligneproduitcommande__commande_id=commande_id)
+#     comPro = Commande.objects.filter(clientId__commande=commande_id)
+#     totalComProduit = 0
+#     # Atelier
+#     comAte = Commande.objects.filter(clientId__commande= commande_id)
+#     ligneAtelier = LigneAtelierCommande.objects.filter(commande__clientId__commande=commande_id)
+#     totalComAtelier = 0
+#     total = []
+#
+#     for lignepro in ligneProduit:
+#         for pri in montant:
+#             for pro in comPro:
+#                 if commande_id == lignepro.commande:
+#                     totalComProduit += pri.montant * lignepro.quantite
+#
+#     for ligneate in ligneAtelier:
+#         for ate in comAte:
+#             totalComAtelier += ate.prix * ligneate.nbrPersonne
+#
+#     total.append(totalComAtelier + totalComProduit)
+#     for tot in total:
+#         tot.
+#     return
+#
+
 def detailsCommande(request, id):
-    com = Commande.objects.get(id=id)
+    detailsCommande = Commande.objects.get(id=id)
+    ligneProCom = LigneProduitCommande.objects.filter(commande=id)
+    ligneAteCom = LigneAtelierCommande.objects.filter(commande=id)
+    prix = Prix.objects.all()
+    # calculeTotal = {{methods.calculePrixTotal(prix.all(), ligneProCom.all())}}
     context = {
-        'com': com,
+        'detailsCommande': detailsCommande,
+        'ligneProCom': ligneProCom,
+        'ligneAteCom': ligneAteCom,
+        'prix': prix,
     }
     return render(request, 'shop/pages/detailsCommande.html', context)

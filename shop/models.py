@@ -13,6 +13,7 @@ class Produit(models.Model):
     poid = models.DecimalField(max_digits=4, decimal_places=2)
     favoris = models.ManyToManyField(User, related_name='favoris', blank=True)
     produitActif = models.BooleanField(default=True)
+    nomFichier = models.ImageField(blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('index', args=[str(self.id)])
@@ -55,6 +56,7 @@ class Atelier(models.Model):
     adresse = models.CharField(max_length=150)
     prix = models.IntegerField()
     AtelierActif = models.BooleanField(default=True)
+    nomFichier = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.titre
@@ -67,16 +69,6 @@ class Prix(models.Model):
 
     def __str__(self):
         return str(self.montant)
-
-class Photo(models.Model):
-    url = models.CharField(max_length=30)
-    nomFichier = models.CharField(max_length=30)
-    produitId = models.ForeignKey(Produit, on_delete=models.CASCADE, blank=True, null=True)
-    atelierId = models.ForeignKey(Atelier, on_delete=models.CASCADE, blank=True, null=True)
-
-    def __str__(self):
-        return self.nomFichier
-
 
 class Commande(models.Model):
     comNumero = models.IntegerField()

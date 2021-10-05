@@ -14,12 +14,9 @@
                 <div class="card m-3 d-inline-flex" style="width: 25%;">
                     <div class="card-body">
 
-                        {% for pho in listePhoto %}
-                            {% if pho.produitId_id == produit.id %}
                                 <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
-                                <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}">
-                            {% endif %}
-                        {% endfor %}
+                                <img class="cadre" src="{% static produit.nomFichier %}" alt="{{ produit.nomFichier }}">
+
                         <p class="text-uppercase text-center fs-5">
                             {{ produit.nom }}
                         </p>

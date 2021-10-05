@@ -1,5 +1,5 @@
 from django import forms
-from .models import Produit, Vetement, ProduitInterieur, Cosmetique, Atelier, Photo
+from .models import Produit, Vetement, ProduitInterieur, Cosmetique, Atelier
 
 
 ### Form Insertion Vetêment
@@ -35,14 +35,14 @@ class PosteInsertAtelier(forms.ModelForm):
             'titre', 'description', 'nbrPersonneMax', 'dateDebut', 'heureDebut', 'heureFin', 'adresse', 'prix')
 
 
-###################### TEST INSERTION PHOTO ############################
-### Form Insertion Photo
-class PosteInsertPhoto(forms.ModelForm):
-    class Meta:
-        model = Photo
-        fields = (
-            'url', 'nomFichier', 'produitId', 'atelierId')
-
+# ###################### TEST INSERTION PHOTO ############################
+# ### Form Insertion Photo
+# class PosteInsertPhoto(forms.ModelForm):
+#     class Meta:
+#         model = Photo
+#         fields = (
+#             'url', 'nomFichier', 'produitId', 'atelierId')
+#
 
 ### Form Update Stock Vetêment
 class PosteUpdateStockVet(forms.ModelForm):

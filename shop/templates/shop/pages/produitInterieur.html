@@ -8,9 +8,8 @@
     <div class="containerMax">
         <div class="container">
             {% for somme in sommesProInt %}
-                {% for pho in photos %}
                     {% for pro in produitInt %}
-                        {% if somme.produit == pro.produit_ptr and pho.produitId == pro.produit_ptr and pro.produitActif == 1 %}
+                        {% if somme.produit == pro.produit_ptr and pro.produitActif == 1 %}
                             <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
                             {% if pro in proIntFav %}
@@ -26,10 +25,10 @@
                                 <div class="card-body">
                                     <a class="text-decoration-none" href="{% url 'shop:detailsProInt' pro.id %}">
                                         {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
-                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}"
+                                        <img class="cadre" src="{% static pro.nomFichier %}" alt="{{ pho.nomFichier }}"
                                              style="height:auto;">
                                         <p class="text-uppercase text-center fs-5">
-                                            {{ vet.nom }}
+                                            {{ pro.nom }}
                                         </p>
 
                                         <p class="text-center">{{ somme.montant }} CHF</p>
@@ -44,7 +43,6 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                {% endfor %}
             {% endfor %}
         </div>
     </div>

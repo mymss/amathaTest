@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import ProfileForm, InfosUpdateForm, UserForm, EmailUpdateForm
 from django.contrib.auth.decorators import login_required
-from shop.models import Produit, Photo
+from shop.models import Produit
 
 @login_required
 def favourite_add_cos(request, id):

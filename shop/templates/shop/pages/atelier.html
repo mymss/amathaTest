@@ -6,7 +6,7 @@
 {% block content %}
     <div class="containerMax">
         <div class="container">
-            {#                {% for pho in photos %}#}
+
             {% for ate in ateliers %}
                 {% if ate.AtelierActif == 1 %}
                     <div class="card m-3 d-inline-flex" style="width: 25%;">
@@ -35,7 +35,6 @@
                     </div>
                 {% endif %}
             {% endfor %}
-            {#            {% endfor %}#}
         </div>
     </div>
 {% endblock %}

@@ -8,9 +8,8 @@
     <div class="containerMax">
         <div class="container">
             {% for somme in sommesVet %}
-                {% for pho in photVet %}
                     {% for vet in vetements %}
-                        {% if somme.produit == vet.produit_ptr and pho.produitId == vet.produit_ptr and vet.produitActif == 1 %}
+                        {% if somme.produit == vet.produit_ptr  and vet.produitActif == 1 %}
                             <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
                             {% if vet in vetFav %}
@@ -25,8 +24,7 @@
                             </span>
                                 <div class="card-body">
                                     <a class="text-decoration-none" href="{% url 'shop:detailsVet' vet.id %}">
-                                        {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
-                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}"
+                                        <img class="cadre" src="{% static vet.nomFichier %}" alt="{{ vet.nomFichier }}"
                                              style="height:auto;">
                                         <p class="text-uppercase text-center fs-5">
                                             {{ vet.nom }}
@@ -44,7 +42,7 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                {% endfor %}
+
             {% endfor %}
         </div>
     </div>

@@ -49,7 +49,7 @@
       {% for produit in produits %}
 
             <div  style="width: 20%; margin: auto; padding-top: 20px">
-               <img class="cadre" src="{% static produit.nomFichier %}" alt="{{ produit.nomFichier }}"
+               <img class="cadre" src="{% static produit.nomFichier.url %}" alt="{{ produit.nomFichier.url }}"
                                              style="height:auto;">
 
                 {% for cos in produitsCosmetiques %}

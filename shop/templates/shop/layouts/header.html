@@ -64,7 +64,7 @@
                     <div class=""></div>
 
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <!--si l'utilisateur est authentifié et que ce n'est pas un membre des administrateurs du site-->
+                            <!--si l'utilisateur est authentifié et que ce n'est pas un administrateur du site-->
                             {% if request.user.is_authenticated and not user.is_staff %}
                                 <li>
                                     <button class="dropdown-item" type="button"><a href="{% url 'account:logout' %}"> Se
@@ -87,7 +87,7 @@
                                         déconnecter </a></button>
                                 </li>
                                 <li>
-                                    <button class="dropdown-item" type="button"><a href="{% url 'shop:accueilAdmin' %}">
+                                    <button class="dropdown-item" type="button"><a href="{% url 'administration:accueilAdmin' %}">
                                         Admin </a></button>
                                 </li>
 
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="btn-group header"  style=" width:5%; margin:5px">
-                        <a href = '{% url 'cart:panier' %}' ><i class="fas fa-shopping-cart fa-1x " style="color:#EBA427;margin-left: 15px;font-size: 125%;"></i></a>
+                        <a href = '{% url 'cart:panier' %}' ><i class="fas fa-shopping-cart fa-1x " style="scolor:#EBA427;margin-left: 15px;font-size: 125%;"></i></a>
                     </div>
 
                 </div>

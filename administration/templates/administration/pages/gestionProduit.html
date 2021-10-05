@@ -35,12 +35,12 @@
                                 <tr>
 
                                     <td for="insertStock" class="col-form-label">
-                                        <a href="{% url 'shop:adminVetDetails' vet.id %}">
+                                        <a href="{% url 'administration:adminVetDetails' vet.id %}">
                                             {{ vet.nom }}
                                         </a>
                                     </td>
 
-                                    <td align="right"><a href="{% url 'shop:updateVet' vet.id %}"
+                                    <td align="right"><a href="{% url 'administration:updateVet' vet.id %}"
                                                          class="btn-outline-secondary btn-sm"
                                                          class="text-decoration-none">Modifier</a>
                                     </td>
@@ -54,7 +54,7 @@
                     <div class="container" style="margin-left: 75%; ">
                         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                             <div class="col">
-                                <a href="{% url 'shop:insertionVetement' %}" class="text-decoration-none">
+                                <a href="{% url 'administration:insertionVetement' %}" class="text-decoration-none">
                                     <div class="p-3 border bg-light">Créer un nouveau vetêment</div>
                                 </a>
                             </div>
@@ -84,9 +84,9 @@
                             {% for proInt in produitsInterieursGP %}
                                 <tr>
                                     <td for="insertStock" class="col-form-label">
-                                        <a href="{% url 'shop:adminProIntDetails' proInt.id %}">{{ proInt.nom }}</a>
+                                        <a href="{% url 'administration:adminProIntDetails' proInt.id %}">{{ proInt.nom }}</a>
                                     </td>
-                                    <td align="right"><a href="{% url 'shop:updateProInt' proInt.id %}"
+                                    <td align="right"><a href="{% url 'administration:updateProInt' proInt.id %}"
                                                          class="btn-outline-secondary btn-sm"
                                                          class="text-decoration-none">Modifier</a>
                                     </td>
@@ -100,7 +100,7 @@
                     <div class="container" style="margin-left: 75%; ">
                         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                             <div class="col">
-                                <a href="{% url 'shop:insertionProInt' %}" class="text-decoration-none">
+                                <a href="{% url 'administration:insertionProInt' %}" class="text-decoration-none">
                                     <div class=" border bg-light">Créer un nouveau produit intérieur</div>
                                 </a>
                             </div>
@@ -132,9 +132,9 @@
                             {% for proCos in produitsCosmetiquesGP %}
                                 <tr>
                                     <td for="insertStock" class="col-form-label">
-                                        <a href="{% url 'shop:adminProCosDetails' proCos.id %}">{{ proCos.nom }}</a>
+                                        <a href="{% url 'administration:adminProCosDetails' proCos.id %}">{{ proCos.nom }}</a>
                                     </td>
-                                    <td align="right"><a href="{% url 'shop:updateProCos' proCos.id %}"
+                                    <td align="right"><a href="{% url 'administration:updateProCos' proCos.id %}"
                                                          class="btn-outline-secondary btn-sm"
                                                          class="text-decoration-none">Modifier</a>
                                     </td>
@@ -148,7 +148,7 @@
                     <div class="container " style="margin-left: 75%; ">
                         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3" >
                             <div class="col" >
-                                <a href="{% url 'shop:insertionProCos' %}" class="text-decoration-none">
+                                <a href="{% url 'administration:insertionProCos' %}" class="text-decoration-none">
                                     <div class=" border bg-light" class="float-right">Créer un nouveau produit cosmétique</div>
                                 </a>
                             </div>

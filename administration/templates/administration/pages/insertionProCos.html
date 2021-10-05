@@ -10,22 +10,22 @@
     <br/>
     <div class="container-xxl" style="margin-top: 20px; margin-left: 15%">
         <div class="container-sm">
-            <h2 class="p-3">Insertion Produits Intérieurs</h2>
+            <h2 class="p-3">Insertion Produits Cosmétiques</h2>
             <hr/>
             <div class="order-4 p-4 bd-highlight" style=" margin-left: 60px">
-                <form action="{% url 'shop:insertionProInt' %}" method="post" enctype="multipart/form-data">
+                <form action="{% url 'administration:insertionProCos' %}" method="post" enctype="multipart/form-data">
 
                     {% csrf_token %}
 
-                    {{ formInsertProInt.as_p }}
+                    {{ formInsertProCos.as_p }}
                     <br/>
                     <input type="submit" class="btn btn-secondary" value="Ajouter">
                 </form>
             </div>
-
-
         </div>
     </div>
+
+
 {% endblock content %}
 
 <!-- Footer -->

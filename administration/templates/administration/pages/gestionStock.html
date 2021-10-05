@@ -38,7 +38,7 @@
                                             <td for="insertStock"
                                                 class="col-form-label">{{ vet.stockDisponible }}
                                             </td>
-                                            <td align="right"><a href="{% url 'shop:updateStockVet' vet.id %}"
+                                            <td align="right"><a href="{% url 'administration:updateStockVet' vet.id %}"
                                                                  class="btn-outline-secondary btn-sm"
                                                                  class="text-decoration-none">Modifier</a>
                                             </td>
@@ -75,7 +75,7 @@
                                             <td for="insertStock"
                                                 class="col-form-label">{{ proInt.stockDisponible }}
                                             </td>
-                                            <td align="right"><a href="{% url 'shop:updateStockProInt' proInt.id %}"
+                                            <td align="right"><a href="{% url 'administration:updateStockProInt' proInt.id %}"
                                                                  class="btn-outline-secondary btn-sm"
                                                                  class="text-decoration-none">Modifier</a>
                                             </td>
@@ -112,7 +112,7 @@
                                             <td for="insertStock"
                                                 class="col-form-label">{{ proCos.stockDisponible }}
                                             </td>
-                                            <td align="right"><a href="{% url 'shop:updateStockProCos' proCos.id %}"
+                                            <td align="right"><a href="{% url 'administration:updateStockProCos' proCos.id %}"
                                                                  class="btn-outline-secondary btn-sm"
                                                                  class="text-decoration-none">Modifier</a>
                                             </td>

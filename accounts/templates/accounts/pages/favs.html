@@ -15,7 +15,7 @@
                     <div class="card-body">
 
                                 <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
-                                <img class="cadre" src="{% static produit.nomFichier %}" alt="{{ produit.nomFichier }}">
+                                <img class="cadre" src="{% static produit.nomFichier.url %}" alt="{{ produit.nomFichier }}">
 
                         <p class="text-uppercase text-center fs-5">
                             {{ produit.nom }}

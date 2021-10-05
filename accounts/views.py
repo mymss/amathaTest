@@ -53,11 +53,11 @@ def favourite_add_proInt(request, id):
 def favourite_list(request):
     produit = Produit.objects.all()
     new = produit.filter(favoris=request.user.pk)
-    listePhoto = []
-
-    for pro in new:
-        photos = Photo.objects.all().get(produitId_id=pro.id)
-        listePhoto.append(photos)
+    # listePhoto = []
+    #
+    # for pro in new:
+    #     photos = Photo.objects.all().get(produitId_id=pro.id)
+    #     listePhoto.append(photos)
 
     fav_number = new.count()
     bool = False
@@ -69,7 +69,6 @@ def favourite_list(request):
         'new': new,
         'bool': bool,
         'fav_number': fav_number,
-        'listePhoto': listePhoto,
     }
     return render(request, 'accounts/pages/favs.html', context)
 

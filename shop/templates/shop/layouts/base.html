@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Amatha</title>
 
-    <!--Lien Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--Lien Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.css' %}">
+    <!--Lien Bootstrap js -->
+
+
     <!-- Lien FontAwesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -20,19 +22,17 @@
 </header>
 
 <main class="imageBackGround ">
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="{% static 'bootstrap-5.0.2-dist/js/bootstrap.js' %}"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
     {% block content %}
     {% endblock %}
 
 </main>
-<br />
+
 {% include 'shop/layouts/footer.html' %}
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-        crossorigin="anonymous"></script>
 
 
 </body>

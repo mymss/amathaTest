@@ -15,8 +15,9 @@
                     <div class="card-body">
 
                                 <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
+                                    {% if nomFichier.url %}
                                 <img class="cadre" src="{% static produit.nomFichier.url %}" alt="{{ produit.nomFichier }}">
-
+                                    {% endif %}
                         <p class="text-uppercase text-center fs-5">
                             {{ produit.nom }}
                         </p>

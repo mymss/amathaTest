@@ -22,25 +22,22 @@ class PanierItem(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return str(self.user.username) + " " + str(self.product.nom)
+        return str(self.user.username) + " " + str(self.product.nom) + " " + str(self.quantity)
 
 @receiver(pre_save, sender=PanierItem)
 def correct_price(sender, **kwargs):
     cart_item = kwargs['instance']
-    product = Produit.objects.get(id = cart_item.product.id)
-    price_of_product = Prix.objects.get(produit = product.id)
+    productInst = Produit.objects.get(id=cart_item.product.id)
+    price_of_product = Prix.objects.get(produit=productInst.id)
     cart_item.price = cart_item.quantity * float(price_of_product.montant)
 
-
-    total_cart_items = PanierItem.objects.filter(user = cart_item.user)
-    cart = Panier.objects.get(id = cart_item.cart.id)
+    cart = Panier.objects.get(id=cart_item.cart.id)
+    total_cart_items = PanierItem.objects.filter(cart_id=cart.id)
 
     total = 0
-    for item in total_cart_items:
-        total += item.price
-
+    for item_prix in total_cart_items.exclude(id=cart_item.id):
+        total += item_prix.price
     total += cart_item.price
 
-    print(total_cart_items)
     cart.total_price = total
     cart.save()

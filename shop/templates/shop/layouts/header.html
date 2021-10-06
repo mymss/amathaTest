@@ -3,7 +3,7 @@
 <nav class="firstNav">
     <section class="search-bar">
         <div class="container-fluid">
-            <div class="row ">
+            <div class="row">
                 <div class="col-4 ">
                     <form action="#">
                         <div class="p-1 m-5 bg-light shadow border border-secondary">
@@ -49,8 +49,11 @@
                         {%  if request.user.is_authenticated  %}
                         <div >
                             <a href="{% url 'account:favourite_list' %}"
-                               title="Vos favoris !"> <i class="far fa-heart xs " style="color:#EBA427;"></i> </a>
-                     
+                               title="Vos favoris !"> <i class="far fa-heart xs" style="color:#EBA427;"></i> </a>
+                        </div>
+                        {% else %}
+                        <div class="btn-group header"  style=" width:5%; margin:5px">
+                           <a href = '{% url 'account:login' %}' ><i class="far fa-heart" style="color:#EBA427;"></i></a>
                         </div>
                         {% endif %}
                     </div>
@@ -104,11 +107,15 @@
                             {% endif %}
                         </ul>
                     </div>
-
+                    {%  if request.user.is_authenticated  %}
                     <div class="btn-group header"  style=" width:5%; margin:5px">
-                        <a href = '{% url 'cart:panier' %}' ><i class="fas fa-shopping-cart fa-1x " style="scolor:#EBA427;margin-left: 15px;font-size: 125%;"></i></a>
+                        <a href = '{% url 'cart:panier' %}' ><i class="far fa-shopping-cart fa-1x " style="color:#EBA427;margin-left: 15px;font-size: 125%;"></i></a>
                     </div>
-
+                    {% else %}
+                        <div class="btn-group header"  style=" width:5%; margin:5px">
+                           <a href = '{% url 'account:login' %}' ><i class="far fa-shopping-cart fa-1x " style="color:#EBA427;margin-left: 15px;font-size: 125%;"></i></a>
+                        </div>
+                    {% endif %}
                 </div>
 
 

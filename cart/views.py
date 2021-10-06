@@ -7,14 +7,10 @@ from cart.models import PanierItem, Panier
 from shop.models import Produit
 
 def panier(request):
-    panier = PanierItem.objects.filter(user = request.user)
-    temp = []
-    for pro in panier:
-        produitPho = pro.product.id
-        # # produitPho2 = Photo.objects.get(produitId=produitPho)
-        # temp.append(produitPho2)
+    panier = Panier.objects.filter(user=request.user)
+    panierItems = PanierItem.objects.filter(user = request.user)
 
-    item_number = panier.count()
+    item_number = panierItems.count()
     bool = False
 
     if item_number <= 0:
@@ -23,7 +19,7 @@ def panier(request):
     context = {
         'item_number': item_number,
         'bool': bool,
-        'temp': temp,
+        'panierItems': panierItems,
         'panier': panier,
     }
     return render(request, 'cart/pages/cart.html', context)
@@ -77,10 +73,36 @@ def add_to_cart_vet(request, id):
     messages.info(request, "Item added to cart.")
     return redirect('shop:vetements')
 
+def update_quantity_more(request, item_id):
+    quantity_to_update = PanierItem.objects.get(pk=item_id)
+    productInst = Produit.objects.get(id=quantity_to_update.product.id)
+
+    if quantity_to_update.quantity <= productInst.stockDisponible:
+        quantity_to_update.quantity += 1
+        quantity_to_update.save()
+    else:
+        messages.info(request, "Max stock")
+
+    return redirect(reverse('cart:panier'))
+
+def update_quantity_less(request, item_id):
+    quantity_to_update = PanierItem.objects.get(pk=item_id)
+
+    if quantity_to_update.quantity > 1:
+        quantity_to_update.quantity -= 1
+        quantity_to_update.save()
+    else:
+        delete_from_cart(request, item_id)
+
+    return redirect(reverse('cart:panier'))
+
 def delete_from_cart(request, item_id):
     item_to_delete = PanierItem.objects.get(pk=item_id)
+    cart = Panier.objects.get(user = request.user)
 
     if item_to_delete.id > 0:
         item_to_delete.delete()
+        cart.total_price = cart.total_price - item_to_delete.price
+        cart.save()
         messages.info(request, "Item has been removed.")
     return redirect(reverse('cart:panier'))

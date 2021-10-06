@@ -16,7 +16,7 @@
                     <p style="">Prix : {{ sommesProInt.montant }} CHF</p>
 
 
-                    <button type="button" class="btn btn-outline-secondary " >{# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au panier{# </a>#}</button>
+                    <button type="button" class="btn btn-outline-secondary " ><a href="{% url 'cart:add_to_cart_proInt' produitInt.id %}">Ajouter au panier</a></button>
                     {% if produitInt in proIntFav %}
                         <a href="{% url 'account:favourite_add_proInt' produitInt.id %}">
                             <i class="fas fa-heart" style="margin-left: 2%;color: black;"></i>

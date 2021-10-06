@@ -16,7 +16,7 @@
                     <p style="">Prix : {{ sommesCos.montant }} CHF</p>
                     <p >Ingredient : {{ cosmetiques.ingredient }}</p>
 
-                    <button type="button" class="btn btn-outline-secondary " >{# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au panier{# </a>#}</button>
+                    <button type="button" class="btn btn-outline-secondary " ><a href="{% url 'cart:add_to_cart_cos' cosmetiques.id %}"> Ajouter au panier </a></button>
                     {% if cosmetiques in cosFav %}
                         <a href="{% url 'account:favourite_add_cos' cosmetiques.id %}">
                             <i class="fas fa-heart" style="margin-left: 2%;color: black;"></i>

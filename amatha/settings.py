@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'administration.apps.AdministrationConfig',
-    'bootstrap5',
 ]
 
 MIDDLEWARE = [

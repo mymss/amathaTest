@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
-    PosteUpdateStockProInt, PosteUpdateStockVet
+    PosteUpdateStockProInt, PosteUpdateStockVet, PosteUpdatePrix
 from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Commande, \
     LigneProduitCommande, LigneAtelierCommande
 
@@ -37,12 +37,14 @@ def gestionStock(request):
 ## View Gestion de produit Test
 ###############################################
 def gestionProduit(request):
+    produit = Produit.objects.all()
     vetementsGP = Vetement.objects.all()
+    prix = Prix.objects.all()
     produitsInterieursGP = ProduitInterieur.objects.all()
     produitsCosmetiquesGP = Cosmetique.objects.all()
     return render(request, "administration/pages/gestionProduit.html",
                   {'vetementsGP': vetementsGP, 'produitsInterieursGP': produitsInterieursGP,
-                   'produitsCosmetiquesGP': produitsCosmetiquesGP})
+                   'produitsCosmetiquesGP': produitsCosmetiquesGP, 'prix': prix})
 
 
 ###############################################
@@ -232,6 +234,18 @@ def updateProCos(request, id):
         return redirect('administration:gestionProduit')
     return render(request, "administration/pages/updateProCos.html",
                   {'proCosUpdate': proCosUpdate, 'formUpdateProCos': formUpdateProCos})
+
+## Update Prix
+def updatePrix(request, id):
+    produit = Produit.objects.get(id=id)
+    prixUpdate = Prix.objects.get(produit=produit.id)
+    formUpdatePrix = PosteUpdatePrix(request.POST or None, instance=prixUpdate)
+    if formUpdatePrix.is_valid():
+        formUpdatePrix.save()
+        return redirect('administration:gestionProduit')
+    return render(request, "administration/pages/updatePrix.html",
+                  {'prixUpdate': prixUpdate, 'formUpdatePrix': formUpdatePrix})
+
 
 
 ### Update Produit Cosmétique

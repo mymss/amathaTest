@@ -1,5 +1,5 @@
 from django import forms
-from .models import Produit, Vetement, ProduitInterieur, Cosmetique, Atelier
+from .models import Produit, Vetement, ProduitInterieur, Cosmetique, Atelier, Prix
 
 
 ### Form Insertion Vetêment
@@ -66,3 +66,10 @@ class PosteUpdateStockProCos(forms.ModelForm):
         model = Cosmetique
         fields = (
             'stockDisponible',)
+
+### Form Update Prix
+class PosteUpdatePrix(forms.ModelForm):
+    class Meta:
+        model = Prix
+        fields = (
+            'montant', 'reduction', 'date',)

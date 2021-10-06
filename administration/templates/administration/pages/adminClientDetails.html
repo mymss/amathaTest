@@ -12,7 +12,7 @@
     <div class="container-xxl" style="margin-left: 20%; ">
         <div class="container-sm">
 
-            <h2>Détails Client</h2>
+            <h2>Détails Client et Commande</h2>
             <hr/>
 
             <script>
@@ -47,17 +47,18 @@
                 </script>
             </p>
 
-            <table class="table table-bordered" style="width: 500px;">
+            <table class="table table-bordered" style="width: 1000px;">
                 <tr>
                     <th>N° commande</th>
                     <th>Total</th>
                     <th>Satut</th>
-                    <th>Date de paiement</th>
+                    <th colspan="2">Date de paiement</th>
                 </tr>
 
                 {% for com in commande %}
                     <tr>
                         <td>{{ com.comNumero }}</td>
+
                         <td>{{ com.comTotal }}</td>
 
                         {% if com.envoye == True %}
@@ -67,6 +68,12 @@
                         {% endif %}
 
                         <td>{{ com.comDatePaiement }}</td>
+
+                        <td align="right">
+                            <a href="{% url 'administration:adminCommandeDetails' com.id %}"
+                               class="btn-outline-secondary btn-sm"
+                               class="text-decoration-none">Détails commande</a>
+                        </td>
                     </tr>
 
 

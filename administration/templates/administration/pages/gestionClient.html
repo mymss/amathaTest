@@ -37,7 +37,9 @@
 
                                             <td for="insertStock" class="col-form-label">
 
+                                                <a href="{% url 'administration:formationClient' cli.id %}">
                                                     {{ cli.prenom }} {{ cli.nom }}
+                                                </a>
                                             </td>
 
                                             <td align="right">

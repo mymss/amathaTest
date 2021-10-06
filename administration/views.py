@@ -1,16 +1,15 @@
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
-    PosteUpdateStockProInt, PosteUpdateStockVet, PosteUpdatePrix
+    PosteUpdateStockProInt, PosteUpdateStockVet, PosteUpdatePrix, PosteDesativerClient
 from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Commande, \
     LigneProduitCommande, LigneAtelierCommande
 
-# Create your views here.
 
+# Create your views here.
 
 
 ###############################################
@@ -71,7 +70,6 @@ def gestionCommande(request):
     return render(request, "administration/pages/gestionCommande.html", {'commande': commande})
 
 
-
 ### Détails Vetêments Admin
 def adminVetDetails(request, id):
     detailsVet = Vetement.objects.get(id=id)
@@ -122,6 +120,7 @@ def adminCommandeDetails(request, id):
     }
     return render(request, "administration/pages/adminCommandeDetails.html", context)
 
+
 ##############################################
 ## View Insertion Vetêments Test
 ###############################################
@@ -138,7 +137,6 @@ def insertionVetement(request):
 
     else:
         formInsertVet = PosteInsertVet()
-
 
     return render(request, "administration/pages/insertionVetement.html",
                   {'formInsertVet': formInsertVet})
@@ -207,7 +205,6 @@ def insertionAtelier(request):
                   {'formInsertAtelier': formInsertAtelier})
 
 
-
 ### Update Vetêment
 def updateVet(request, id):
     vetementUpdate = Vetement.objects.get(id=id)
@@ -240,6 +237,7 @@ def updateProCos(request, id):
     return render(request, "administration/pages/updateProCos.html",
                   {'proCosUpdate': proCosUpdate, 'formUpdateProCos': formUpdateProCos})
 
+
 ## Update Prix
 def updatePrix(request, id):
     produit = Produit.objects.get(id=id)
@@ -250,7 +248,6 @@ def updatePrix(request, id):
         return redirect('administration:gestionProduit')
     return render(request, "administration/pages/updatePrix.html",
                   {'prixUpdate': prixUpdate, 'formUpdatePrix': formUpdatePrix})
-
 
 
 ### Update Produit Cosmétique
@@ -296,3 +293,13 @@ def updateStockProCos(request, id):
     return render(request, "administration/pages/updateStockProCos.html",
                   {'stockProCosUpdate': stockProCosUpdate, 'formUpdateStockProCos': formUpdateStockProCos})
 
+
+## Formation client
+def formationClient(request, id):
+    clientFormation = Client.objects.get(id=id)
+    formDesactiverClient = PosteDesativerClient(request.POST or None, instance=clientFormation)
+    if formDesactiverClient.is_valid():
+        formDesactiverClient.save()
+        return redirect('administration:gestionClient')
+    return render(request, "administration/pages/formationClient.html",
+                  {'clientFormation': clientFormation, 'formDesactiverClient': formDesactiverClient})

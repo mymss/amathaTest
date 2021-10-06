@@ -1,0 +1,120 @@
+<!-- Header -->
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+
+    <br/><br/><br/>
+    <div class="container-xxl" style="margin-left: 20%; ">
+        <div class="container-sm">
+            <h2>Formation de client</h2>
+            <hr/>
+            <table class="table">
+                <tr>
+                    <td style="font-weight: bold">
+                        User :
+                    </td>
+                    <td>
+                        {{ clientFormation.user }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">
+                        Nom :
+                    </td>
+                    <td>
+                        {{ clientFormation.nom }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">
+                        Prénom :
+                    </td>
+                    <td>
+                        {{ clientFormation.prenom }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">
+                        Adresse :
+                    </td>
+                    <td>
+                        {{ clientFormation.adresse }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">
+                        Localité :
+                    </td>
+                    <td>
+                        {{ clientFormation.localite }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">
+                        Date de naissance :
+                    </td>
+                    <td>
+                        {{ clientFormation.dateNaissance }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">
+                        Numéro Mobile :
+                    </td>
+                    <td>
+                        {{ clientFormation.numerosMobile }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold">
+                        Client statut :
+                    </td>
+                    {% if clientFormation.clientActif == True %}
+                        <td>
+                            Client actif
+                        </td>
+                    {% else %}
+                        <td>
+                            Client non actif
+                        </td>
+                    {% endif %}
+                </tr>
+
+            </table>
+
+            <br/>
+
+            <h3>Vous pouvez désactiver ou activer ce client ici</h3>
+
+            <form action="" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                <br/>
+                {{ formDesactiverClient.as_p }}
+                <br/>
+                <input type="submit" value="Modifier" class="btn btn-outline-secondary">
+
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+    <br/><br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

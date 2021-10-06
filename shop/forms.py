@@ -1,4 +1,6 @@
 from django import forms
+
+from accounts.models import Client
 from .models import Produit, Vetement, ProduitInterieur, Cosmetique, Atelier, Prix
 
 
@@ -7,7 +9,8 @@ class PosteInsertVet(forms.ModelForm):
     class Meta:
         model = Vetement
         fields = (
-            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'sexe', 'typeTissu', 'couleur',
+            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'nomFichier',
+            'sexe', 'typeTissu', 'couleur',
             'taille')
 
 
@@ -16,7 +19,8 @@ class PosteInsertProInt(forms.ModelForm):
     class Meta:
         model = ProduitInterieur
         fields = (
-            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'type')
+            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'nomFichier',
+            'type')
 
 
 ### Form Insertion Produit Cosmétique
@@ -24,7 +28,8 @@ class PosteInsertProCos(forms.ModelForm):
     class Meta:
         model = Cosmetique
         fields = (
-            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'ingredient', 'gamme', 'categorie')
+            'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'nomFichier',
+            'ingredient', 'gamme', 'categorie')
 
 
 ### Form Insertion Atelier
@@ -32,7 +37,8 @@ class PosteInsertAtelier(forms.ModelForm):
     class Meta:
         model = Atelier
         fields = (
-            'titre', 'description', 'nbrPersonneMax', 'dateDebut', 'heureDebut', 'heureFin', 'adresse', 'prix')
+            'titre', 'description', 'nbrPersonneMax', 'dateDebut', 'heureDebut', 'heureFin', 'adresse', 'prix',
+            'AtelierActif', 'nomFichier')
 
 
 # ###################### TEST INSERTION PHOTO ############################
@@ -67,9 +73,18 @@ class PosteUpdateStockProCos(forms.ModelForm):
         fields = (
             'stockDisponible',)
 
+
 ### Form Update Prix
 class PosteUpdatePrix(forms.ModelForm):
     class Meta:
         model = Prix
         fields = (
             'montant', 'reduction', 'date',)
+
+
+### Form Désactiver un client
+class PosteDesativerClient(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = (
+            'clientActif',)

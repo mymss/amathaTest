@@ -35,4 +35,6 @@ urlpatterns = [
     path('updateStockProCos/<int:id>', views.updateStockProCos, name='updateStockProCos'),
     path('updateAtelier/<int:id>', views.updateAtelier, name='updateAtelier'),
 
+    path('formationClient/<int:id>', views.formationClient, name='formationClient'),
+
 ]

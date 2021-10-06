@@ -99,11 +99,11 @@
                     <tr>
                         <td>{{ pro.produit.nom }}</td>
                         <td>{{ pro.quantite }}</td>
-                        {% for pri in prix%}
-                            {% if pri.produit == pro.produit%}
+                        {% for pri in prix %}
+                            {% if pri.produit == pro.produit %}
                                 <td>{{ pri.montant }}</td>
 {#                                Multiplication#}
-                                <td>{% widthratio pro.quantite 1 pri.montant %} </td>
+                                <td>{% widthratio pro.quantite 1 pri.montant %}</td>
                             {% endif %}
                         {% endfor %}
                     </tr>

@@ -110,10 +110,15 @@ def adminClientDetails(request, id):
 ### Détails commande Admin
 def adminCommandeDetails(request, id):
     detailsCommande = Commande.objects.get(id=id)
-    ligneCom = LigneProduitCommande.objects.filter(commande=id)
+    ligneProCom = LigneProduitCommande.objects.filter(commande=id)
+    ligneAteCom = LigneAtelierCommande.objects.filter(commande=id)
+    prix = Prix.objects.all()
+    # calculeTotal = {{methods.calculePrixTotal(prix.all(), ligneProCom.all())}}
     context = {
         'detailsCommande': detailsCommande,
-        'ligneCom': ligneCom,
+        'ligneProCom': ligneProCom,
+        'ligneAteCom': ligneAteCom,
+        'prix': prix,
     }
     return render(request, "administration/pages/adminCommandeDetails.html", context)
 

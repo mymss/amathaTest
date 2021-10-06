@@ -24,8 +24,10 @@
                             </span>
                                 <div class="card-body">
                                     <a class="text-decoration-none" href="{% url 'shop:detailsCos' cos.id %}">
+                                        {% if cos.nomFichier %}
                                         <img class="cadre" src="{% static cos.nomFichier.url %}" alt="{{ cosmetiques.nomFichier }}"
                                              style="height:auto;">
+                                            {% endif  %}
                                         <p class="text-uppercase text-center fs-5">
                                             {{ cos.nom }}
                                         </p>

@@ -49,9 +49,10 @@
       {% for produit in produits %}
 
             <div  style="width: 20%; margin: auto; padding-top: 20px">
+              {% if produit.nomFichier %}
                <img class="cadre" src="{% static produit.nomFichier.url %}" alt="{{ produit.nomFichier.url }}"
                                              style="height:auto;">
-
+                {% endif  %}
                 {% for cos in produitsCosmetiques %}
                     {% if  cos.id == produit.id   %}
                         <a class="text-decoration-none" href="{% url 'shop:detailsCos' cos.id %}"> {{ produit.nom }} </a>

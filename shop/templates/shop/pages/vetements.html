@@ -24,8 +24,10 @@
                             </span>
                                 <div class="card-body">
                                     <a class="text-decoration-none" href="{% url 'shop:detailsVet' vet.id %}">
+                                        {% if vet.nomFichier %}
                                         <img class="cadre" src="{% static vet.nomFichier %}" alt="{{ vet.nomFichier }}"
                                              style="height:auto;">
+                                            {% endif  %}
                                         <p class="text-uppercase text-center fs-5">
                                             {{ vet.nom }}
                                         </p>

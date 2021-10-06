@@ -25,8 +25,10 @@
                                 <div class="card-body">
                                     <a class="text-decoration-none" href="{% url 'shop:detailsProInt' pro.id %}">
                                         {% comment %}<img class="cadre" src="{{ pho.url }}" alt="{{ pho.nomFichier }}" style="height:auto;">{% endcomment %}
-                                        <img class="cadre" src="{% static pro.nomFichier %}" alt="{{ pho.nomFichier }}"
+                                        {% if pro.nomFichier %}
+                                        <img class="cadre" src="{% static pro.nomFichier %}" alt="{{ pro.nomFichier }}"
                                              style="height:auto;">
+                                            {% endif %}
                                         <p class="text-uppercase text-center fs-5">
                                             {{ pro.nom }}
                                         </p>

@@ -9,7 +9,9 @@
                 <div class="col-6 col-md-5 "  >
                     <!--    Ajouter une boucle après avoir les images avec le atelier concerné-->
                     {#            <img src= "{% static phoCos.url %}"  alt = "{{phoCos.nomFichier}}"  class="rounded mx-auto d-block" style=" margin-top: 3%;margin-left: 5%; margin-bottom:3%; width:400px; height: 270px;">#}
+                       {% if produit.nomFichier %}
                     <img src="{% static 'img/img_01.jpg'%}" alt = "img_01" width="300" style="margin-left: 2%">
+                    {% endif %}
                 </div>
                 <div class="col-sm-6 col-md-7 fs-5 " style="margin-top: 1%;">
                     <p style="margin-left: 2%">Titre : {{ atel.titre }} </p>

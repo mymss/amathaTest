@@ -135,3 +135,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication
 LOGIN_REDIRECT_URL = 'shop:accueil'
+
+#SMTP Configuration
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT= 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'myriam.reseaux@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ismael74'

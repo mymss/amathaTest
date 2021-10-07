@@ -71,6 +71,10 @@ class Prix(models.Model):
         return str(self.montant)
 
 class Commande(models.Model):
+    statutCommande = (('Envoyé', 'Envoyé'),
+                      ('En attente', 'En attente'),
+                      ('Annulé', 'Annulé')
+                      )
     comNumero = models.IntegerField()
     comTotal = models.DecimalField(max_digits=5, decimal_places=3)
     # comStaut = models.PositiveSmallIntegerField(choices=StatutChoix)
@@ -81,6 +85,7 @@ class Commande(models.Model):
     produit = models.ManyToManyField(Produit, through='LigneProduitCommande')
     atelier = models.ManyToManyField(Atelier, through='LigneAtelierCommande')
     clientId = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
+    statut = models.CharField(max_length=10, choices=statutCommande, default='')
 
     def __str__(self):
         return str(self.comNumero) + " " + str(self.comTotal) + " " + str(self.comDatePaiement)

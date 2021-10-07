@@ -16,20 +16,21 @@
                     <div class="justify-content-center form_container">
                         <h3>Vos informations: </h3>
                     <br/>
+
                         {% if infos.nom == None and infos.prenom == None %}
-                            <p>Veuillez entrer un nom complet.<a href="{% url 'account:UpdateInfos' %}"> Ici</a></p>
+                            <p>Nom complet: <a href="{% url 'account:UpdateInfos' %}"> Ajouter</a></p>
                         {% else %}
-                            <p> Nom complet : {{ infos.nom }} {{ infos.prenom }}</p>
+                            <p>  {{ infos.nom }} {{ infos.prenom }}</p>
                         {% endif %}
 
                         {% if infos.adresse == None and infos.codePostal == None and infos.localite == None %}
-                            <p>Veuillez entrer une adresse complète.<a href="{% url 'account:UpdateInfos' %}"> Ici</a></p>
+                            <p> Adresse :<a href="{% url 'account:UpdateInfos' %}"> Ajouter </a></p>
                         {% else %}
-                            <p> Adresse : {{ infos.adresse }} {{ infos.codePostal }}, {{ infos.localite }} </p>
+                            <p>  {{ infos.adresse }} {{ infos.codePostal }}, {{ infos.localite }} </p>
                         {% endif %}
 
                         {% if infos.numerosMobile == None %}
-                            <p>Veuillez entrer votre numéro mobile.<a href="{% url 'account:UpdateInfos' %}"> Ici</a></p>
+                            <p>Mobile:<a href="{% url 'account:UpdateInfos' %}"> Ajouter</a></p>
                         {% else %}
                             <p>Mobile : {{ infos.numerosMobile }}</p>
                         {% endif %}

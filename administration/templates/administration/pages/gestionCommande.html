@@ -35,15 +35,24 @@
                                         <th colspan="2">Date de paiement</th>
                                     </tr>
                                     <!-- Boucle pour afficher les nom de vetements -->
-                                    {% for com in commande %}
+                                    {% for com in commandes %}
                                         <tr>
 
                                             <td for="insertStock" class="col-form-label">
                                                 {{ com.comNumero }}
                                             </td>
-                                            <td for="insertStock" class="col-form-label">
-                                                {{ com.comTotal }}
-                                            </td>
+
+                                        {% for totalfinal in totalCommande %}
+
+                                                {% if forloop.counter == forloop.parentloop.counter %}
+
+                                                    <td for="insertStock" class="col-form-label">
+                                                        {{ totalfinal }}
+                                                    </td>
+
+                                                {% endif %}
+
+                                            {% endfor %}
 
                                             {% if com.envoye == True %}
                                                 <td for="insertStock" class="col-form-label">Envoyé</td>

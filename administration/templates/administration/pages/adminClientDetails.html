@@ -22,7 +22,7 @@
             </script>
 
 
-            {% for com in commande %}
+            {% for com in commandes %}
 
                 <script>
                     var cptCommande = cptCommande + 1;
@@ -55,11 +55,21 @@
                     <th colspan="2">Date de paiement</th>
                 </tr>
 
-                {% for com in commande %}
+                {% for com in commandes %}
                     <tr>
                         <td>{{ com.comNumero }}</td>
 
-                        <td>{{ com.comTotal }}</td>
+                        {% for totalfinal in totalCommande %}
+
+                            {% if forloop.counter == forloop.parentloop.counter %}
+
+                                <td for="insertStock" class="col-form-label">
+                                    {{ totalfinal }}
+                                </td>
+
+                            {% endif %}
+
+                        {% endfor %}
 
                         {% if com.envoye == True %}
                             <td>Envoyé</td>

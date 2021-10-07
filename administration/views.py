@@ -66,8 +66,37 @@ def gestionClient(request):
 ## View Gestion de client Test
 ###############################################
 def gestionCommande(request):
-    commande = Commande.objects.all()
-    return render(request, "administration/pages/gestionCommande.html", {'commande': commande})
+    commandes = Commande.objects.all()
+    totalProduit = 0
+    totalAtelier = 0
+    listeProduit = []
+    listeAtelier = []
+    totalCommande = []
+
+    for com in commandes:
+        ligneProCom = LigneProduitCommande.objects.filter(commande=com)
+        ligneAteCom = LigneAtelierCommande.objects.filter(commande=com)
+        totalProduit = 0
+        totalAtelier = 0
+        for pro in ligneProCom:
+            montant = Prix.objects.get(produit=pro.produit)
+            totalProduit += montant.montant * pro.quantite
+        listeProduit.append(totalProduit)
+        for ate in ligneAteCom:
+            atelier = Atelier.objects.get(id=ate.atelier.id)
+            totalAtelier += atelier.prix * ate.nbrPersonne
+        listeAtelier.append(totalAtelier)
+        totalCommande.append(totalAtelier + totalProduit)
+
+    context = {
+        'totalProduit': totalProduit,
+        'commandes': commandes,
+        'listeProduit': listeProduit,
+        'listeAtelier': listeAtelier,
+        'totalCommande': totalCommande,
+    }
+
+    return render(request, "administration/pages/gestionCommande.html", context)
 
 
 ### Détails Vetêments Admin
@@ -97,11 +126,37 @@ def adminAtelierDetails(request, id):
 ### Détails client Admin
 def adminClientDetails(request, id):
     detailsClient = Client.objects.get(id=id)
-    commande = Commande.objects.filter(clientId=id)
+    commandes = Commande.objects.filter(clientId=id)
+    totalProduit = 0
+    totalAtelier = 0
+    listeProduit = []
+    listeAtelier = []
+    totalCommande = []
+
+    for com in commandes:
+        ligneProCom = LigneProduitCommande.objects.filter(commande=com)
+        ligneAteCom = LigneAtelierCommande.objects.filter(commande=com)
+        totalProduit = 0
+        totalAtelier = 0
+        for pro in ligneProCom:
+            montant = Prix.objects.get(produit=pro.produit)
+            totalProduit += montant.montant * pro.quantite
+        listeProduit.append(totalProduit)
+        for ate in ligneAteCom:
+            atelier = Atelier.objects.get(id=ate.atelier.id)
+            totalAtelier += atelier.prix * ate.nbrPersonne
+        listeAtelier.append(totalAtelier)
+        totalCommande.append(totalAtelier + totalProduit)
+
     context = {
         'detailsClient': detailsClient,
-        'commande': commande,
+        'totalProduit': totalProduit,
+        'commandes': commandes,
+        'listeProduit': listeProduit,
+        'listeAtelier': listeAtelier,
+        'totalCommande': totalCommande,
     }
+
     return render(request, "administration/pages/adminClientDetails.html", context)
 
 

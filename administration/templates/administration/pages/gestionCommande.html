@@ -1,0 +1,83 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+    <br/>
+    <div class="container-xxl" style="margin-left: 18%">
+        <div class="container-sm" style="margin-top: 30px">
+            <h1>Gestion des commandes</h1>
+            <hr/>
+            <br/>
+
+            <div class="border border-2" class="d-grid gap-3" p-3 mb-5>
+
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                <h5 class="shadow-none  bg-light rounded">Commandes</h5>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingThree"
+                             data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <table class="table table-bordered" style="width: 60%;">
+                                    <tr>
+                                        <th>N° commande</th>
+                                        <th>Total</th>
+                                        <th>Satut</th>
+                                        <th colspan="2">Date de paiement</th>
+                                    </tr>
+                                    <!-- Boucle pour afficher les nom de vetements -->
+                                    {% for com in commande %}
+                                        <tr>
+
+                                            <td for="insertStock" class="col-form-label">
+                                                {{ com.comNumero }}
+                                            </td>
+                                            <td for="insertStock" class="col-form-label">
+                                                {{ com.comTotal }}
+                                            </td>
+
+                                            {% if com.envoye == True %}
+                                                <td for="insertStock" class="col-form-label">Envoyé</td>
+                                            {% else %}
+                                                <td for="insertStock" class="col-form-label">En attente</td>
+                                            {% endif %}
+
+                                            <td for="insertStock" class="col-form-label">
+                                                {{ com.comDatePaiement }}
+                                            </td>
+
+                                            <td align="right">
+                                                <a href="{% url 'administration:adminCommandeDetails' com.id %}"
+                                                   class="btn-outline-secondary btn-sm"
+                                                   class="text-decoration-none">Détails commande</a>
+                                            </td>
+                                        </tr>
+
+                                    {% endfor %}
+                                </table>
+                            </div>
+
+                            <br/>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

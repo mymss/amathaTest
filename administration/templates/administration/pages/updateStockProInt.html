@@ -1,0 +1,30 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+    <br/>
+<div class="container-xxl">
+    <div class="container-sm" style="margin-top: 30px">
+    <h1 class="p-3">Modifier le stock</h1>
+        <hr/>
+
+    <div class="order-4 p-4 bd-highlight" style=" margin-left: 60px">
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ formUpdateStockProInt.as_p}}
+            <br/><br/>
+            <input type="submit" value="Modifier" class="btn btn-outline-secondary">
+        </form>
+    </div>
+
+
+    <br/>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

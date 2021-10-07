@@ -1,0 +1,70 @@
+html {
+    height: 100%;
+
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+
+main {
+
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.imageBackGround{
+    background: url('../img/logoGauche.png') left no-repeat  , url('../img/logoDroit.png') right no-repeat ;
+    background-size: 20%;
+}
+
+/* CSS du header */
+
+header{
+    height: 20%;
+}
+
+.far fa-user{
+    width: 5px;
+}
+.firstNav{
+    margin-bottom: 50px;
+    text-align: center;
+
+}
+
+.nav-link{
+    color: #000;
+}
+
+.nav-link:hover{
+    color: #128C9F;
+}
+
+#navHeader{
+    border-top: 4px solid #EBA427;
+    background-color: rgba(18, 140, 159, 0.5);
+    /*!*background-color: #128C9F;*!*/
+    /*!*border-bottom: 4px solid #EBA427;*!*/
+}
+
+
+
+/*footer*/
+footer{
+    background-color: white;
+    color: rgba(18, 140, 159, 0.5);
+    height: 100px;
+
+}
+
+.fa-instagram{
+    color: rgba(18, 140, 159, 0.5);
+}
+

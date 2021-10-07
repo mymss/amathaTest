@@ -1,0 +1,93 @@
+<!-- Header -->
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+
+    <br/><br/><br/>
+<div class="container-xxl" style="margin-left: 20%; ">
+    <div class="container-sm">
+        <h2>Détails Produit Intérieur</h2>
+        <hr/>
+        <table class="table">
+            <tr>
+                <td style="font-weight: bold">
+                    Nom :
+                </td>
+                <td>
+                    {{ detailsProInt.nom}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Description :
+                </td>
+                <td>
+                    {{ detailsProInt.description }}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Stock Min :
+                </td>
+                <td>
+                    {{ detailsProInt.stockMin}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Stock Max :
+                </td>
+                <td>
+                    {{ detailsProInt.stockMax}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    stock disponible :
+                </td>
+                <td>
+                    {{ detailsProInt.stockDisponible}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Poids :
+                </td>
+                <td>
+                    {{ detailsProInt.poid}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: bold">
+                    Type :
+                </td>
+                <td>
+                    {{ detailsProInt.type}}
+                </td>
+            </tr>
+
+        </table>
+
+
+
+    </div>
+   </div>
+
+
+
+
+    <br/><br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}

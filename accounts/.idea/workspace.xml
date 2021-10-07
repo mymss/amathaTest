@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4dced2ec-e1a1-4256-8e91-5f5c9065167c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/pages/favs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/pages/favs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../amatha/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../amatha/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../amatha/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../amatha/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/templates/cart/pages/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/templates/cart/pages/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/layouts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/layouts/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/layouts/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/layouts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/layouts/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/accueil.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/accueil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/accueilAdmin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/adminAtelierDetails.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/adminProCosDetails.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/adminProIntDetails.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/adminVetDetails.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/atelier.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/atelier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/cosmetique.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/cosmetique.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsAtelier.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsAtelier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsCos.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsCos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsProInt.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsProInt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsVet.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/detailsVet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/gestionAtelier.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/gestionClient.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/gestionProduit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/gestionStock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/insertionAtelier.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/insertionPhoto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/insertionProCos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/insertionProInt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/insertionVetement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/produitInterieur.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/produitInterieur.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/updateAtelier.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/updateProCos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/updateProInt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/updateStockProCos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/updateStockProInt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/updateStockVet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/updateVet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/templates/shop/pages/vetements.html" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/templates/shop/pages/vetements.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../staticfiles/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../staticfiles/css/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1zAUfT59yUJC4NxOdv0MJc4vHpS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4dced2ec-e1a1-4256-8e91-5f5c9065167c" name="Default Changelist" comment="" />
+      <created>1633590488756</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633590488756</updated>
+      <workItem from="1633590490053" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

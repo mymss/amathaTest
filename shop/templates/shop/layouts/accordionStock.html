@@ -1,0 +1,101 @@
+{% block content %}
+
+<div id="accordion" xmlns="http://www.w3.org/1999/html">
+    <div class="card">
+
+<!-- Afficher le stock de vetêments -->
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseUn" aria-expanded="false">
+                Stock de vetêments
+            </a>
+        </div>
+        <div id="collapseUn" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+
+                <table class="table table-bordered" style="width: 500px;">
+                    <tr>
+                        <th>Nom produit</th>
+                        <th>Quantité en stock</th>
+                    </tr>
+                    <!-- Boucle pour afficher les nom de vetements -->
+                    {% for vet in vetements %}
+                    <tr>
+                        <td for="insertStock" class="col-form-label">{{ vet.nom }}</td>
+                        <td for="insertStock"
+                            class="col-form-label">{{ vet.stockDisponible }}
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+
+<!-- Afficher le stock de produits intérieurs -->
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseDeux" aria-expanded="false">
+                Stock de produits intérieurs
+            </a>
+        </div>
+        <div id="collapseDeux" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+
+                <table class="table table-bordered" style="width: 500px;">
+                    <tr>
+                        <th>Nom produit</th>
+                        <th>Quantité en stock</th>
+                    </tr>
+                    <!-- Boucle pour afficher les nom de vetements -->
+                    {% for proInt in produitsInterieurs %}
+                    <tr>
+                        <td for="insertStock" class="col-form-label">{{ proInt.nom }}</td>
+                        <td for="insertStock"
+                            class="col-form-label">{{ proInt.stockDisponible }}
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+
+
+<!-- Afficher le stock de produits cosmétiques -->
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseTrois" aria-expanded="false">
+                Stock de produits cosmétiques
+            </a>
+        </div>
+        <div id="collapseTrois" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+
+                <table class="table table-bordered" style="width: 500px;">
+                    <tr>
+                        <th>Nom produit</th>
+                        <th>Quantité en stock</th>
+                    </tr>
+                    <!-- Boucle pour afficher les nom de vetements -->
+                    {% for proCos in produitsCosmetiques %}
+                    <tr>
+                        <td for="insertStock" class="col-form-label">{{ proCos.nom }}</td>
+                        <td for="insertStock"
+                            class="col-form-label">{{ proCos.stockDisponible }}
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock content %}

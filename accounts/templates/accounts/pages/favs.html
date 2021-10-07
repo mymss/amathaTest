@@ -1,0 +1,40 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock title %}
+
+
+{% block content %}
+    <div class="containerMax">
+        <div class="container">
+
+            <h1>Votre wish list</h1>
+            <br/>
+
+            {% for produit in new %}
+                <div class="card m-3 d-inline-flex" style="width: 25%;">
+                    <div class="card-body">
+
+                                <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
+                                    {% if nomFichier.url %}
+                                <img class="cadre" src="{% static produit.nomFichier.url %}" alt="{{ produit.nomFichier }}">
+                                    {% endif %}
+                        <p class="text-uppercase text-center fs-5">
+                            {{ produit.nom }}
+                        </p>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+
+            {% if bool %}
+                <div class="row">
+                    <h1>Vous n'avez pas de favoris enregistré !</h1>
+                    <p>Selectionnez vos articles favoris et commandez les plus tard !</p>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock content %}

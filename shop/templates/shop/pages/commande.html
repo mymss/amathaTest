@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h1 align=" center">Les commandes pour le compte {{ infos.prenom }}</h1>
+
+{% for com in commandes %}
+
+    <p align=" center"> <a class="text-decoration-none" href="{% url 'shop:detailsCommande' com.id %}">Numero commande : {{ com.comNumero }}</a></p>
+    <p align=" center">Date :{{ com.comDatePaiement }}</p>
+    {% if com.enAttente == 1  %}
+        <p align=" center">Statut : En Attente </p>
+    {% else %}
+        <p align=" center">Statut : Envoyé </p>{% endif %}
+{#    <p align="center"> Calcul Atelier : </p>#}
+{#    <p align="center">Calcul Produit :</p>#}
+    <p align="center"> Total final : ???</p>
+
+        <br>
+
+{% endfor %}
+
+{% endblock %}

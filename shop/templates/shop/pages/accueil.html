@@ -1,0 +1,89 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    {% include 'shop/layouts/searchbar.html' %}
+
+    <!-- Carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/BougiesFondBlanc.png' %}" class="d-block w-100 "
+                     alt="First slide">
+            </div>
+            <div class="carousel-item ">
+                <img src="{% static 'img/roseDeMassage.png' %}" style=" background: white"
+                     class="d-block w-100" alt="Second slide">
+            </div>
+            <div class="carousel-item ">
+                <img src="{% static 'img/AmathaCaroussel.png' %}" style="" class="d-block w-100"
+                     alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+           data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+           data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+
+
+    <div class="d-flex">
+        <hr style=" width: 30%; size:5px;color:#EBA427;margin-left:20px;margin-left:auto;margin-right: 15px; ">
+        <p style="padding-top:5px"> · Les nouveautées ·</p>
+        <hr style=" width: 30%; size:2px;color:#EBA427;margin-right:auto;margin-left:15px ">
+    </div>
+    <div class="d-flex" style="width:80%;margin:auto;margin-top:10px;text-align:center">
+
+
+        {% for produit in produits %}
+
+            <div style="width: 20%; margin: auto; padding-top: 20px">
+                {% if produit.nomFichier %}
+                    <figure>
+                    <img class="cadreAccueil" src="{% static produit.nomFichier.url %}"
+                         alt="{{ produit.nomFichier.url }}"
+                         style="height:auto;">
+                {% endif %}
+                <figcaption>   {% for cos in produitsCosmetiques %}
+                    {% if  cos.id == produit.id %}
+                        <a class="text-decoration-none"
+                           href="{% url 'shop:detailsCos' cos.id %}"> {{ produit.nom }} </a>
+                    {% endif %}
+                {% endfor %}
+
+
+                    {% for prodInt in produitsInterieurs %}
+                        {% if prodInt.id == produit.id %}
+                            <a class="text-decoration-none"
+                               href="{% url 'shop:detailsProInt' prodInt.id %}"> {{ produit.nom }} </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% for vet in vetements %}
+                        {% if vet.id == produit.id %}
+                            <a class="text-decoration-none"
+                               href="{% url 'shop:detailsVet' vet.id %}"> {{ produit.nom }} </a>
+                        {% endif %}
+                    {% endfor %}
+                </figcaption>
+                </figure>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="containerMax">
+        <div class="container">
+
+            {% for ate in ateliers %}
+                {% if ate.AtelierActif == 1 %}
+                    <div class="card m-3 d-inline-flex" style="width: 25%;">
+                            <span class="card-notify-year">
+                                <a href="{% url 'account:favourite_add' ate.id %}">
+                                        <i class="far fa-heart"></i>
+                                </a>
+                            </span>
+                        <div class="card-body">
+                            <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' ate.id %}">
+                                {#                                        <img class="cadre" src="{% static pho.url %}" alt="{{ pho.nomFichier }}" style="height:auto;">#}
+                                <img src="../../../../staticfiles/img/img_01.jpg">
+                                <p class="text-uppercase text-center fs-5">
+                                    {{ ate.titre }}
+                                </p>
+
+                                <p class="text-center">{{ ate.prix }} CHF</p>
+
+                            </a>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-outline-secondary">
+                                    {# <a href="{% url '#' cos.produit_ptr %}">#} Ajouter au
+                                    panier{# </a>#}</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock title %}
+
+{% block content %}
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card_login">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="{% static 'img/logo.png' %}" class="brand_logo" alt="Logo">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                        {% if form.errors %}
+                            <br/><br/><br/><br/>
+                            <p>Your username and password didn't match. Please try again.</p>
+                        {% endif %}
+                        {% for field in form %}
+                            <div class="form-group pb-4">
+                                {% if field.field.required %}
+                                <span class="required"></span> {% endif %}
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text }} </p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <input type="submit" class="btn btn-primary" value="Login">
+                    </form>
+                </div>
+
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account?<a href="{% url 'account:register' %}" class="ml-2">Sign Up</a>
+                    </div>
+                    <div class="d-flex justify-content-center links">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

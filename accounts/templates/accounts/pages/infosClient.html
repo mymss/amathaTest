@@ -1,0 +1,53 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock title %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="user_card_register">
+                    <div class="d-flex justify-content-center">
+                        <div class="brand_logo_container">
+                            <img src="{% static 'img/logo.png' %}" class="brand_logo" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="justify-content-center form_container">
+                        <h3>Vos informations: </h3>
+                    <br/>
+                        {% if infos.nom == None and infos.prenom == None %}
+                            <p>Veuillez entrer un nom complet.<a href="{% url 'account:UpdateInfos' %}"> Ici</a></p>
+                        {% else %}
+                            <p> Nom complet : {{ infos.nom }} {{ infos.prenom }}</p>
+                        {% endif %}
+
+                        {% if infos.adresse == None and infos.codePostal == None and infos.localite == None %}
+                            <p>Veuillez entrer une adresse complète.<a href="{% url 'account:UpdateInfos' %}"> Ici</a></p>
+                        {% else %}
+                            <p> Adresse : {{ infos.adresse }} {{ infos.codePostal }}, {{ infos.localite }} </p>
+                        {% endif %}
+
+                        {% if infos.numerosMobile == None %}
+                            <p>Veuillez entrer votre numéro mobile.<a href="{% url 'account:UpdateInfos' %}"> Ici</a></p>
+                        {% else %}
+                            <p>Mobile : {{ infos.numerosMobile }}</p>
+                        {% endif %}
+
+                        <p> Email : {{ infos.user.email }} </p>
+                        <p> Date de naissance : {{ infos.dateNaissance }} </p>
+                        <a href="{% url 'account:UpdateInfos' %}"><input type="button" class="btn btn-primary" value="Update"></a>
+                    </div>
+                    <div class="mt-2">
+                        <div class="d-flex justify-content-center links">
+                            Change email?<a href="{% url 'account:email_change' %}" class="ml-2">Click here</a>
+                        </div>
+                        <div class="d-flex justify-content-center links">
+                            Change password?<a href="{% url 'account:password_change' %}" class="ml-2">Click here</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

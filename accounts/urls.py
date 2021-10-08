@@ -21,6 +21,7 @@ urlpatterns = [
     path('favourite_add_cos/<int:id>', views.favourite_add_cos, name='favourite_add_cos'),
     path('favourite_add_vet/<int:id>', views.favourite_add_vet, name='favourite_add_vet'),
     path('favourite_add_proInt/<int:id>', views.favourite_add_proInt, name='favourite_add_proInt'),
+    path('favourite_add_atelier/<int:id>', views.favourite_add_atelier, name='favourite_add_atelier'),
     path('favourite_list/', views.favourite_list, name='favourite_list'),
     path('email_change/', views.UpdateEmail, name='email_change'),
 

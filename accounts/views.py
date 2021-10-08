@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import ProfileForm, InfosUpdateForm, UserForm, EmailUpdateForm
 from django.contrib.auth.decorators import login_required
-from shop.models import Produit
+from shop.models import Produit, Atelier
+
 
 @login_required
 def favourite_add_cos(request, id):
@@ -50,9 +51,26 @@ def favourite_add_proInt(request, id):
 
 
 @login_required
+def favourite_add_atelier(request, id):
+    atelier = Atelier.objects.get(id=id)
+    if atelier.favorisAtelier.filter(id=request.user.pk).exists():
+        atelier.favorisAtelier.remove(request.user)
+
+    else:
+        atelier.favorisAtelier.add(request.user)
+
+    context = {
+        'atelier': atelier,
+
+    }
+    return redirect('shop:atelier')
+
+@login_required
 def favourite_list(request):
     produit = Produit.objects.all()
+    atelier = Atelier.objects.all()
     new = produit.filter(favoris=request.user.pk)
+    newate = atelier.filter(favorisAtelier=request.user.pk)
     # listePhoto = []
     #
     # for pro in new:
@@ -60,15 +78,18 @@ def favourite_list(request):
     #     listePhoto.append(photos)
 
     fav_number = new.count()
+    fav_numberate = newate.count()
     bool = False
 
-    if fav_number <= 0:
+    if fav_number <= 0 and fav_numberate <=0:
         bool = True
 
     context = {
         'new': new,
         'bool': bool,
         'fav_number': fav_number,
+        'fav_numberate':fav_numberate,
+        'newate': newate,
     }
     return render(request, 'accounts/pages/favs.html', context)
 
@@ -93,7 +114,6 @@ def register(request):
     else:
         form = UserForm()
         profile_form = ProfileForm()
-
 
     context = {
      'form': form,

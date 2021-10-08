@@ -5,27 +5,48 @@
 
 
 {% block content %}
-    <div class="containerMax">
+ <div class="containerMax">
         <div class="container">
-            <h1 align=" center">Vos commandes {{ infos.prenom }}</h1>
+    {% for com in commandes %}
+        <div class="card m-3 d-inline-flex" style="width: 30%;margin-left: 30%;">
+            <a class="text-decoration-none" href="{% url 'shop:detailsCommande' com.id %}">
+                <p style="text-align:right;margin-right:2%;margin-top: 2%;font-size:110%;">{{ com.comDatePaiement }}</p>
+            {# LE STATUT  #}
+              <p style="text-align:right;margin-right:2%;font-size:90%;font-weight: bold;"> Statut : {{ com.statut }}</p>
 
-            {% for com in commandes %}
+                {% for totalfinal in totalCommande %}
+                    {%  if forloop.counter == forloop.parentloop.counter %}
+                        <p style="margin-left: 4%;font-size:180%;font-weight: bold;text-align: left;"> {{totalfinal }} CHF</p>
+                    {% endif %}
+                {% endfor %}
+            {# NOMBRE D'ATELIER DANS LA COMMANDE #}
+            {% for nbrAtelier in listeNbrAtelier %}
+                {%  if forloop.counter == forloop.parentloop.counter %}
+                    <p style="font-size:90%;margin-left: 4%;margin-bottom:0.5%;text-align: left;">Nombre d'atelier :{{ nbrAtelier }}</p>
+                {% endif %} {% endfor %}
+            {# NOMBRE D'ATELIER DANS LA PRODUIT #}
+            {% for nbrProduit in listeNbrProduit %}
+                {%  if forloop.counter == forloop.parentloop.counter %}
+                    <p style="font-size:90%;margin-left: 4%;margin-bottom:0.5%;text-align: left;">Nombre de produit : {{ nbrProduit }}</p>
+                {% endif %} {% endfor %}
+            <p style="margin-left: 4%;font-size:90%;text-align: left;font-weight: bold;"> Commande n°{{ com.comNumero }}</p>
 
-                <p align=" center"><a class="text-decoration-none" href="{% url 'shop:detailsCommande' com.id %}">Numero
-                    commande : {{ com.comNumero }}</a></p>
-                <p align=" center">Date :{{ com.comDatePaiement }}</p>
-                {% if com.enAttente == 1 %}
-                    <p align=" center">Statut : En Attente </p>
-                {% else %}
-                    <p align=" center">Statut : Envoyé </p>{% endif %}
-                {#    <p align="center"> Calcul Atelier : </p>#}
-                {#    <p align="center">Calcul Produit :</p>#}
-                <p align="center"> Total final : ???</p>
 
-                <br>
 
-            {% endfor %}
+
+            {#    {% for produit in listeProduit %}#}
+            {#{%  if forloop.counter == forloop.parentloop.counter %}#}
+            {#        <p align="center"> total ={{produit }}</p>#}
+            {#   {% endif %} {% endfor %}#}
+            {##}
+            {# {% for atelier in listeAtelier %}#}
+            {#{%  if forloop.counter == forloop.parentloop.counter %}#}
+            {#        <p align="center"> total ={{atelier }}</p>#}
+            {#   {% endif %} {% endfor %}#}
+            {# LE TOTALE DE LA COMMANDE #}
+</a>
         </div>
-    </div>
+    {% endfor %}
+</div></div>
 
 {% endblock %}

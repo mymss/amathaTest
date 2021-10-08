@@ -204,53 +204,76 @@ def detailsAtelier(request, id):
 
 def commande(request):
     infos = request.user.client
-    commandes = Commande.objects.filter(clientId_id=request.user.client.id)
-    context={
+    commandes = Commande.objects.filter(clientId=infos.id)
+    totalProduit = 0
+    totalAtelier = 0
+    nmbrElementProduit = 0
+    nmbrElementAtelier = 0
+    listeProduit = []
+    listeAtelier = []
+    totalCommande = []
+    listeNbrProduit = []
+    listeNbrAtelier = []
+
+    for com in commandes:
+        ligneProCom = LigneProduitCommande.objects.filter(commande=com)
+        ligneAteCom = LigneAtelierCommande.objects.filter(commande=com)
+        totalProduit = 0
+        totalAtelier = 0
+        nmbrElementProduit = 0
+        nmbrElementAtelier = 0
+        for pro in ligneProCom:
+            montant = Prix.objects.get(produit=pro.produit)
+            totalProduit += montant.montant * pro.quantite
+            nmbrElementProduit += 1
+        listeNbrProduit.append(nmbrElementProduit)
+        # listeProduit.append(totalProduit)
+        for ate in ligneAteCom:
+            atelier = Atelier.objects.get(id=ate.atelier.id)
+            totalAtelier += atelier.prix * ate.nbrPersonne
+            nmbrElementAtelier += 1
+        listeNbrAtelier.append(nmbrElementAtelier)
+        # listeAtelier.append(totalAtelier)
+        totalCommande.append(totalAtelier + totalProduit)
+
+    context = {
+        'totalProduit': totalProduit,
         'commandes': commandes,
+        'listeProduit': listeProduit,
+        'listeAtelier': listeAtelier,
+        'totalCommande': totalCommande,
+        'listeNbrAtelier': listeNbrAtelier,
+        'listeNbrProduit': listeNbrProduit,
     }
     return render(request, 'shop/pages/commande.html', context)
 
 
-# def calculCommande(idCom):
-#     # Commnde Id
-#     commande_id = Commande.objects.get(id=idCom)
-#     # Produit
-#     ligneProduit = LigneProduitCommande.objects.filter(produit__commande__ligneproduitcommande=commande_id)
-#     montant = Prix.objects.filter(produit__ligneproduitcommande__commande_id=commande_id)
-#     comPro = Commande.objects.filter(clientId__commande=commande_id)
-#     totalComProduit = 0
-#     # Atelier
-#     comAte = Commande.objects.filter(clientId__commande= commande_id)
-#     ligneAtelier = LigneAtelierCommande.objects.filter(commande__clientId__commande=commande_id)
-#     totalComAtelier = 0
-#     total = []
-#
-#     for lignepro in ligneProduit:
-#         for pri in montant:
-#             for pro in comPro:
-#                 if commande_id == lignepro.commande:
-#                     totalComProduit += pri.montant * lignepro.quantite
-#
-#     for ligneate in ligneAtelier:
-#         for ate in comAte:
-#             totalComAtelier += ate.prix * ligneate.nbrPersonne
-#
-#     total.append(totalComAtelier + totalComProduit)
-#     for tot in total:
-#         tot.
-#     return
-#
-
-def detailsCommande(request, id):
-    detailsCommande = Commande.objects.get(id=id)
+def detailsCommande(request, id, ):
+    detCommande = Commande.objects.get(id=id)
     ligneProCom = LigneProduitCommande.objects.filter(commande=id)
     ligneAteCom = LigneAtelierCommande.objects.filter(commande=id)
-    prix = Prix.objects.all()
-    # calculeTotal = {{methods.calculePrixTotal(prix.all(), ligneProCom.all())}}
+
+    totalProduit = 0
+    totalAtelier = 0
+    totalFinal = 0
+
+    for pro in ligneProCom:
+        montant = Prix.objects.get(produit=pro.produit)
+        totalProduit += montant.montant * pro.quantite
+        prix = Prix.objects.all()
+
+    for ate in ligneAteCom:
+        atelier = Atelier.objects.get(id=ate.atelier.id)
+        totalAtelier += atelier.prix * ate.nbrPersonne
+    totalFinal = totalAtelier + totalProduit
+
     context = {
-        'detailsCommande': detailsCommande,
+        'detCommande': detCommande,
         'ligneProCom': ligneProCom,
         'ligneAteCom': ligneAteCom,
-        'prix': prix,
+        'prix':prix,
+        'totalAtelier': totalAtelier,
+        'totalProduit': totalProduit,
+        'totalFinal': totalFinal,
     }
     return render(request, 'shop/pages/detailsCommande.html', context)

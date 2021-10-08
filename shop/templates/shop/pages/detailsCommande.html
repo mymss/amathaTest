@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="containerMax">
+        <div class="container">
+            <div class="row g-0 mx-auto rounded"  style="width: 80%;height: 50%;margin-top: 2%;">
+            <h3 style="text-align: left;margin-bottom: 2%; ">
+                Commande n°{{ detCommande.comNumero }} effectuée le {{ detCommande.comDatePaiement }}
+            </h3>
+                {% for pro in ligneProCom %}
+                    <div class="col-6 col-md-5">
+                        <img src="{% static '{{ pro.produit.nomFichier }}' %}" style="margin-top: 0.5%;margin-bottom: 0;"/>
+                    </div>
+                    <div class="col-sm-6 col-md-3 fs-7 " style="text-align: left;">
+                        <p style="margin-top: 0.5%;margin-bottom: 0;font-weight: bold;font-size: 110%;">{{ pro.produit.nom }}</p>
+                        <p style="margin-top: 0.5%;margin-bottom: 0;font-size: 90%;">{{ pro.produit.description }}</p>
+                        {% for pri in prix %}
+                            {% if pri.produit == pro.produit %}
+                                <p style="margin-top: 1.5%;margin-bottom: 0;font-size: 90%;">Prix unitaire : {{ pri.montant }} CHF</p>
+                                <p style="margin-top: 1.5%;margin-bottom: 0;">Quantité : {{ pro.quantite }}</p></div>
+                                {# Multiplication#}
+                                <div>
+                                <p style="margin-bottom: 0;text-align: right;">
+                                   {% widthratio pro.quantite 1 pri.montant %} CHF</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}<hr/>
+                {% endfor %}
+                {# Affichage Atelier #}
+
+                {% for ate in ligneAteCom %}
+                    <div class="col-6 col-md-5">
+                        <img src="{% static '{{ ate.atelier.nomFichier }}' %}"/>
+                    </div>
+                    <div class="col-sm-6 col-md-4 fs-7 " style="margin-top: 1%;text-align: left;">
+                        <p style="margin-top: 0.5%;margin-bottom: 0;font-weight: bold;font-size: 110%;">
+                            L'atelier {{ ate.atelier.titre }}  du {{ ate.atelier.dateDebut }}</p>
+                        <p style="margin-top: 0.5%;margin-bottom: 0;">Nombre de personne : {{ ate.nbrPersonne }}</p>
+                        <p style="margin-top: 1.5%;margin-bottom: 0;"> Prix unitaire : {{ ate.atelier.prix }} CHF</p>
+                    </div>
+                    <div>
+                    <p style="margin-bottom: 0;text-align: right;">{% widthratio ate.nbrPersonne 1 ate.atelier.prix %} CHF</p>
+                   </div>
+                    <hr/>
+                {% endfor %}
+
+                {# LES TOTAUX  #}
+                <p style="margin-top: 1.5%;margin-bottom: 0;text-align: right;font-weight: bold;font-size: 120%;"> {{totalFinal }} CHF </p>  <br>
+            </div></div></div>
+{% endblock %}

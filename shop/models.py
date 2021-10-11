@@ -57,6 +57,7 @@ class Atelier(models.Model):
     prix = models.IntegerField()
     AtelierActif = models.BooleanField(default=True)
     nomFichier = models.ImageField(blank=True, null=True)
+    favorisAtelier = models.ManyToManyField(User, related_name='favorisAtelier', blank=True)
 
     def __str__(self):
         return self.titre
@@ -86,7 +87,7 @@ class Commande(models.Model):
     atelier = models.ManyToManyField(Atelier, through='LigneAtelierCommande')
     clientId = models.ForeignKey(Client, on_delete=models.SET_NULL, blank=True, null=True,)
     statut = models.CharField(max_length=10, choices=statutCommande, default='')
-    favorisAtelier = models.ManyToManyField(User, related_name='favorisAtelier', blank=True)
+
 
     def __str__(self):
         return str(self.comNumero) + " " + str(self.comTotal) + " " + str(self.comDatePaiement)

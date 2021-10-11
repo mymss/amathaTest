@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import User
-from shop.models import Produit, Prix
+from shop.models import Produit, Prix, Atelier
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
@@ -18,6 +18,7 @@ class PanierItem(models.Model):
     cart = models.ForeignKey(Panier, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Produit, on_delete=models.CASCADE)
+    atelier = models.ForeignKey(Atelier, on_delete=models.CASCADE, blank=True, null=True)
     price = models.FloatField(default=0)
     quantity = models.IntegerField(default=1)
 

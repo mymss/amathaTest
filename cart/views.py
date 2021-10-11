@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse
 from cart.models import PanierItem, Panier
-from shop.models import Produit
+from shop.models import Produit, Atelier
+
 
 def panier(request):
     panier = Panier.objects.filter(user=request.user)
@@ -72,6 +73,23 @@ def add_to_cart_vet(request, id):
 
     messages.info(request, "Item added to cart.")
     return redirect('shop:vetements')
+
+
+def add_to_cart_atelier(request, id):
+    # get the user profile
+    user_profile = get_object_or_404(User, id=request.user.id)
+    # filter atelier by id
+    atelier = Atelier.objects.get(id=id)
+
+    # create order associated with the user
+    user_order, status = Panier.objects.get_or_create(user=user_profile, ordered=False)
+
+    # create orderItem of the selected product
+    order_item, status = PanierItem.objects.get_or_create(atelier=atelier, user = user_profile, cart = user_order)
+    order_item.save()
+
+    messages.info(request, "Item added to cart.")
+    return redirect('shop:atelier')
 
 def update_quantity_more(request, item_id):
     quantity_to_update = PanierItem.objects.get(pk=item_id)

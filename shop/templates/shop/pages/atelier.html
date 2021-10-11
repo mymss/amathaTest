@@ -11,9 +11,15 @@
                 {% if ate.AtelierActif == 1 %}
                     <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
+                            {% if cos in cosFav %}
                                 <a href="{% url 'account:favourite_add_atelier' ate.id %}">
-                                        <i class="far fa-heart"></i>
+                                    <i class="fas fa-heart"></i>
                                 </a>
+                            {% else %}
+                                <a href="{% url 'account:favourite_add_atelier' ate.id %}">
+                                    <i class="far fa-heart"></i>
+                                </a>
+                            {% endif %}
                             </span>
                         <div class="card-body">
                             <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' ate.id %}">

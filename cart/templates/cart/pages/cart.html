@@ -35,7 +35,9 @@
     {% endfor %}
 
 
-    <button type="button" class="btn btn-outline-secondary float-end">Commander</button>
+    <a href="{% url 'paiement:landing-page' %}">
+        <button type="button" class="btn btn-outline-secondary float-end">Commander</button>
+    </a>
     <br /><br />
     {% endif %}
 

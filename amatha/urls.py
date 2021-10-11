@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('cart/', include('cart.urls')),
     path('administration/', include('administration.urls')),
+    path('paiement/', include('paiement.urls')),
 
     # reset password urls + the email message is in accounts/templates/registrations/password_reset_email.html
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name="accounts/pages/password_reset.html"),

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'administration.apps.AdministrationConfig',
+    'paiement.apps.PaiementConfig',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,7 @@ EMAIL_PORT= 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'myriam.reseaux@gmail.com'
 EMAIL_HOST_PASSWORD = 'Ismael74'
+
+STRIPE_PUBLIC_KEY = ""
+STRIPE_SECRET_KEY = ""
+STRIPE_WEBHOOK_SECRET = ""

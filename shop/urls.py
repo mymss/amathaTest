@@ -20,5 +20,6 @@ urlpatterns = [
     path('commande', views.commande, name='commande'),
     path('detailsCommande/<int:id>', views.detailsCommande, name='detailsCommande'),
 
+    path('searchProduit', views.searchProduit, name='searchProduit'),
 
 ]

@@ -277,3 +277,13 @@ def detailsCommande(request, id, ):
         'totalFinal': totalFinal,
     }
     return render(request, 'shop/pages/detailsCommande.html', context)
+
+
+#### Recherche Produit ####
+def searchProduit(request):
+    if request.method == "POST":
+        searchedProduit = request.POST['searchedProduit']
+        produits = Produit.objects.filter(nom__contains=searchedProduit)
+        return render(request, "shop/pages/searchProduit.html", {'searchedProduit': searchedProduit, 'produits': produits})
+    else:
+        return render(request, "shop/pages/searchProduit.html")

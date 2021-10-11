@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="containerMax">
+        <div class="container">
+
+            {% if searchedProduit %}
+                <h2>Résultats de votre recherche</h2>
+                <br/>
+                {% for produit in produits %}
+                    <p style="margin: auto">{{ produit }}</p>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

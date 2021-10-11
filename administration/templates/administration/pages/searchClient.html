@@ -1,0 +1,36 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+    <br/><br/>
+
+    {% if searched %}
+        <h2 style="text-align: center">Résultats de votre recherche : {{ searched }}</h2>
+        <br/>
+
+        {% for client in clients %}
+{#            {% if client.nom == searched %}#}
+            <p style="text-align: center">
+            <ul class="list-group" style="width: 30%; margin: auto">
+                <li class="list-group-item">
+                    <a href="{% url 'administration:formationClient' client.id %}">{{ client }}</a>
+                </li>
+            </ul>
+            </p>
+{#                {% else %}#}
+{#                <h2 style="text-align: center">Aucun résultat</h2>#}
+{#            {% endif %}#}
+        {% endfor %}
+
+    {% else %}
+        <h2 style="text-align: center">Aucun résultat</h2>
+    {% endif %}
+
+
+    <br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}>

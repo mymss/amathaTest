@@ -27,6 +27,21 @@
                              aria-labelledby="flush-headingThree"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
+
+                                {# ############# Search Bar ####################}
+
+                                <form class="d-flex" method="post" ACTION="{% url 'administration:searchClient' %}">
+                                    {% csrf_token %}
+                                    <input class="form-control me-2" type="search"
+                                           placeholder="Cherchez client" aria-label="Search" name="searched">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        Recherche
+                                    </button>
+                                </form>
+
+                                {#  #############################################}
+
+
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
                                         <th colspan="2">Client nom</th>
@@ -53,16 +68,16 @@
                                 </table>
                             </div>
                             <!--Button Insertion -->
-{#                            <div class="container" style="margin-left: 75%; ">#}
-{#                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">#}
-{#                                    <div class="col">#}
-{#                                        <a href="{% url 'administration:insertionAtelier' %}" class="text-decoration-none">#}
-{#                                            <div class="p-3 border bg-light">Créer un nouveau atelier</div>#}
-{#                                        </a>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
+                            {#                            <div class="container" style="margin-left: 75%; ">#}
+                            {#                                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">#}
+                            {#                                    <div class="col">#}
+                            {#                                        <a href="{% url 'administration:insertionAtelier' %}" class="text-decoration-none">#}
+                            {#                                            <div class="p-3 border bg-light">Créer un nouveau atelier</div>#}
+                            {#                                        </a>#}
+                            {#                                    </div>#}
+                            {##}
+                            {#                                </div>#}
+                            {#                            </div>#}
                             <br/>
 
                         </div>

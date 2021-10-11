@@ -37,4 +37,6 @@ urlpatterns = [
 
     path('formationClient/<int:id>', views.formationClient, name='formationClient'),
 
+    path('searchClient', views.searchClient, name='searchClient'),
+
 ]

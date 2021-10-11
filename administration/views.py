@@ -358,3 +358,11 @@ def formationClient(request, id):
         return redirect('administration:gestionClient')
     return render(request, "administration/pages/formationClient.html",
                   {'clientFormation': clientFormation, 'formDesactiverClient': formDesactiverClient})
+
+def searchClient(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        clients = Client.objects.filter(nom__contains=searched)
+        return render(request, "administration/pages/searchClient.html", {'searched': searched, 'clients': clients})
+    else:
+        return render(request, "administration/pages/searchClient.html")

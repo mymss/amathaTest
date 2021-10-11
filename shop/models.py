@@ -84,7 +84,7 @@ class Commande(models.Model):
     enAttente = models.BooleanField(default=False)
     produit = models.ManyToManyField(Produit, through='LigneProduitCommande')
     atelier = models.ManyToManyField(Atelier, through='LigneAtelierCommande')
-    clientId = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
+    clientId = models.ForeignKey(Client, on_delete=models.SET_NULL, blank=True, null=True,)
     statut = models.CharField(max_length=10, choices=statutCommande, default='')
     favorisAtelier = models.ManyToManyField(User, related_name='favorisAtelier', blank=True)
 

@@ -16,7 +16,12 @@
                             <img class="cadre" src="{% static produit.product.nomFichier.url %}" alt="{{ produit.product.nom }}">
                             {% endif %}
                             <p class="text-uppercase text-center fs-5">
+                                {% if produit.product %}
                                 {{ produit.product.nom }}
+                                    {% else %}
+                                      {{ produit.atelier.titre }}
+                                {% endif %}
+
                             </p>
                             </a>
                         <a href="{% url 'cart:update_quantity_less' produit.id%}"><i class="far fa-minus-square" style="font-size: 200%;"></i></a>

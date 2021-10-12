@@ -9,7 +9,7 @@ from shop.models import Produit, Atelier
 
 def panier(request):
     panier = Panier.objects.filter(user=request.user)
-    panierItems = PanierItem.objects.filter(user = request.user)
+    panierItems = PanierItem.objects.filter(user=request.user)
 
     item_number = panierItems.count()
     bool = False
@@ -25,6 +25,7 @@ def panier(request):
     }
     return render(request, 'cart/pages/cart.html', context)
 
+
 @login_required()
 def add_to_cart_cos(request, id):
     # get the user profile
@@ -36,11 +37,12 @@ def add_to_cart_cos(request, id):
     user_order, status = Panier.objects.get_or_create(user=user_profile, ordered=False)
 
     # create orderItem of the selected product
-    order_item, status = PanierItem.objects.get_or_create(product=produit, user = user_profile, cart = user_order)
+    order_item, status = PanierItem.objects.get_or_create(product=produit, user=user_profile, cart=user_order)
     order_item.save()
 
     messages.info(request, "Item added to cart.")
     return redirect('shop:cosmetique')
+
 
 def add_to_cart_proInt(request, id):
     # get the user profile
@@ -52,11 +54,12 @@ def add_to_cart_proInt(request, id):
     user_order, status = Panier.objects.get_or_create(user=user_profile, ordered=False)
 
     # create orderItem of the selected product
-    order_item, status = PanierItem.objects.get_or_create(product=produit, user = user_profile, cart = user_order)
+    order_item, status = PanierItem.objects.get_or_create(product=produit, user=user_profile, cart=user_order)
     order_item.save()
 
     messages.info(request, "Item added to cart.")
     return redirect('shop:produitInterieur')
+
 
 def add_to_cart_vet(request, id):
     # get the user profile
@@ -68,7 +71,7 @@ def add_to_cart_vet(request, id):
     user_order, status = Panier.objects.get_or_create(user=user_profile, ordered=False)
 
     # create orderItem of the selected product
-    order_item, status = PanierItem.objects.get_or_create(product=produit, user = user_profile, cart = user_order)
+    order_item, status = PanierItem.objects.get_or_create(product=produit, user=user_profile, cart=user_order)
     order_item.save()
 
     messages.info(request, "Item added to cart.")
@@ -85,23 +88,35 @@ def add_to_cart_atelier(request, id):
     user_order, status = Panier.objects.get_or_create(user=user_profile, ordered=False)
 
     # create orderItem of the selected product
-    order_item, status = PanierItem.objects.get_or_create(atelier=atelier, user = user_profile, cart = user_order)
+    order_item, status = PanierItem.objects.get_or_create(atelier=atelier, user=user_profile, cart=user_order)
     order_item.save()
 
     messages.info(request, "Item added to cart.")
     return redirect('shop:atelier')
 
+
 def update_quantity_more(request, item_id):
     quantity_to_update = PanierItem.objects.get(pk=item_id)
-    productInst = Produit.objects.get(id=quantity_to_update.product.id)
+    print(quantity_to_update.atelier)
 
-    if quantity_to_update.quantity <= productInst.stockDisponible:
-        quantity_to_update.quantity += 1
-        quantity_to_update.save()
-    else:
-        messages.info(request, "Max stock")
+    if quantity_to_update.atelier :
+        atelierInst = Atelier.objects.get(id=quantity_to_update.atelier.id)
+        if quantity_to_update.quantity <= atelierInst.nbrPersonneMax:
+            quantity_to_update.quantity += 1
+            quantity_to_update.save()
+        else:
+            messages.info(request, "Max stock")
+
+    elif quantity_to_update.product:
+        productInst = Produit.objects.get(id=quantity_to_update.product.id)
+        if quantity_to_update.quantity <= productInst.stockDisponible:
+            quantity_to_update.quantity += 1
+            quantity_to_update.save()
+        else:
+            messages.info(request, "Max stock")
 
     return redirect(reverse('cart:panier'))
+
 
 def update_quantity_less(request, item_id):
     quantity_to_update = PanierItem.objects.get(pk=item_id)
@@ -114,9 +129,10 @@ def update_quantity_less(request, item_id):
 
     return redirect(reverse('cart:panier'))
 
+
 def delete_from_cart(request, item_id):
     item_to_delete = PanierItem.objects.get(pk=item_id)
-    cart = Panier.objects.get(user = request.user)
+    cart = Panier.objects.get(user=request.user)
 
     if item_to_delete.id > 0:
         item_to_delete.delete()
@@ -139,7 +155,7 @@ def add_to_cart_produit_search(request, id):
     user_order, status = Panier.objects.get_or_create(user=user_profile, ordered=False)
 
     # create orderItem of the selected product
-    order_item, status = PanierItem.objects.get_or_create(product=produit, user = user_profile, cart = user_order)
+    order_item, status = PanierItem.objects.get_or_create(product=produit, user=user_profile, cart=user_order)
     order_item.save()
 
     messages.info(request, "Item added to cart.")

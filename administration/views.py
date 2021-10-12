@@ -17,7 +17,10 @@ from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, A
 ###############################################
 def accueilAdmin(request):
     context = {}
-    return render(request, "administration/pages/accueilAdmin.html", context)
+    if request.user.is_superuser:
+        return render(request, "administration/pages/accueilAdmin.html", context)
+    else:
+        return render(request, "shop/pages/accueil.html", context)
 
 
 ###############################################
@@ -27,9 +30,13 @@ def gestionStock(request):
     vetements = Vetement.objects.all()
     produitsInterieurs = ProduitInterieur.objects.all()
     produitsCosmetiques = Cosmetique.objects.all()
-    return render(request, "administration/pages/gestionStock.html",
-                  {'vetements': vetements, 'produitsInterieurs': produitsInterieurs,
-                   'produitsCosmetiques': produitsCosmetiques})
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/gestionStock.html",
+                      {'vetements': vetements, 'produitsInterieurs': produitsInterieurs,
+                       'produitsCosmetiques': produitsCosmetiques})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ###############################################
@@ -41,9 +48,13 @@ def gestionProduit(request):
     prix = Prix.objects.all()
     produitsInterieursGP = ProduitInterieur.objects.all()
     produitsCosmetiquesGP = Cosmetique.objects.all()
-    return render(request, "administration/pages/gestionProduit.html",
-                  {'vetementsGP': vetementsGP, 'produitsInterieursGP': produitsInterieursGP,
-                   'produitsCosmetiquesGP': produitsCosmetiquesGP, 'prix': prix})
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/gestionProduit.html",
+                      {'vetementsGP': vetementsGP, 'produitsInterieursGP': produitsInterieursGP,
+                       'produitsCosmetiquesGP': produitsCosmetiquesGP, 'prix': prix})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ###############################################
@@ -51,15 +62,22 @@ def gestionProduit(request):
 ###############################################
 def gestionAtelier(request):
     atelier = Atelier.objects.all()
-    return render(request, "administration/pages/gestionAtelier.html", {'atelier': atelier})
 
+    if request.user.is_superuser:
+        return render(request, "administration/pages/gestionAtelier.html", {'atelier': atelier})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 ###############################################
 ## View Gestion de client Test
 ###############################################
 def gestionClient(request):
     client = Client.objects.all()
-    return render(request, "administration/pages/gestionClient.html", {'client': client})
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/gestionClient.html", {'client': client})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ###############################################
@@ -96,31 +114,50 @@ def gestionCommande(request):
         'totalCommande': totalCommande,
     }
 
-    return render(request, "administration/pages/gestionCommande.html", context)
+    if request.user.is_superuser:
+        return render(request, "administration/pages/gestionCommande.html", context)
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Détails Vetêments Admin
 def adminVetDetails(request, id):
     detailsVet = Vetement.objects.get(id=id)
-    return render(request, "administration/pages/adminVetDetails.html", {'detailsVet': detailsVet})
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/adminVetDetails.html", {'detailsVet': detailsVet})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Détails ProInt Admin
 def adminProIntDetails(request, id):
     detailsProInt = ProduitInterieur.objects.get(id=id)
-    return render(request, "administration/pages/adminProIntDetails.html", {'detailsProInt': detailsProInt})
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/adminProIntDetails.html", {'detailsProInt': detailsProInt})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Détails ProCos Admin
 def adminProCosDetails(request, id):
     detailsProCos = Cosmetique.objects.get(id=id)
-    return render(request, "administration/pages/adminProCosDetails.html", {'detailsProCos': detailsProCos})
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/adminProCosDetails.html", {'detailsProCos': detailsProCos})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Détails Atelier Admin
 def adminAtelierDetails(request, id):
     detailsAtelier = Atelier.objects.get(id=id)
-    return render(request, "administration/pages/adminAtelierDetails.html", {'detailsAtelier': detailsAtelier})
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/adminAtelierDetails.html", {'detailsAtelier': detailsAtelier})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Détails client Admin
@@ -157,7 +194,10 @@ def adminClientDetails(request, id):
         'totalCommande': totalCommande,
     }
 
-    return render(request, "administration/pages/adminClientDetails.html", context)
+    if request.user.is_superuser:
+        return render(request, "administration/pages/adminClientDetails.html", context)
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Détails commande Admin
@@ -173,7 +213,11 @@ def adminCommandeDetails(request, id):
         'ligneAteCom': ligneAteCom,
         'prix': prix,
     }
-    return render(request, "administration/pages/adminCommandeDetails.html", context)
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/adminCommandeDetails.html", context)
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ##############################################
@@ -193,8 +237,11 @@ def insertionVetement(request):
     else:
         formInsertVet = PosteInsertVet()
 
-    return render(request, "administration/pages/insertionVetement.html",
+    if request.user.is_superuser:
+        return render(request, "administration/pages/insertionVetement.html",
                   {'formInsertVet': formInsertVet})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ###############################################
@@ -214,8 +261,11 @@ def insertionProInt(request):
     else:
         formInsertProInt = PosteInsertProInt()
 
-    return render(request, "administration/pages/insertionProInt.html",
+    if request.user.is_superuser:
+        return render(request, "administration/pages/insertionProInt.html",
                   {'formInsertProInt': formInsertProInt})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ###############################################
@@ -235,8 +285,11 @@ def insertionProCos(request):
     else:
         formInsertProCos = PosteInsertProCos()
 
-    return render(request, "administration/pages/insertionProCos.html",
+    if request.user.is_superuser:
+        return render(request, "administration/pages/insertionProCos.html",
                   {'formInsertProCos': formInsertProCos})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ###############################################
@@ -256,8 +309,11 @@ def insertionAtelier(request):
     else:
         formInsertAtelier = PosteInsertAtelier()
 
-    return render(request, "administration/pages/insertionAtelier.html",
+    if request.user.is_superuser:
+        return render(request, "administration/pages/insertionAtelier.html",
                   {'formInsertAtelier': formInsertAtelier})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Update Vetêment
@@ -267,8 +323,12 @@ def updateVet(request, id):
     if formUpdateVet.is_valid():
         formUpdateVet.save()
         return redirect('shop:gestionProduit')
-    return render(request, "administration/pages/updateVet.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateVet.html",
                   {'vetementUpdate': vetementUpdate, 'formUpdateVet': formUpdateVet})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Update Produit Intérieur
@@ -278,8 +338,12 @@ def updateProInt(request, id):
     if formUpdateProInt.is_valid():
         formUpdateProInt.save()
         return redirect('administration:gestionProduit')
-    return render(request, "administration/pages/updateProInt.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateProInt.html",
                   {'proIntUpdate': proIntUpdate, 'formUpdateProInt': formUpdateProInt})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Update Produit Cosmétique
@@ -289,8 +353,12 @@ def updateProCos(request, id):
     if formUpdateProCos.is_valid():
         formUpdateProCos.save()
         return redirect('administration:gestionProduit')
-    return render(request, "administration/pages/updateProCos.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateProCos.html",
                   {'proCosUpdate': proCosUpdate, 'formUpdateProCos': formUpdateProCos})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ## Update Prix
@@ -301,8 +369,12 @@ def updatePrix(request, id):
     if formUpdatePrix.is_valid():
         formUpdatePrix.save()
         return redirect('administration:gestionProduit')
-    return render(request, "administration/pages/updatePrix.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updatePrix.html",
                   {'prixUpdate': prixUpdate, 'formUpdatePrix': formUpdatePrix})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Update Produit Cosmétique
@@ -312,8 +384,12 @@ def updateAtelier(request, id):
     if formUpdateAtelier.is_valid():
         formUpdateAtelier.save()
         return redirect('administration:gestionAtelier')
-    return render(request, "administration/pages/updateAtelier.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateAtelier.html",
                   {'atelierUpdate': atelierUpdate, 'formUpdateAtelier': formUpdateAtelier})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Update stock de Vetêment
@@ -323,8 +399,12 @@ def updateStockVet(request, id):
     if formUpdateStockVet.is_valid():
         formUpdateStockVet.save()
         return redirect('administration:gestionStock')
-    return render(request, "administration/pages/updateStockVet.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateStockVet.html",
                   {'stockVetementUpdate': stockVetementUpdate, 'formUpdateStockVet': formUpdateStockVet})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Update stock de Produit Intérieur
@@ -334,8 +414,12 @@ def updateStockProInt(request, id):
     if formUpdateStockProInt.is_valid():
         formUpdateStockProInt.save()
         return redirect('administration:gestionStock')
-    return render(request, "administration/pages/updateStockProInt.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateStockProInt.html",
                   {'stockProIntUpdate': stockProIntUpdate, 'formUpdateStockProInt': formUpdateStockProInt})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ### Update stock de Produit Cosmétique
@@ -345,8 +429,12 @@ def updateStockProCos(request, id):
     if formUpdateStockProCos.is_valid():
         formUpdateStockProCos.save()
         return redirect('administration:gestionStock')
-    return render(request, "administration/pages/updateStockProCos.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateStockProCos.html",
                   {'stockProCosUpdate': stockProCosUpdate, 'formUpdateStockProCos': formUpdateStockProCos})
+    else:
+        return render(request, "shop/pages/accueil.html")
 
 
 ## Formation client
@@ -356,13 +444,21 @@ def formationClient(request, id):
     if formDesactiverClient.is_valid():
         formDesactiverClient.save()
         return redirect('administration:gestionClient')
-    return render(request, "administration/pages/formationClient.html",
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/formationClient.html",
                   {'clientFormation': clientFormation, 'formDesactiverClient': formDesactiverClient})
+    else:
+        return render(request, "shop/pages/accueil.html")
+
 
 def searchClient(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
-        clients = Client.objects.filter(nom__contains=searched)
-        return render(request, "administration/pages/searchClient.html", {'searched': searched, 'clients': clients})
+    if request.user.is_superuser:
+        if request.method == "POST":
+            searched = request.POST['searched']
+            clients = Client.objects.filter(nom__contains=searched)
+            return render(request, "administration/pages/searchClient.html", {'searched': searched, 'clients': clients})
+        else:
+            return render(request, "administration/pages/searchClient.html")
     else:
-        return render(request, "administration/pages/searchClient.html")
+        return render(request, "shop/pages/accueil.html")

@@ -323,7 +323,7 @@ def updateVet(request, id):
     formUpdateVet = PosteInsertVet(request.POST or None, instance=vetementUpdate)
     if formUpdateVet.is_valid():
         formUpdateVet.save()
-        return redirect('shop:gestionProduit')
+        return redirect('administration:gestionProduit')
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateVet.html",

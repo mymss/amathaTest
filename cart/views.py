@@ -124,3 +124,23 @@ def delete_from_cart(request, item_id):
         cart.save()
         messages.info(request, "Item has been removed.")
     return redirect(reverse('cart:panier'))
+
+
+#################################################################################################
+########## Bar de Recherche #############
+@login_required()
+def add_to_cart_produit_search(request, id):
+    # get the user profile
+    user_profile = get_object_or_404(User, id=request.user.id)
+    # filter products by id
+    produit = Produit.objects.get(id=id)
+
+    # create order associated with the user
+    user_order, status = Panier.objects.get_or_create(user=user_profile, ordered=False)
+
+    # create orderItem of the selected product
+    order_item, status = PanierItem.objects.get_or_create(product=produit, user = user_profile, cart = user_order)
+    order_item.save()
+
+    messages.info(request, "Item added to cart.")
+    return redirect('shop:accueil')

@@ -19,6 +19,7 @@ def favourite_add_cos(request, id):
     }
     return redirect('shop:cosmetique')
 
+
 @login_required
 def favourite_add_vet(request, id):
     produit = Produit.objects.get(id=id)
@@ -33,6 +34,7 @@ def favourite_add_vet(request, id):
 
     }
     return redirect('shop:vetements')
+
 
 @login_required
 def favourite_add_proInt(request, id):
@@ -65,6 +67,7 @@ def favourite_add_atelier(request, id):
     }
     return redirect('shop:atelier')
 
+
 @login_required
 def favourite_list(request):
     produit = Produit.objects.all()
@@ -81,17 +84,18 @@ def favourite_list(request):
     fav_numberate = newate.count()
     bool = False
 
-    if fav_number <= 0 and fav_numberate <=0:
+    if fav_number <= 0 and fav_numberate <= 0:
         bool = True
 
     context = {
         'new': new,
         'bool': bool,
         'fav_number': fav_number,
-        'fav_numberate':fav_numberate,
+        'fav_numberate': fav_numberate,
         'newate': newate,
     }
     return render(request, 'accounts/pages/favs.html', context)
+
 
 # Create your views here.
 
@@ -116,11 +120,12 @@ def register(request):
         profile_form = ProfileForm()
 
     context = {
-     'form': form,
-     'profile': profile_form,
+        'form': form,
+        'profile': profile_form,
     }
 
     return render(request, 'accounts/pages/register.html', context)
+
 
 # Infos client
 @login_required
@@ -131,35 +136,52 @@ def informations(request):
     }
     return render(request, 'accounts/pages/infosClient.html', context)
 
+
 # /* Update infos personnelles */
 @login_required
 def UpdateInfos(request):
-
-    if request.method =='POST':
+    if request.method == 'POST':
         form = InfosUpdateForm(request.POST, instance=request.user.client)
         if form.is_valid():
             form.save()
             return redirect('account:informations')
-    else :
+    else:
         form = InfosUpdateForm(request.POST, instance=request.user.client)
-    context={
+    context = {
         'form': form,
     }
-    return render(request, 'accounts/pages/update_infosClient.html',context)
+    return render(request, 'accounts/pages/update_infosClient.html', context)
+
 
 # /* Update email */
 @login_required
 def UpdateEmail(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         form = EmailUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('account:informations')
-    else :
+    else:
         form = EmailUpdateForm(request.POST, instance=request.user)
-    context={
+    context = {
         'form': form,
     }
     return render(request, 'accounts/pages/update_email.html', context)
 
 
+#################################################################################################
+########## Bar de Recherche #############
+@login_required
+def favourite_add_produit_search(request, id):
+    produit = Produit.objects.get(id=id)
+    if produit.favoris.filter(id=request.user.pk).exists():
+        produit.favoris.remove(request.user)
+
+    else:
+        produit.favoris.add(request.user)
+
+    context = {
+        'produit': produit,
+
+    }
+    return redirect('shop:accueil')

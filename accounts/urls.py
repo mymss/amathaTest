@@ -25,7 +25,8 @@ urlpatterns = [
     path('favourite_list/', views.favourite_list, name='favourite_list'),
     path('email_change/', views.UpdateEmail, name='email_change'),
 
-
+    ######## Bar de Recherche #########
+    path('favourite_add_produit_search/<int:id>', views.favourite_add_produit_search, name='favourite_add_produit_search'),
 
     # path('password_change/done/',
     #      auth_views.PasswordChangeDoneView.as_view(template_name='pages/password_change_done.html'),

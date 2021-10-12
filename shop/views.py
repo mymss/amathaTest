@@ -284,6 +284,31 @@ def searchProduit(request):
     if request.method == "POST":
         searchedProduit = request.POST['searchedProduit']
         produits = Produit.objects.filter(nom__contains=searchedProduit)
-        return render(request, "shop/pages/searchProduit.html", {'searchedProduit': searchedProduit, 'produits': produits})
+
+        cosmetiques = Cosmetique.objects.all()
+        produitsInt = ProduitInterieur.objects.all()
+        vetements = Vetement.objects.all()
+        prix = Prix.objects.all()
+
+        num = request.user.pk
+        qsProduitFavs = Cosmetique.objects.filter(favoris=num)
+
+        produitsFav = []
+
+        for pro in qsProduitFavs:
+            produitsFav.append(Cosmetique.objects.get(produit_ptr=pro.pk))
+
+        context = {
+            'searchedProduit': searchedProduit,
+            'produits': produits,
+            'cosmetiques': cosmetiques,
+            'produitsInt': produitsInt,
+            'vetements': vetements,
+            'prix': prix,
+            'produitsFav': produitsFav,
+        }
+        return render(request, "shop/pages/searchProduit.html", context)
+
     else:
         return render(request, "shop/pages/searchProduit.html")
+

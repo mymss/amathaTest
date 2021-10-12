@@ -12,8 +12,51 @@
                 <h2>Résultats de votre recherche</h2>
                 <br/>
                 {% for produit in produits %}
-                    <p style="margin: auto">{{ produit }}</p>
+                    {% for pri in prix %}
+                        {% if produit.id == pri.produit.id and produit.produitActif == 1 %}
+                            <p style="margin: auto">{{ produit }} - {{ pri.montant }} - {{ pri.produit }}</p>
+
+{#######################################################################################################################}
+                            <div class="card m-3 d-inline-flex" style="width: 25%;">
+                            <span class="card-notify-year">
+                            {% if produit in produitsFav %}
+                                <a href="{% url 'account:favourite_add_produit_search' produit.id %}">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'account:favourite_add_produit_search' produit.id %}">
+                                    <i class="far fa-heart"></i>
+                                </a>
+                            {% endif %}
+                            </span>
+                                <div class="card-body">
+                                    <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
+                                        {% if produit.nomFichier %}
+                                            <img class="cadre" src="{% static produit.nomFichier.url %}"
+                                                 alt="{{ produit.nomFichier }}"
+                                                 style="height:auto;">
+                                        {% endif %}
+                                        <p class="text-uppercase text-center fs-5">
+                                            {{ produit.nom }}
+                                        </p>
+
+                                        <p class="text-center">{{ pri.montant }} CHF</p>
+                                        <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
+                                    </a>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-outline-secondary">
+                                            <a href="{% url 'cart:add_to_cart_produit_search' produit.id %}">Ajouter au
+                                                panier</a></button>
+                                    </div>
+                                </div>
+                            </div>
+{#{#######################################################################################################################}
+
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
+            {% else %}
+                <h2 style="text-align: center">Aucun résultat</h2>
             {% endif %}
 
         </div>

@@ -16,7 +16,7 @@
                         <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
                             {% if form.errors %}
                                 <br/><br/><br/><br/>
-                                <p>Passwords didn't match. Please try again.</p>
+                                <p>Le mot de passe ne correspond pas, réessayez.</p>
                             {% endif %}
                             <div class="mt-1"></div>
                             {% for field in form %}
@@ -47,7 +47,7 @@
                     </div>
                     <div class="mt-4">
                         <div class="d-flex justify-content-center links">
-                            Already have an account?<a href="{% url 'account:login' %}" class="ml-2">Login</a>
+                           Déjà un compte chez Amatha?<a href="{% url 'account:login' %}" class="ml-2">Se connecter</a>
                         </div>
                     </div>
                 </div>

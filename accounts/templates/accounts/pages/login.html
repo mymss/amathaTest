@@ -15,7 +15,7 @@
                     <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
                         {% if form.errors %}
                             <br/><br/><br/><br/>
-                            <p>Your username and password didn't match. Please try again.</p>
+                            <p>Votre mot de passe et votre mail ne fonctionnent pas, rééssayez</p>
                         {% endif %}
                         {% for field in form %}
                             <div class="form-group pb-4">
@@ -33,10 +33,10 @@
 
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="{% url 'account:register' %}" class="ml-2">Sign Up</a>
+                       Pas encore de compte?<a href="{% url 'account:register' %}" class="ml-2">S'inscrire</a>
                     </div>
                     <div class="d-flex justify-content-center links">
-                        <a href="{% url 'password_reset' %}">Forgot your password?</a>
+                        <a href="{% url 'password_reset' %}">Mot de passe oublié?</a>
                     </div>
                 </div>
             </div>

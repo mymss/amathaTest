@@ -271,7 +271,7 @@ def detailsCommande(request, id, ):
         'detCommande': detCommande,
         'ligneProCom': ligneProCom,
         'ligneAteCom': ligneAteCom,
-        'prix':prix,
+        'prix': prix,
         'totalAtelier': totalAtelier,
         'totalProduit': totalProduit,
         'totalFinal': totalFinal,

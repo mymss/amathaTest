@@ -68,6 +68,7 @@ def gestionAtelier(request):
     else:
         return render(request, "shop/pages/accueil.html")
 
+
 ###############################################
 ## View Gestion de client Test
 ###############################################
@@ -239,7 +240,7 @@ def insertionVetement(request):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/insertionVetement.html",
-                  {'formInsertVet': formInsertVet})
+                      {'formInsertVet': formInsertVet})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -263,7 +264,7 @@ def insertionProInt(request):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/insertionProInt.html",
-                  {'formInsertProInt': formInsertProInt})
+                      {'formInsertProInt': formInsertProInt})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -287,7 +288,7 @@ def insertionProCos(request):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/insertionProCos.html",
-                  {'formInsertProCos': formInsertProCos})
+                      {'formInsertProCos': formInsertProCos})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -311,7 +312,7 @@ def insertionAtelier(request):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/insertionAtelier.html",
-                  {'formInsertAtelier': formInsertAtelier})
+                      {'formInsertAtelier': formInsertAtelier})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -326,7 +327,7 @@ def updateVet(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateVet.html",
-                  {'vetementUpdate': vetementUpdate, 'formUpdateVet': formUpdateVet})
+                      {'vetementUpdate': vetementUpdate, 'formUpdateVet': formUpdateVet})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -341,7 +342,7 @@ def updateProInt(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateProInt.html",
-                  {'proIntUpdate': proIntUpdate, 'formUpdateProInt': formUpdateProInt})
+                      {'proIntUpdate': proIntUpdate, 'formUpdateProInt': formUpdateProInt})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -356,7 +357,7 @@ def updateProCos(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateProCos.html",
-                  {'proCosUpdate': proCosUpdate, 'formUpdateProCos': formUpdateProCos})
+                      {'proCosUpdate': proCosUpdate, 'formUpdateProCos': formUpdateProCos})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -372,7 +373,7 @@ def updatePrix(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updatePrix.html",
-                  {'prixUpdate': prixUpdate, 'formUpdatePrix': formUpdatePrix})
+                      {'prixUpdate': prixUpdate, 'formUpdatePrix': formUpdatePrix})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -387,7 +388,7 @@ def updateAtelier(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateAtelier.html",
-                  {'atelierUpdate': atelierUpdate, 'formUpdateAtelier': formUpdateAtelier})
+                      {'atelierUpdate': atelierUpdate, 'formUpdateAtelier': formUpdateAtelier})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -402,7 +403,7 @@ def updateStockVet(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateStockVet.html",
-                  {'stockVetementUpdate': stockVetementUpdate, 'formUpdateStockVet': formUpdateStockVet})
+                      {'stockVetementUpdate': stockVetementUpdate, 'formUpdateStockVet': formUpdateStockVet})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -417,7 +418,7 @@ def updateStockProInt(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateStockProInt.html",
-                  {'stockProIntUpdate': stockProIntUpdate, 'formUpdateStockProInt': formUpdateStockProInt})
+                      {'stockProIntUpdate': stockProIntUpdate, 'formUpdateStockProInt': formUpdateStockProInt})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -432,7 +433,7 @@ def updateStockProCos(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updateStockProCos.html",
-                  {'stockProCosUpdate': stockProCosUpdate, 'formUpdateStockProCos': formUpdateStockProCos})
+                      {'stockProCosUpdate': stockProCosUpdate, 'formUpdateStockProCos': formUpdateStockProCos})
     else:
         return render(request, "shop/pages/accueil.html")
 
@@ -447,11 +448,12 @@ def formationClient(request, id):
 
     if request.user.is_superuser:
         return render(request, "administration/pages/formationClient.html",
-                  {'clientFormation': clientFormation, 'formDesactiverClient': formDesactiverClient})
+                      {'clientFormation': clientFormation, 'formDesactiverClient': formDesactiverClient})
     else:
         return render(request, "shop/pages/accueil.html")
 
 
+####### Bar de Recherche Client
 def searchClient(request):
     if request.user.is_superuser:
         if request.method == "POST":
@@ -462,3 +464,17 @@ def searchClient(request):
             return render(request, "administration/pages/searchClient.html")
     else:
         return render(request, "shop/pages/accueil.html")
+
+
+# ####### Bar de Recherche Commande
+# def searchCommande(request):
+#     if request.user.is_superuser:
+#         if request.method == "POST":
+#             searchedCommande = request.POST['searchedCommande']
+#             commandes = Commande.objects.filter(comDatePaiement=searchedCommande)
+#             return render(request, "administration/pages/searchCommande.html",
+#                           {'searchedCommande': searchedCommande, 'commandes': commandes})
+#         else:
+#             return render(request, "administration/pages/searchCommande.html")
+#     else:
+#         return render(request, "shop/pages/accueil.html")

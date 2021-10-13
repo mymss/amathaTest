@@ -227,9 +227,8 @@ def adminCommandeDetails(request, id):
 ###############################################
 def insertionVetement(request):
     if request.method == "POST":
-        formInsertVet = PosteInsertVet(request.POST)
-        formInsertVet.nomFichier = request.FILES['nomFichier']
-        
+        formInsertVet = PosteInsertVet(request.POST, request.FILES)
+
         if formInsertVet.is_valid():
             formInsertVet = formInsertVet.save(commit=False)
             formInsertVet.author = request.user

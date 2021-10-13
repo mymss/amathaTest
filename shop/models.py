@@ -90,7 +90,7 @@ class Commande(models.Model):
 
 
     def __str__(self):
-        return str(self.comNumero) + " " + str(self.comTotal) + " " + str(self.comDatePaiement)
+        return str(self.comNumero) + " " + str(self.comTotal) + " " + str(self.comDate)
 
 
 class LigneProduitCommande(models.Model):

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from accounts.models import Client
@@ -227,7 +228,8 @@ def adminCommandeDetails(request, id):
 def insertionVetement(request):
     if request.method == "POST":
         formInsertVet = PosteInsertVet(request.POST)
-
+        formInsertVet.nomFichier = request.FILES['nomFichier']
+        
         if formInsertVet.is_valid():
             formInsertVet = formInsertVet.save(commit=False)
             formInsertVet.author = request.user

@@ -42,7 +42,7 @@
                                                 {{ com.comNumero }}
                                             </td>
 
-                                        {% for totalfinal in totalCommande %}
+                                            {% for totalfinal in totalCommande %}
 
                                                 {% if forloop.counter == forloop.parentloop.counter %}
 
@@ -54,14 +54,15 @@
 
                                             {% endfor %}
 
-{#                                            {% if com.envoye == True %}#}
-{#                                                <td for="insertStock" class="col-form-label">Envoyé</td>#}
-{#                                            {% else %}#}
-{#                                                <td for="insertStock" class="col-form-label">En attente</td>#}
-{#                                            {% endif %}#}
-                                        <td for="insertStock" class="col-form-label">
-                                            {{ com.statut }}
-                                        </td>
+                                            {#                                            {% if com.envoye == True %}#}
+                                            {#                                                <td for="insertStock" class="col-form-label">Envoyé</td>#}
+                                            {#                                            {% else %}#}
+                                            {#                                                <td for="insertStock" class="col-form-label">En attente</td>#}
+                                            {#                                            {% endif %}#}
+
+                                            <td for="insertStock" class="col-form-label">
+                                                {{ com.statut }}
+                                            </td>
 
                                             <td for="insertStock" class="col-form-label">
                                                 {{ com.comDatePaiement }}

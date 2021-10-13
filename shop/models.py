@@ -63,7 +63,7 @@ class Atelier(models.Model):
         return self.titre
 
 class Prix(models.Model):
-    montant = models.IntegerField()
+    montant = models.FloatField()
     reduction = models.IntegerField()
     date = models.DateField(auto_now_add=False)
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)

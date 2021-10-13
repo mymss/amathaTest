@@ -86,7 +86,7 @@ def gestionClient(request):
 ## View Gestion de client Test
 ###############################################
 def gestionCommande(request):
-    commandes = Commande.objects.all()
+    commandes = Commande.objects.all().order_by('comDate').reverse()
     totalProduit = 0
     totalAtelier = 0
     listeProduit = []
@@ -165,7 +165,7 @@ def adminAtelierDetails(request, id):
 ### Détails client Admin
 def adminClientDetails(request, id):
     detailsClient = Client.objects.get(id=id)
-    commandes = Commande.objects.filter(clientId=id)
+    commandes = Commande.objects.filter(clientId=id).order_by('comDate').reverse()
     totalProduit = 0
     totalAtelier = 0
     listeProduit = []

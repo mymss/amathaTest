@@ -32,7 +32,7 @@
                                         <th>N° commande</th>
                                         <th>Total</th>
                                         <th>Satut</th>
-                                        <th colspan="2">Date de paiement</th>
+                                        <th colspan="2">Date de commande</th>
                                     </tr>
                                     <!-- Boucle pour afficher les nom de vetements -->
                                     {% for com in commandes %}
@@ -65,7 +65,7 @@
                                             </td>
 
                                             <td for="insertStock" class="col-form-label">
-                                                {{ com.comDatePaiement }}
+                                                {{ com.comDate }}
                                             </td>
 
                                             <td align="right">

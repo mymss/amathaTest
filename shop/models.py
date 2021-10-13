@@ -79,7 +79,7 @@ class Commande(models.Model):
     comNumero = models.IntegerField()
     comTotal = models.DecimalField(max_digits=5, decimal_places=3)
     # comStaut = models.PositiveSmallIntegerField(choices=StatutChoix)
-    comDatePaiement = models.DateField(auto_now_add=False)
+    comDate = models.DateField(auto_now_add=False)
     comPoidsFinal = models.DecimalField(max_digits=4, decimal_places=2)
     envoye = models.BooleanField(default=True)
     enAttente = models.BooleanField(default=False)

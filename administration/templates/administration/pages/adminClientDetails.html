@@ -52,7 +52,7 @@
                     <th>N° commande</th>
                     <th>Total</th>
                     <th>Satut</th>
-                    <th colspan="2">Date de paiement</th>
+                    <th colspan="2">Date de commande</th>
                 </tr>
 
                 {% for com in commandes %}
@@ -77,7 +77,7 @@
                             <td>En attente</td>
                         {% endif %}
 
-                        <td>{{ com.comDatePaiement }}</td>
+                        <td>{{ com.comDate }}</td>
 
                         <td align="right">
                             <a href="{% url 'administration:adminCommandeDetails' com.id %}"

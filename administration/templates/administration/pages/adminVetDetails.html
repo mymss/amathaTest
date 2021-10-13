@@ -8,108 +8,116 @@
 
 
     <br/><br/><br/>
-<div class="container-xxl" style="margin-left: 20%; ">
-    <div class="container-sm">
-        <h2>Détails vetêments</h2>
-        <hr/>
-        <table class="table">
-            <tr>
-                <td style="font-weight: bold">
-                    Nom :
-                </td>
-                <td>
-                    {{ detailsVet.nom}}
-                </td>
-            </tr>
+    <div class="container-xxl" style="margin-left: 20%; ">
+        <div class="container-sm">
+            <h2>Détails vetêments</h2>
+            <hr/>
+            <table class="table">
+                <tr>
+                    <td style="font-weight: bold">
+                        Nom :
+                    </td>
+                    <td>
+                        {{ detailsVet.nom }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Description :
-                </td>
-                <td>
-                    {{ detailsVet.description }}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        Description :
+                    </td>
+                    <td>
+                        {{ detailsVet.description }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Stock Min :
-                </td>
-                <td>
-                    {{ detailsVet.stockMin}}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        Stock Min :
+                    </td>
+                    <td>
+                        {{ detailsVet.stockMin }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Stock Max :
-                </td>
-                <td>
-                    {{ detailsVet.stockMax}}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        Stock Max :
+                    </td>
+                    <td>
+                        {{ detailsVet.stockMax }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    stock disponible :
-                </td>
-                <td>
-                    {{ detailsVet.stockDisponible}}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        stock disponible :
+                    </td>
+                    <td>
+                        {{ detailsVet.stockDisponible }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Poids :
-                </td>
-                <td>
-                    {{ detailsVet.poid}}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        Poids :
+                    </td>
+                    <td>
+                        {{ detailsVet.poid }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Sexe :
-                </td>
-                <td>
-                    {{ detailsVet.sexe}}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        Sexe :
+                    </td>
+                    <td>
+                        {{ detailsVet.sexe }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Type tissu :
-                </td>
-                <td>
-                    {{ detailsVet.typeTissu}}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        Type tissu :
+                    </td>
+                    <td>
+                        {{ detailsVet.typeTissu }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Couleur :
-                </td>
-                <td>
-                    {{ detailsVet.couleur}}
-                </td>
-            </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        Couleur :
+                    </td>
+                    <td>
+                        {{ detailsVet.couleur }}
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="font-weight: bold">
-                    Taille :
-                </td>
-                <td>
-                    {{ detailsVet.taille }}
-                </td>
-            </tr>
-
-
-        </table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Taille :
+                    </td>
+                    <td>
+                        {{ detailsVet.taille }}
+                    </td>
+                </tr>
 
 
+            </table>
 
+            <br/>
+
+
+            <a href="{% url 'administration:updateVet' detailsVet.id %}">
+                <button type="button" class="btn btn-outline-secondary">
+                    Modifier produit
+                </button>
+            </a>
+
+
+        </div>
     </div>
-   </div>
 
 
 

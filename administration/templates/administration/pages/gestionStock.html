@@ -34,7 +34,11 @@
                                     <!-- Boucle pour afficher les nom de vetements -->
                                     {% for vet in vetements %}
                                         <tr>
-                                            <td for="insertStock" class="col-form-label">{{ vet.nom }}</td>
+                                            <td for="insertStock" class="col-form-label">
+                                                <a href="{% url 'administration:adminVetDetails' vet.id %}">
+                                                    {{ vet.nom }}
+                                                </a>
+                                            </td>
                                             <td for="insertStock"
                                                 class="col-form-label">{{ vet.stockDisponible }}
                                             </td>
@@ -71,7 +75,11 @@
                                     <!-- Boucle pour afficher les nom de vetements -->
                                     {% for proInt in produitsInterieurs %}
                                         <tr>
-                                            <td for="insertStock" class="col-form-label">{{ proInt.nom }}</td>
+                                            <td for="insertStock" class="col-form-label">
+                                                <a href="{% url 'administration:adminProIntDetails' proInt.id %}">
+                                                    {{ proInt.nom }}
+                                                </a>
+                                            </td>
                                             <td for="insertStock"
                                                 class="col-form-label">{{ proInt.stockDisponible }}
                                             </td>
@@ -108,7 +116,11 @@
                                     <!-- Boucle pour afficher les nom de vetements -->
                                     {% for proCos in produitsCosmetiques %}
                                         <tr>
-                                            <td for="insertStock" class="col-form-label">{{ proCos.nom }}</td>
+                                            <td for="insertStock" class="col-form-label">
+                                                <a href="{% url 'administration:adminProCosDetails' proCos.id %}">
+                                                    {{ proCos.nom }}
+                                                </a>
+                                            </td>
                                             <td for="insertStock"
                                                 class="col-form-label">{{ proCos.stockDisponible }}
                                             </td>

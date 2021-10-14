@@ -28,6 +28,21 @@
                              aria-labelledby="flush-headingOne"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
+
+                                {# ############# Search Bar ####################}
+
+                                <form class="d-flex" method="post" ACTION="{% url 'administration:searchVet' %}">
+                                    {% csrf_token %}
+                                    <input class="form-control me-2" type="search"
+                                           placeholder="Cherchez vetêment" aria-label="Search" name="searched">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        Recherche
+                                    </button>
+                                </form>
+
+                                {#  #############################################}
+
+
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
                                         <th colspan="2">Produit</th>
@@ -98,6 +113,20 @@
                              aria-labelledby="flush-headingTwo"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
+
+                                {# ############# Search Bar ####################}
+
+                                <form class="d-flex" method="post" ACTION="{% url 'administration:searchProInt' %}">
+                                    {% csrf_token %}
+                                    <input class="form-control me-2" type="search"
+                                           placeholder="Cherchez Produit Intérieur" aria-label="Search" name="searched">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        Recherche
+                                    </button>
+                                </form>
+
+                                {#  #############################################}
+
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
                                         <th>Produit</th>
@@ -164,6 +193,21 @@
                              aria-labelledby="flush-headingThree"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
+
+                                {# ############# Search Bar ####################}
+
+                                <form class="d-flex" method="post" ACTION="{% url 'administration:searchProCos' %}">
+                                    {% csrf_token %}
+                                    <input class="form-control me-2" type="search"
+                                           placeholder="Cherchez Produit Cosmétique" aria-label="Search"
+                                           name="searched">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        Recherche
+                                    </button>
+                                </form>
+
+                                {#  #############################################}
+
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
                                         <th>Produit</th>

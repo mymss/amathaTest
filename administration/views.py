@@ -503,6 +503,46 @@ def searchClient(request):
         return render(request, "shop/pages/accueil.html")
 
 
+####### Bar de Recherche Vetêment
+def searchVet(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            searched = request.POST['searched']
+            vetement = Vetement.objects.filter(nom__contains=searched)
+            return render(request, "administration/pages/searchVet.html", {'searched': searched, 'vetement': vetement})
+        else:
+            return render(request, "administration/pages/searcVet.html")
+    else:
+        return render(request, "shop/pages/accueil.html")
+
+####### Bar de Recherche Vetêment
+def searchProCos(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            searched = request.POST['searched']
+            cosmetique = Cosmetique.objects.filter(nom__contains=searched)
+            return render(request, "administration/pages/searchProCos.html", {'searched': searched, 'cosmetique': cosmetique})
+        else:
+            return render(request, "administration/pages/searchProCos.html")
+    else:
+        return render(request, "shop/pages/accueil.html")
+
+
+####### Bar de Recherche Vetêment
+def searchProInt(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            searched = request.POST['searched']
+            proInterieur = ProduitInterieur.objects.filter(nom__contains=searched)
+            return render(request, "administration/pages/searchProInt.html", {'searched': searched, 'proInterieur': proInterieur})
+        else:
+            return render(request, "administration/pages/searchProInt.html")
+    else:
+        return render(request, "shop/pages/accueil.html")
+
+
+
+
 # ####### Bar de Recherche Commande
 # def searchCommande(request):
 #     if request.user.is_superuser:

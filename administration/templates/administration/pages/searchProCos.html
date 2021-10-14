@@ -1,0 +1,33 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+
+<!-- Body -->
+{% block content %}
+
+    <br/><br/>
+
+    {% if searched %}
+        <h2 style="text-align: center">Résultats de votre recherche : {{ searched }}</h2>
+        <br/>
+
+        {% for proCos in cosmetique %}
+            <p style="text-align: center">
+            <ul class="list-group" style="width: 30%; margin: auto">
+                <li class="list-group-item">
+                    <a href="{% url 'administration:adminProCosDetails' proCos.id %}">{{ proCos.nom }}</a>
+                </li>
+            </ul>
+            </p>
+
+        {% endfor %}
+
+    {% else %}
+        <h2 style="text-align: center">Aucun résultat</h2>
+    {% endif %}
+
+
+    <br/><br/>
+{% endblock content %}
+
+<!-- Footer -->
+{% include 'shop/layouts/footer.html' %}>

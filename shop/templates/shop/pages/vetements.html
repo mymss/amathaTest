@@ -7,10 +7,15 @@
 {% block content %}
     <div class="containerMax">
         <div class="container">
+            <div class="d-flex">
+                <hr style=" width: 35%;color:#EBA427;size:5px;margin-left:auto;margin-right: 15px;margin-top: 3.5%; ">
+                <h3 style="padding-top:2%; ">  Les vêtements </h3>
+                <hr style=" width: 35%;color:#EBA427;size:5px;margin-right:auto;margin-left:15px ; margin-top: 3.5%;">
+            </div>
             {% for somme in sommesVet %}
-                    {% for vet in vetements %}
-                        {% if somme.produit == vet.produit_ptr  and vet.produitActif == 1 %}
-                            <div class="card m-3 d-inline-flex" style="width: 25%;">
+                {% for vet in vetements %}
+                    {% if somme.produit == vet.produit_ptr  and vet.produitActif == 1 %}
+                        <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
                             {% if vet in vetFav %}
                                 <a href="{% url 'account:favourite_add_vet' vet.id %}">
@@ -22,75 +27,75 @@
                                 </a>
                             {% endif %}
                             </span>
-                                <div class="card-body">
-                                    <a class="text-decoration-none" href="{% url 'shop:detailsVet' vet.id %}">
-                                        {% if vet.nomFichier %}
+                            <div class="card-body">
+                                <a class="text-decoration-none" href="{% url 'shop:detailsVet' vet.id %}">
+                                    {% if vet.nomFichier %}
                                         <img class="cadre" src="{% static vet.nomFichier %}" alt="{{ vet.nomFichier }}"
                                              style="height:auto;">
-                                            {% endif  %}
-                                        <p class="text-uppercase text-center fs-5">
-                                            {{ vet.nom }}
-                                        </p>
+                                    {% endif  %}
+                                    <p class="text-uppercase text-center fs-5">
+                                        {{ vet.nom }}
+                                    </p>
 
-                                        <p class="text-center">{{ somme.montant }} CHF</p>
-                                        <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
-                                    </a>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-outline-secondary">
-                                            <a href="{% url 'cart:add_to_cart_vet' vet.pk %}">Ajouter au
+                                    <p class="text-center">{{ somme.montant }} CHF</p>
+                                    <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
+                                </a>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        <a href="{% url 'cart:add_to_cart_vet' vet.pk %}">Ajouter au
                                             panier</a></button>
-                                    </div>
                                 </div>
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
 
             {% endfor %}
         </div>
     </div>
 
-       <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-        {% if vetements.has_previous %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ vetements.previous_page_number }}">Previous</a>
-          </li>
-        {% else %}
-            <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-        {% endif %}
+            {% if vetements.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ vetements.previous_page_number }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+            {% endif %}
 
-        {% if vetements.number|add:'-4' > 1 %}
-            <li class="page-item"><a class="page-link" href="?page={{ vetements.number|add:'-5' }}">&hellip;</a></li>
-        {% endif %}
+            {% if vetements.number|add:'-4' > 1 %}
+                <li class="page-item"><a class="page-link" href="?page={{ vetements.number|add:'-5' }}">&hellip;</a></li>
+            {% endif %}
 
-        {% for i in vetements.paginator.page_range %}
-            {% if vetements.number == i %}
-                <li class="page-item active" aria-current="page">
+            {% for i in vetements.paginator.page_range %}
+                {% if vetements.number == i %}
+                    <li class="page-item active" aria-current="page">
               <span class="page-link">
                 {{ i }}
                 <span class="sr-only">(current)</span>
               </span>
-            </li>
-        {% elif i > vetements.number|add:'-5' and i < vetements.number|add:'5' %}
-                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    </li>
+                {% elif i > vetements.number|add:'-5' and i < vetements.number|add:'5' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if vetements.paginator.num_pages > vetements.number|add:'4' %}
+                <li class="page-item"><a class="page-link" href="?page={{ vetements.number|add:'5' }}">&hellip;</a></li>
             {% endif %}
-        {% endfor %}
 
-        {% if vetements.paginator.num_pages > vetements.number|add:'4' %}
-           <li class="page-item"><a class="page-link" href="?page={{ vetements.number|add:'5' }}">&hellip;</a></li>
-        {% endif %}
-
-        {% if vetements.has_next %}
-        <li class ="page-item">
-            <a class="page-link" href="?page={{ vetements.next_page_number }}">Next</a>
-        </li>
-        {% else %}
-        <li class ="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-        </li>
-        {% endif %}
+            {% if vetements.has_next %}
+                <li class ="page-item">
+                    <a class="page-link" href="?page={{ vetements.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class ="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
 

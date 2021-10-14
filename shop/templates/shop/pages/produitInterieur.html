@@ -7,6 +7,11 @@
 {% block content %}
     <div class="containerMax">
         <div class="container">
+        <div class="d-flex">
+        <hr style=" width: 35%; size:5px;color:#EBA427;margin-left:auto;margin-right: 15px;margin-top: 3%; ">
+        <h3 style="padding-top:2%; ">  Les produits d'intérieur </h3>
+        <hr style=" width: 35%; size:2px;color:#EBA427;margin-right:auto;margin-left:15px ; margin-top: 3%;">
+    </div>
             {% for somme in sommesProInt %}
                     {% for pro in produitInt %}
                         {% if somme.produit == pro.produit_ptr and pro.produitActif == 1 %}

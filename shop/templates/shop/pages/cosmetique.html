@@ -7,10 +7,15 @@
 {% block content %}
     <div class="containerMax">
         <div class="container">
+            <div class="d-flex">
+                <hr style=" width: 35%;color:#EBA427;size:5px;margin-left:auto;margin-right: 15px;margin-top: 3.5%; ">
+                <h3 style="padding-top:2%; ">  Les cosmétiques </h3>
+                <hr style=" width: 35%;color:#EBA427;size:5px;margin-right:auto;margin-left:15px ; margin-top: 3.5%;">
+            </div>
             {% for somme in sommesCos %}
-                    {% for cos in cosmetiques %}
-                        {% if somme.produit == cos.produit_ptr and cos.produitActif == 1 %}
-                            <div class="card m-3 d-inline-flex" style="width: 25%;">
+                {% for cos in cosmetiques %}
+                    {% if somme.produit == cos.produit_ptr and cos.produitActif == 1 %}
+                        <div class="card m-3 d-inline-flex" style="width: 25%;">
                             <span class="card-notify-year">
                             {% if cos in cosFav %}
                                 <a href="{% url 'account:favourite_add_cos' cos.id %}">
@@ -22,72 +27,72 @@
                                 </a>
                             {% endif %}
                             </span>
-                                <div class="card-body">
-                                    <a class="text-decoration-none" href="{% url 'shop:detailsCos' cos.id %}">
-                                        {% if cos.nomFichier %}
+                            <div class="card-body">
+                                <a class="text-decoration-none" href="{% url 'shop:detailsCos' cos.id %}">
+                                    {% if cos.nomFichier %}
                                         <img class="cadre" src="{% static cos.nomFichier.url %}" alt="{{ cosmetiques.nomFichier }}"
                                              style="height:auto;">
-                                            {% endif  %}
-                                        <p class="text-uppercase text-center fs-5">
-                                            {{ cos.nom }}
-                                        </p>
+                                    {% endif  %}
+                                    <p class="text-uppercase text-center fs-5">
+                                        {{ cos.nom }}
+                                    </p>
 
-                                        <p class="text-center">{{ somme.montant }} CHF</p>
-                                        <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
-                                    </a>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-outline-secondary">
-                                            <a href="{% url 'cart:add_to_cart_cos' cos.id %}">Ajouter au panier</a></button>
-                                    </div>
+                                    <p class="text-center">{{ somme.montant }} CHF</p>
+                                    <!-- Information pour le a href va nous permetttre de relier avce la page qui sera crée pour le panier-->
+                                </a>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        <a href="{% url 'cart:add_to_cart_cos' cos.id %}">Ajouter au panier</a></button>
                                 </div>
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
+            {% endfor %}
         </div>
     </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-        {% if cosmetiques.has_previous %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ cosmetiques.previous_page_number }}">Previous</a>
-          </li>
-        {% else %}
-            <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-        {% endif %}
+            {% if cosmetiques.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ cosmetiques.previous_page_number }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+            {% endif %}
 
-        {% if cosmetiques.number|add:'-4' > 1 %}
-            <li class="page-item"><a class="page-link" href="?page={{ cosmetiques.number|add:'-5' }}">&hellip;</a></li>
-        {% endif %}
+            {% if cosmetiques.number|add:'-4' > 1 %}
+                <li class="page-item"><a class="page-link" href="?page={{ cosmetiques.number|add:'-5' }}">&hellip;</a></li>
+            {% endif %}
 
-        {% for i in cosmetiques.paginator.page_range %}
-            {% if cosmetiques.number == i %}
-                <li class="page-item active" aria-current="page">
+            {% for i in cosmetiques.paginator.page_range %}
+                {% if cosmetiques.number == i %}
+                    <li class="page-item active" aria-current="page">
               <span class="page-link">
                 {{ i }}
                 <span class="sr-only">(current)</span>
               </span>
-            </li>
-        {% elif i > cosmetiques.number|add:'-5' and i < cosmetiques.number|add:'5' %}
-                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    </li>
+                {% elif i > cosmetiques.number|add:'-5' and i < cosmetiques.number|add:'5' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if cosmetiques.paginator.num_pages > cosmetiques.number|add:'4' %}
+                <li class="page-item"><a class="page-link" href="?page={{ cosmetiques.number|add:'5' }}">&hellip;</a></li>
             {% endif %}
-        {% endfor %}
 
-        {% if cosmetiques.paginator.num_pages > cosmetiques.number|add:'4' %}
-           <li class="page-item"><a class="page-link" href="?page={{ cosmetiques.number|add:'5' }}">&hellip;</a></li>
-        {% endif %}
-
-        {% if cosmetiques.has_next %}
-        <li class ="page-item">
-            <a class="page-link" href="?page={{ cosmetiques.next_page_number }}">Next</a>
-        </li>
-        {% else %}
-        <li class ="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-        </li>
-        {% endif %}
+            {% if cosmetiques.has_next %}
+                <li class ="page-item">
+                    <a class="page-link" href="?page={{ cosmetiques.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class ="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
 

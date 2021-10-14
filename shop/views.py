@@ -292,8 +292,10 @@ def detailsCommande(request, id, ):
     }
     return render(request, 'shop/pages/detailsCommande.html', context)
 
+###############################################
+# Recherche Produit
+###############################################
 
-#### Recherche Produit ####
 def searchProduit(request):
     if request.method == "POST":
         searchedProduit = request.POST['searchedProduit']
@@ -326,3 +328,12 @@ def searchProduit(request):
     else:
         return render(request, "shop/pages/searchProduit.html")
 
+###############################################
+# Page Qui Sommes-Nous!?
+###############################################
+def quiSommesNous(request):
+    produit = Produit.objects.all()
+    context={
+        'produit': produit,
+    }
+    return render(request, "shop/pages/quiSommesNous.html",context)

@@ -4,16 +4,21 @@
 
 {% block content %}
     <div class="containerMax">
-    <div class="container">
-        <div class="descriptionDetails">
-            <div class="row g-0 mx-auto rounded" style="width: 80%;height: 50%; ">
-                <div class="col-6 col-md-5 ">
-                    {% if produitInt.nomFichier %}
-                        <img src="{% static produitInt.nomFichier %}" alt="{{ produitInt.nomFichier }}"
-                             class="rounded mx-auto d-block"
-                             style=" margin-top: 3%;margin-left: 5%; margin-bottom:3%; width:400px; height: 270px;">
-                    {% endif %}
+        <div class="container">
+            <div class="descriptionDetails">
+                <div class="d-flex" style="margin-top: 2%;">
+                    <hr style=" width: 35%; size:5px;color:#EBA427;margin-left:auto;margin-right: 15px;margin-top: 3.5%; ">
+                    <h3 style="padding-top:2%; ">  Détails {{ produitInt.nom }}  </h3>
+                    <hr style=" width: 35%; size:5px;color:#EBA427;margin-right:auto;margin-left:15px ; margin-top: 3.5%;">
                 </div>
+                <div class="row g-0 mx-auto rounded" style="width: 80%;height: 50%; ">
+                    <div class="col-6 col-md-5 ">
+                        {% if produitInt.nomFichier %}
+                            <img src="{% static produitInt.nomFichier %}" alt="{{ produitInt.nomFichier }}"
+                                 class="rounded mx-auto d-block"
+                                 style=" margin-top: 3%;margin-left: 5%; margin-bottom:3%; width:400px; height: 270px;">
+                        {% endif %}
+                    </div>
                     <div class="detailText col-sm-6 col-md-7 fs-5 " style="margin-top: 1%;">
                         <p class="text-uppercase">{{ produitInt.nom }} </p>
                         <p style="">Prix : {{ sommesProInt.montant }} CHF</p>

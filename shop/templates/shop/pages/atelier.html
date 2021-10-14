@@ -6,6 +6,11 @@
 {% block content %}
     <div class="containerMax">
         <div class="container">
+            <div class="d-flex">
+                <hr style=" width: 35%;color:#EBA427;size:5px;margin-left:auto;margin-right: 15px;margin-top: 3.5%; ">
+                <h3 style="padding-top:2%; ">  Les ateliers </h3>
+                <hr style=" width: 35%;color:#EBA427;size:5px;margin-right:auto;margin-left:15px ; margin-top: 3.5%;">
+            </div>
             {% for ate in ateliers %}
                 {% if ate.AtelierActif == 1 %}
                     <div class="card m-3 d-inline-flex" style="width: 25%;">
@@ -22,7 +27,7 @@
                             </span>
                         <div class="card-body">
                             <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' ate.id %}">
-                               <img class="cadre" src="{% static ate.nomFichier.url %}" alt="{{ ateliers.nomFichier }}" style="height:auto;">
+                                <img class="cadre" src="{% static ate.nomFichier.url %}" alt="{{ ateliers.nomFichier }}" style="height:auto;">
                                 <p class="text-uppercase text-center fs-5">
                                     {{ ate.titre }}
                                 </p>
@@ -40,46 +45,46 @@
     </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-        {% if ateliers.has_previous %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ ateliers.previous_page_number }}">Previous</a>
-          </li>
-        {% else %}
-            <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-        {% endif %}
+            {% if ateliers.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ ateliers.previous_page_number }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+            {% endif %}
 
-        {% if ateliers.number|add:'-4' > 1 %}
-            <li class="page-item"><a class="page-link" href="?page={{ ateliers.number|add:'-5' }}">&hellip;</a></li>
-        {% endif %}
+            {% if ateliers.number|add:'-4' > 1 %}
+                <li class="page-item"><a class="page-link" href="?page={{ ateliers.number|add:'-5' }}">&hellip;</a></li>
+            {% endif %}
 
-        {% for i in ateliers.paginator.page_range %}
-            {% if ateliers.number == i %}
-                <li class="page-item active" aria-current="page">
+            {% for i in ateliers.paginator.page_range %}
+                {% if ateliers.number == i %}
+                    <li class="page-item active" aria-current="page">
               <span class="page-link">
                 {{ i }}
                 <span class="sr-only">(current)</span>
               </span>
-            </li>
-        {% elif i > ateliers.number|add:'-5' and i < ateliers.number|add:'5' %}
-                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    </li>
+                {% elif i > ateliers.number|add:'-5' and i < ateliers.number|add:'5' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if ateliers.paginator.num_pages > ateliers.number|add:'4' %}
+                <li class="page-item"><a class="page-link" href="?page={{ ateliers.number|add:'5' }}">&hellip;</a></li>
             {% endif %}
-        {% endfor %}
 
-        {% if ateliers.paginator.num_pages > ateliers.number|add:'4' %}
-           <li class="page-item"><a class="page-link" href="?page={{ ateliers.number|add:'5' }}">&hellip;</a></li>
-        {% endif %}
-
-        {% if ateliers.has_next %}
-        <li class ="page-item">
-            <a class="page-link" href="?page={{ ateliers.next_page_number }}">Next</a>
-        </li>
-        {% else %}
-        <li class ="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-        </li>
-        {% endif %}
+            {% if ateliers.has_next %}
+                <li class ="page-item">
+                    <a class="page-link" href="?page={{ ateliers.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class ="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
 

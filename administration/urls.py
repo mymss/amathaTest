@@ -12,6 +12,7 @@ urlpatterns = [
     path('gestionAtelier/', views.gestionAtelier, name='gestionAtelier'),
     path('gestionClient/', views.gestionClient, name='gestionClient'),
     path('gestionCommande/', views.gestionCommande, name='gestionCommande'),
+    path('gestionPrix/', views.gestionPrix, name='gestionPrix'),
 
     path('adminVetDetails/<int:id>', views.adminVetDetails, name='adminVetDetails'),
     path('adminProIntDetails/<int:id>', views.adminProIntDetails, name='adminProIntDetails'),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('insertionProInt/', views.insertionProInt, name='insertionProInt'),
     path('insertionProCos/', views.insertionProCos, name='insertionProCos'),
     path('insertionAtelier/', views.insertionAtelier, name='insertionAtelier'),
+    path('insertionPrix/', views.insertionPrix, name='insertionPrix'),
 
     path('updateVet/<int:id>', views.updateVet, name='updateVet'),
     path('updateProInt/<int:id>', views.updateProInt, name='updateProInt'),

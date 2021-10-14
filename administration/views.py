@@ -71,6 +71,20 @@ def gestionAtelier(request):
 
 
 ###############################################
+## View Gestion de prix Test
+###############################################
+def gestionPrix(request):
+    prix = Prix.objects.all()
+    produit = Produit.objects.all()
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/gestionPrix.html",
+                      {'prix': prix, 'produit': produit})
+    else:
+        return render(request, "shop/pages/accueil.html")
+
+
+###############################################
 ## View Gestion de client Test
 ###############################################
 def gestionClient(request):
@@ -359,6 +373,28 @@ def updateProCos(request, id):
     if request.user.is_superuser:
         return render(request, "administration/pages/updateProCos.html",
                       {'proCosUpdate': proCosUpdate, 'formUpdateProCos': formUpdateProCos})
+    else:
+        return render(request, "shop/pages/accueil.html")
+
+
+## Insertion Prix
+def insertionPrix(request):
+    if request.method == "POST":
+        formInsertPrix = PosteUpdatePrix(request.POST)
+
+        if formInsertPrix.is_valid():
+            formInsertPrix = formInsertPrix.save(commit=False)
+            formInsertPrix.author = request.user
+            formInsertPrix.save()
+
+            return redirect('administration:insertionPrix')
+
+    else:
+        formInsertPrix = PosteUpdatePrix()
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/insertionPrix.html",
+                      {'formInsertPrix': formInsertPrix})
     else:
         return render(request, "shop/pages/accueil.html")
 

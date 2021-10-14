@@ -71,3 +71,25 @@ footer{
     color: rgba(18, 140, 159, 0.5);
 }
 
+
+#fondBougies{
+    background: url('../img/bougieDeMassage.jpg')  center no-repeat;
+    background-size: 100%;
+}
+
+#fondTurban{
+    background: url('../img/turban.JPG')  center no-repeat;
+    background-size: 100%;
+
+}
+
+#fondLogo{
+    background: url('../img/logo.png')  center no-repeat;
+    background-size: 50%;
+}
+
+
+.BoutonAccueil{
+    background:rgba(255, 255, 255,0.5) ;
+    height: 40px;
+}

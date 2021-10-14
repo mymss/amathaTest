@@ -1,6 +1,7 @@
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 
@@ -62,6 +63,9 @@ def produitsCosmetiques(request):
 def cosmetique(request):
     cosmetiques = Cosmetique.objects.all()
     sommesCos = Prix.objects.all()
+    paginator = Paginator(cosmetiques, 6)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
 
     num = request.user.pk
     qsProduitsFavs = Cosmetique.objects.filter(favoris=num)
@@ -71,7 +75,7 @@ def cosmetique(request):
         cosFav.append(Cosmetique.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'cosmetiques': cosmetiques,
+        'cosmetiques': page_obj,
         'sommesCos': sommesCos,
         'cosFav': cosFav,
     }
@@ -82,6 +86,9 @@ def cosmetique(request):
 def vetement(request):
     vetements = Vetement.objects.all()
     sommesVet = Prix.objects.all()
+    paginator = Paginator(vetements, 6)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
 
     num = request.user.pk
     qsVetementFavs = Vetement.objects.filter(favoris=num)
@@ -91,7 +98,7 @@ def vetement(request):
         vetFav.append(Vetement.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'vetements': vetements,
+        'vetements': page_obj,
         'sommesVet': sommesVet,
         'vetFav': vetFav,
     }
@@ -102,6 +109,9 @@ def vetement(request):
 def produitInterieur(request):
     produitInt = ProduitInterieur.objects.all()
     sommesProInt = Prix.objects.all()
+    paginator = Paginator(produitInt, 6)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
 
     num = request.user.pk
     qsProduitsFavs = ProduitInterieur.objects.filter(favoris=num)
@@ -111,7 +121,7 @@ def produitInterieur(request):
         proIntFav.append(ProduitInterieur.objects.get(produit_ptr=produit.pk))
 
     context = {
-        'produitInt': produitInt,
+        'produitInt': page_obj,
         'sommesProInt': sommesProInt,
         'proIntFav': proIntFav,
     }
@@ -183,8 +193,12 @@ def detailsCos(request, id):
 ###############################################
 def atelier(request):
     ateliers = Atelier.objects.all()
+    paginator = Paginator(ateliers, 6)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
+
     context = {
-        'ateliers': ateliers,
+        'ateliers': page_obj,
     }
     return render(request, 'shop/pages/atelier.html', context)
 

@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
-    PosteUpdateStockProInt, PosteUpdateStockVet, PosteUpdatePrix, PosteDesativerClient
+    PosteUpdateStockProInt, PosteUpdateStockVet, PosteUpdatePrix, PosteDesativerClient, PosteInsertPrix
 from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Commande, \
     LigneProduitCommande, LigneAtelierCommande
 
@@ -380,7 +380,7 @@ def updateProCos(request, id):
 ## Insertion Prix
 def insertionPrix(request):
     if request.method == "POST":
-        formInsertPrix = PosteUpdatePrix(request.POST)
+        formInsertPrix = PosteInsertPrix(request.POST)
 
         if formInsertPrix.is_valid():
             formInsertPrix = formInsertPrix.save(commit=False)
@@ -390,7 +390,7 @@ def insertionPrix(request):
             return redirect('administration:insertionPrix')
 
     else:
-        formInsertPrix = PosteUpdatePrix()
+        formInsertPrix = PosteInsertPrix()
 
     if request.user.is_superuser:
         return render(request, "administration/pages/insertionPrix.html",

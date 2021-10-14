@@ -30,7 +30,7 @@
                             <div class="accordion-body">
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
-                                        <th>Produit</th>
+                                        <th colspan="2">Produit</th>
                                         <th colspan="3">Prix</th>
                                     </tr>
                                     <!-- Boucle pour afficher les nom de vetements -->
@@ -44,21 +44,27 @@
                                                 </a>
                                             </td>
 
+                                            <td align="left"><a href="{% url 'administration:updateVet' vet.id %}"
+                                                                class="btn-outline-secondary btn-sm"
+                                                                class="text-decoration-none">Modifier produit</a>
+                                            </td>
+
+
                                             {% for pri in prix %}
-                                                {% if pri.produit.id == vet.id %}
+                                                {% if vet.id == pri.produit.id %}
                                                     <td>{{ pri.montant }}</td>
+
+
+                                                    <td align="left"><a
+                                                            href="{% url 'administration:updatePrix' vet.id %}"
+                                                            class="btn-outline-secondary btn-sm"
+                                                            class="text-decoration-none">Modifier prix</a>
+                                                    </td>
+                                                {% else %}
+                                                    <td>No price</td>
                                                 {% endif %}
                                             {% endfor %}
 
-                                            <td align="left"><a href="{% url 'administration:updateVet' vet.id %}"
-                                                                 class="btn-outline-secondary btn-sm"
-                                                                 class="text-decoration-none">Modifier produit</a>
-                                            </td>
-
-                                            <td align="left"><a href="{% url 'administration:updatePrix' vet.id %}"
-                                                                 class="btn-outline-secondary btn-sm"
-                                                                 class="text-decoration-none">Modifier prix</a>
-                                            </td>
 
                                         </tr>
                                     {% endfor %}
@@ -68,7 +74,8 @@
                             <div class="container" style="margin-left: 75%; ">
                                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                     <div class="col">
-                                        <a href="{% url 'administration:insertionVetement' %}" class="text-decoration-none">
+                                        <a href="{% url 'administration:insertionVetement' %}"
+                                           class="text-decoration-none">
                                             <div class="p-3 border bg-light">Créer un nouveau vetêment</div>
                                         </a>
                                     </div>
@@ -111,14 +118,15 @@
                                             {% endfor %}
 
 
-                                            <td align="right"><a href="{% url 'administration:updateProInt' proInt.id %}"
-                                                                 class="btn-outline-secondary btn-sm"
-                                                                 class="text-decoration-none">Modifier produit</a>
+                                            <td align="right"><a
+                                                    href="{% url 'administration:updateProInt' proInt.id %}"
+                                                    class="btn-outline-secondary btn-sm"
+                                                    class="text-decoration-none">Modifier produit</a>
                                             </td>
 
                                             <td align="left"><a href="{% url 'administration:updatePrix' proInt.id %}"
-                                                                 class="btn-outline-secondary btn-sm"
-                                                                 class="text-decoration-none">Modifier prix</a>
+                                                                class="btn-outline-secondary btn-sm"
+                                                                class="text-decoration-none">Modifier prix</a>
                                             </td>
 
                                         </tr>
@@ -131,7 +139,8 @@
                             <div class="container" style="margin-left: 75%; ">
                                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                     <div class="col">
-                                        <a href="{% url 'administration:insertionProInt' %}" class="text-decoration-none">
+                                        <a href="{% url 'administration:insertionProInt' %}"
+                                           class="text-decoration-none">
                                             <div class=" border bg-light">Créer un nouveau produit intérieur</div>
                                         </a>
                                     </div>
@@ -174,14 +183,15 @@
 
                                             {% endfor %}
 
-                                            <td align="right"><a href="{% url 'administration:updateProCos' proCos.id %}"
-                                                                 class="btn-outline-secondary btn-sm"
-                                                                 class="text-decoration-none">Modifier produit</a>
+                                            <td align="right"><a
+                                                    href="{% url 'administration:updateProCos' proCos.id %}"
+                                                    class="btn-outline-secondary btn-sm"
+                                                    class="text-decoration-none">Modifier produit</a>
                                             </td>
 
                                             <td align="left"><a href="{% url 'administration:updatePrix' proCos.id %}"
-                                                                 class="btn-outline-secondary btn-sm"
-                                                                 class="text-decoration-none">Modifier prix</a>
+                                                                class="btn-outline-secondary btn-sm"
+                                                                class="text-decoration-none">Modifier prix</a>
                                             </td>
 
                                         </tr>
@@ -194,7 +204,8 @@
                             <div class="container " style="margin-left: 75%; ">
                                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                     <div class="col">
-                                        <a href="{% url 'administration:insertionProCos' %}" class="text-decoration-none">
+                                        <a href="{% url 'administration:insertionProCos' %}"
+                                           class="text-decoration-none">
                                             <div class=" border bg-light" class="float-right">Créer un nouveau produit
                                                 cosmétique
                                             </div>

@@ -81,6 +81,13 @@ class PosteUpdatePrix(forms.ModelForm):
         fields = (
             'montant', 'reduction', 'date',)
 
+### Form Update Prix
+class PosteInsertPrix(forms.ModelForm):
+    class Meta:
+        model = Prix
+        fields = (
+            'montant', 'reduction', 'date', 'produit',)
+
 
 ### Form Désactiver un client
 class PosteDesativerClient(forms.ModelForm):

@@ -61,12 +61,10 @@
                     </div>
 
                     <div class="btn-group header" style="width:5%;margin:5px">
-
                         <button type="button" class="btn navbar-toggler" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                             <i class="far fa-user" style="color:#EBA427"></i>
                         </button>
-                    <div class=""></div>
 
                         <ul class="dropdown-menu dropdown-menu-end">
                             <!--si l'utilisateur est authentifié et que ce n'est pas un administrateur du site-->
@@ -118,6 +116,13 @@
                            <a href = '{% url 'account:login' %}' ><i class="far fa-shopping-cart fa-1x " style="color:#EBA427;margin-left: 15px;font-size: 125%;"></i></a>
                         </div>
                     {% endif %}
+                    {%  if request.user.is_authenticated  %}
+{#                        <div  style="border: 2px solid #ffa710;padding-right:0px;padding-left: 0px">#}
+                            <p> Bienvenue !</p>
+{#                        </div>#}
+
+                    {% endif %}
+
                 </div>
 
 

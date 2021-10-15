@@ -64,7 +64,7 @@
                                                                 class="text-decoration-none">Modifier produit</a>
                                             </td>
                                             {% for pri in prix %}
-                                                {% if vet.id == pri.produit.id%}
+                                                {% if vet.id == pri.produit.id %}
                                                     <td>{{ pri.montant }}</td>
 
                                                     <td align="left"><a
@@ -260,9 +260,19 @@
                 </div>
             </div>
 
-            <br/><br/><br/>
         </div>
+
+        <br/><br/>
+        <a href="{% url 'administration:accueilAdmin' %}" style="float: right; margin-right: 5%">
+            <button type="button" class="btn btn-outline-secondary">
+                Retour accueil
+            </button>
+        </a>
+
     </div>
+
+    <br/><br/><br/>
+
 {% endblock content %}
 
 <!-- Footer -->

@@ -18,7 +18,7 @@ def header(request):
     context = {
         'infos': infos,
     }
-    return render(request, 'shop/layouts/header', context)
+    return render(request, 'shop/layouts/header.html', context)
 
 
 def accueil(request):

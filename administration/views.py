@@ -49,14 +49,12 @@ def gestionProduit(request):
     prix = Prix.objects.all()
     produitsInterieursGP = ProduitInterieur.objects.all()
     produitsCosmetiquesGP = Cosmetique.objects.all()
-
     if request.user.is_superuser:
         return render(request, "administration/pages/gestionProduit.html",
                       {'vetementsGP': vetementsGP, 'produitsInterieursGP': produitsInterieursGP,
                        'produitsCosmetiquesGP': produitsCosmetiquesGP, 'prix': prix})
     else:
         return render(request, "shop/pages/accueil.html")
-
 
 ###############################################
 ## View Gestion d'atelier Test
@@ -248,7 +246,7 @@ def insertionVetement(request):
             formInsertVet.author = request.user
             formInsertVet.save()
 
-            return redirect('administration:insertionVetement')
+            return redirect('administration:insertionPrix')
 
     else:
         formInsertVet = PosteInsertVet()
@@ -272,7 +270,7 @@ def insertionProInt(request):
             formInsertProInt.author = request.user
             formInsertProInt.save()
 
-            return redirect('administration:insertionProInt')
+            return redirect('administration:insertionPrix')
 
     else:
         formInsertProInt = PosteInsertProInt()
@@ -296,7 +294,7 @@ def insertionProCos(request):
             formInsertProCos.author = request.user
             formInsertProCos.save()
 
-            return redirect('administration:insertionProCos')
+            return redirect('administration:insertionPrix')
 
     else:
         formInsertProCos = PosteInsertProCos()
@@ -387,7 +385,7 @@ def insertionPrix(request):
             formInsertPrix.author = request.user
             formInsertPrix.save()
 
-            return redirect('administration:insertionPrix')
+            return redirect('administration:gestionProduit')
 
     else:
         formInsertPrix = PosteInsertPrix()
@@ -401,12 +399,12 @@ def insertionPrix(request):
 
 ## Update Prix
 def updatePrix(request, id):
-    produit = Produit.objects.get(id=id)
-    prixUpdate = Prix.objects.get(produit=produit.id)
+    # produit = Produit.objects.get(id=id)
+    prixUpdate = Prix.objects.get(id=id)
     formUpdatePrix = PosteUpdatePrix(request.POST or None, instance=prixUpdate)
     if formUpdatePrix.is_valid():
         formUpdatePrix.save()
-        return redirect('administration:gestionProduit')
+        return redirect('administration:gestionPrix')
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updatePrix.html",

@@ -10,8 +10,7 @@ class PosteInsertVet(forms.ModelForm):
         model = Vetement
         fields = (
             'nom', 'description', 'stockMin', 'stockMax', 'stockDisponible', 'poid', 'produitActif', 'nomFichier',
-            'sexe', 'typeTissu', 'couleur',
-            'taille')
+            'sexe', 'typeTissu', 'couleur', 'taille',)
 
 
 ### Form Insertion Produit Intérieur
@@ -86,7 +85,7 @@ class PosteInsertPrix(forms.ModelForm):
     class Meta:
         model = Prix
         fields = (
-            'montant', 'reduction', 'date', 'produit',)
+            'montant', 'reduction', 'date', 'produit')
 
 
 ### Form Désactiver un client

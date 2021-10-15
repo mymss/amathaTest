@@ -63,20 +63,15 @@
                                                                 class="btn-outline-secondary btn-sm"
                                                                 class="text-decoration-none">Modifier produit</a>
                                             </td>
-
-
                                             {% for pri in prix %}
-                                                {% if vet.id == pri.produit.id %}
+                                                {% if vet.id == pri.produit.id%}
                                                     <td>{{ pri.montant }}</td>
-
 
                                                     <td align="left"><a
                                                             href="{% url 'administration:updatePrix' vet.id %}"
                                                             class="btn-outline-secondary btn-sm"
                                                             class="text-decoration-none">Modifier prix</a>
                                                     </td>
-                                                {% else %}
-                                                    <td>No price</td>
                                                 {% endif %}
                                             {% endfor %}
 

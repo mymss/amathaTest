@@ -9,7 +9,7 @@ from django.dispatch import receiver
 class Panier(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
-    total_price = models.FloatField(default=0)
+    total_price = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.user.username) + " " + str(self.total_price)
@@ -19,7 +19,7 @@ class PanierItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Produit, on_delete=models.CASCADE, blank=True, null=True)
     atelier = models.ForeignKey(Atelier, on_delete=models.CASCADE, blank=True, null=True)
-    price = models.FloatField(default=0)
+    price = models.IntegerField(default=0)
     quantity = models.IntegerField(default=1)
 
 

@@ -2,32 +2,40 @@
 {% load static %}
 
 {% block content %}
-<section class="mt-5">
-    <table class="table mx-auto w-50">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Produit</th>
-            <th scope="col">Prix unitaire</th>
-            <th scope="col">Quantité</th>
-            <th scope="col">Total</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in panier %}
+    <section class="mt-5">
+        <table class="table mx-auto w-50">
+            <thead>
             <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ item.product.nom }}</td>
-                <td>{% widthratio item.price item.quantity 1 %}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.price }}</td>
+                <th scope="col">#</th>
+                <th scope="col">Produit</th>
+                <th scope="col">Prix unitaire</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Total</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="mx-auto w-50">
-        <p><span style="font-weight: bold">Total :</span> {{ prix_total }} CHF</p>
-        <button type="submit" id="checkout-button" class="btn btn-secondary">Checkout</button>
-    </div>
-</section>
+            </thead>
+            <tbody>
+            {% for item in panier %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ item.product.nom }}</td>
+                    <td>{% widthratio item.price item.quantity 1 %}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="mx-auto w-50">
+            <p><span style="font-weight: bold">Total :</span> {% widthratio prix_total 100 1 %} CHF</p>
+            <form action="{% url 'paiement:charge' %}" method="post">
+            {% csrf_token %}
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ STRIPE_PUBLIC_KEY }}"
+                    data-description="Paiement"
+                    data-amount="{{ prix_total }}"
+                    data-locale="auto">
+            </script>
+            </form>
+        </div>
+    </section>
 {% endblock %}

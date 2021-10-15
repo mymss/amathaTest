@@ -94,6 +94,6 @@ footer{
     height: 40px;
 }
 
-tr:hover{
+.trAccueil:hover{
     filter: blur(1px) ;
 }

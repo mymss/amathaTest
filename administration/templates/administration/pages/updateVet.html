@@ -8,7 +8,7 @@
     <div class="container-xxl" >
         <div class="container-sm" style="margin-top: 30px">
             <h1 class="p-3">Modifier Vetêment</h1>
-<hr/>
+            <hr/>
 
             {#    <form action="" method="POST">#}
             {#        { % csrf_token %}#}
@@ -25,8 +25,28 @@
 
                     {{ formUpdateVet.as_p }}
                     <br/>
-                    <input type="submit" value="Modifier" class="btn btn-outline-secondary">
-                </form>
+                    <form action="" method="post" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                        {{ formUpdateStockVet.as_p }}
+                        <br/><br/>
+                        <table style="margin-left: 65%;margin-right: 5%;">
+                            <tr>
+                                <th ><input type="submit" value="Modifier" class="btn btn-outline-secondary"></th>
+                                <th><a href="{% url 'administration:gestionProduit'  %}">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        Retour
+                                    </button>
+                                </a></th>
+                                <th><a href="{% url 'administration:accueilAdmin'  %}">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        Retour Accueil
+                                    </button>
+                                </a>
+                                </th>
+                            </tr>
+                        </table>
+                    </form>
             </div>
 
         </div>

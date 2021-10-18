@@ -25,6 +25,22 @@ class PosteInsertVet(forms.ModelForm):
             'couleur': 'Couleur',
             'taille': 'Taille'
         }
+        widgets = {
+            'nom': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'description': forms.Textarea(attrs={'row': 3})
+            'description': forms.TextInput(attrs={'class': 'form-control', 'row': 3}),
+            'stockMin': forms.TextInput(attrs={'class': 'form-control'}),
+            'stockMax': forms.TextInput(attrs={'class': 'form-control'}),
+            'stockDisponible': forms.TextInput(attrs={'class': 'form-control'}),
+            
+            'poid': forms.TextInput(attrs={'class': 'form-control'}),
+            'nomFichier': forms.TextInput(attrs={'class': 'form-control'}),
+            'sexe': forms.TextInput(attrs={'class': 'form-control'}),
+            'typeTissu': forms.TextInput(attrs={'class': 'form-control'}),
+            'couleur': forms.TextInput(attrs={'class': 'form-control'}),
+            'taille': forms.TextInput(attrs={'class': 'form-control'}),
+
+        }
 
 
 ### Form Insertion Produit Intérieur

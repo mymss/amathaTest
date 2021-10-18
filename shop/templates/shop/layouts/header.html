@@ -118,7 +118,7 @@
                     {% endif %}
                     {%  if request.user.is_authenticated  %}
 {#                        <div  style="border: 2px solid #ffa710;padding-right:0px;padding-left: 0px">#}
-                            <p> Bienvenue !</p>
+                            <p> Bienvenue {{ user.username }} !</p>
 {#                        </div>#}
 
                     {% endif %}

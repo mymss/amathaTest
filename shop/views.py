@@ -14,9 +14,9 @@ from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, A
 
 @login_required
 def header(request):
-    infos = request.user.client
+    username = User.username
     context = {
-        'infos': infos,
+        'username': username,
     }
     return render(request, 'shop/layouts/header.html', context)
 

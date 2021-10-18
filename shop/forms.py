@@ -34,7 +34,7 @@ class PosteInsertVet(forms.ModelForm):
             'stockDisponible': forms.TextInput(attrs={'class': 'form-control'}),
 
             'poid': forms.TextInput(attrs={'class': 'form-control'}),
-            'nomFichier': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'nomFichier': forms.ImageField(attrs={'class': 'form-control'}),
             'sexe': forms.TextInput(attrs={'class': 'form-control'}),
             'typeTissu': forms.TextInput(attrs={'class': 'form-control'}),
             'couleur': forms.TextInput(attrs={'class': 'form-control'}),

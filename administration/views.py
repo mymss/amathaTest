@@ -399,7 +399,7 @@ def insertionPrix(request):
 ## Update Prix
 def updatePrix(request, id):
     # produit = Produit.objects.get(id=id)
-    prixUpdate = Prix.objects.get(id=id)
+    prixUpdate = Prix.objects.get(produit=id)
     formUpdatePrix = PosteUpdatePrix(request.POST or None, instance=prixUpdate)
     if formUpdatePrix.is_valid():
         formUpdatePrix.save()

@@ -28,11 +28,11 @@ class PosteInsertVet(forms.ModelForm):
         widgets = {
             'nom': forms.TextInput(attrs={'class': 'form-control'}),
             # 'description': forms.Textarea(attrs={'row': 3})
-            'description': forms.TextInput(attrs={'class': 'form-control', 'row': 3}),
+            'description': forms.Textarea(attrs={'row': 3, 'class': 'form-control'}),
             'stockMin': forms.TextInput(attrs={'class': 'form-control'}),
             'stockMax': forms.TextInput(attrs={'class': 'form-control'}),
             'stockDisponible': forms.TextInput(attrs={'class': 'form-control'}),
-            
+
             'poid': forms.TextInput(attrs={'class': 'form-control'}),
             'nomFichier': forms.TextInput(attrs={'class': 'form-control'}),
             'sexe': forms.TextInput(attrs={'class': 'form-control'}),

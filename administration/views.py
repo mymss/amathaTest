@@ -12,7 +12,6 @@ from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, A
 
 # Create your views here.
 
-
 ###############################################
 ## View Accueil Admin Test
 ###############################################
@@ -539,17 +538,15 @@ def searchProInt(request):
         return render(request, "shop/pages/accueil.html")
 
 
-
-
-# ####### Bar de Recherche Commande
-# def searchCommande(request):
-#     if request.user.is_superuser:
-#         if request.method == "POST":
-#             searchedCommande = request.POST['searchedCommande']
-#             commandes = Commande.objects.filter(comDatePaiement=searchedCommande)
-#             return render(request, "administration/pages/searchCommande.html",
-#                           {'searchedCommande': searchedCommande, 'commandes': commandes})
-#         else:
-#             return render(request, "administration/pages/searchCommande.html")
-#     else:
-#         return render(request, "shop/pages/accueil.html")
+####### Bar de Recherche Commande
+def searchCommande(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            searched = request.POST['searched']
+            commandes = Commande.objects.filter(comNumero__contains=searched)
+            return render(request, "administration/pages/searchCommande.html",
+                          {'searched': searched, 'commandes': commandes})
+        else:
+            return render(request, "administration/pages/searchCommande.html")
+    else:
+        return render(request, "shop/pages/accueil.html")

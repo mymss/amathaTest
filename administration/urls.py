@@ -43,5 +43,6 @@ urlpatterns = [
     path('searchVet', views.searchVet, name='searchVet'),
     path('searchProCos', views.searchProCos, name='searchProCos'),
     path('searchProInt', views.searchProInt, name='searchProInt'),
+    path('searchCommande', views.searchCommande, name='searchCommande'),
 
 ]

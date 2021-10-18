@@ -27,6 +27,22 @@
                              aria-labelledby="flush-headingThree"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
+
+
+                            {# ############# Search Bar ####################}
+
+                                <form class="d-flex" method="post" ACTION="{% url 'administration:searchCommande' %}">
+                                    {% csrf_token %}
+                                    <input class="form-control me-2" type="search"
+                                           placeholder="Commande numéro" aria-label="Search" name="searched">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        Recherche
+                                    </button>
+                                </form>
+
+                                {#  #############################################}
+
+
                                 <table class="table table-bordered" style="width: 60%;">
                                     <tr>
                                         <th>N° commande</th>

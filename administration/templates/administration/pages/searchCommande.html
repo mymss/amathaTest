@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
 
-</body>
-</html>
+<!-- Body -->
+{% block content %}
+
+    <br/><br/>
+
+    {% if searched %}
+        <h2 style="text-align: center">Résultats de votre recherche : {{ searched }}</h2>
+        <br/>
+
+        {% for commande in commandes %}
+            <p style="text-align: center">
+            <ul class="list-group" style="width: 30%; margin: auto">
+                <li class="list-group-item">
+                    <a href="{% url 'administration:adminCommandeDetails' commande.id %}">{{ commande }}</a>
+                </li>
+            </ul>
+            </p>
+
+        {% endfor %}
+
+    {% else %}
+        <h2 style="text-align: center">Aucun résultat</h2>
+    {% endif %}
+
+
+    <br/><br/>
+    {% include 'shop/layouts/footer_fixed.html' %}
+{% endblock content %}

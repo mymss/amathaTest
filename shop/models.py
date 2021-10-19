@@ -54,7 +54,7 @@ class Atelier(models.Model):
     heureDebut = models.TimeField(auto_now_add=False)
     heureFin = models.TimeField(auto_now_add=False)
     adresse = models.CharField(max_length=150)
-    prix = models.IntegerField()
+    prix = models.FloatField()
     AtelierActif = models.BooleanField(default=True)
     nomFichier = models.ImageField(blank=True, null=True)
     favorisAtelier = models.ManyToManyField(User, related_name='favorisAtelier', blank=True)

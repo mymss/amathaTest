@@ -134,7 +134,7 @@ class PosteInsertAtelier(forms.ModelForm):
             'heureDebut': forms.TimeInput(attrs={'class': 'form-control'}),
             'heureFin': forms.TimeInput(attrs={'class': 'form-control'}),
             'adresse': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'prix': forms.(attrs={'class': 'form-control'}),
+            'prix': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
         }
 
 

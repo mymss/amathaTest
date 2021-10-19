@@ -19,7 +19,23 @@
 
                     {{ formInsertProCos.as_p }}
                     <br/>
-                    <input type="submit" class="btn btn-secondary" value="Ajouter">
+                    <table style="margin-left: 45%;margin-right: 5%;">
+                            <tr>
+                                <th ><input type="submit" value="Ajouter" class="btn btn-outline-secondary"></th>
+                                <th><a href="{% url 'administration:gestionProduit'  %}">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        Retour
+                                    </button>
+                                </a></th>
+                                <th><a href="{% url 'administration:accueilAdmin'  %}">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        Retour Accueil
+                                    </button>
+                                </a>
+                                </th>
+                            </tr>
+                        </table>
+                    <br/>
                 </form>
             </div>
         </div>

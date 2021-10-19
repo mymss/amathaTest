@@ -61,6 +61,17 @@ class PosteInsertProInt(forms.ModelForm):
             'nomFichier': 'Nom fichier',
             'type': 'Type'
         }
+        widgets = {
+            'nom': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'description': forms.Textarea(attrs={'row': 3})
+            'description': forms.Textarea(attrs={'row': 3, 'class': 'form-control'}),
+            'stockMin': forms.TextInput(attrs={'class': 'form-control'}),
+            'stockMax': forms.TextInput(attrs={'class': 'form-control'}),
+            'stockDisponible': forms.TextInput(attrs={'class': 'form-control'}),
+            'poid': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'nomFichier': forms.ImageField(attrs={'class': 'form-control'}),
+            'type': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 
 ### Form Insertion Produit Cosmétique
@@ -83,6 +94,17 @@ class PosteInsertProCos(forms.ModelForm):
             'gamme': 'Gamme',
             'categorie': 'Catégorie'
         }
+        widgets = {
+            'nom': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'row': 3, 'class': 'form-control'}),
+            'stockMin': forms.TextInput(attrs={'class': 'form-control'}),
+            'stockMax': forms.TextInput(attrs={'class': 'form-control'}),
+            'stockDisponible': forms.TextInput(attrs={'class': 'form-control'}),
+            'poid': forms.TextInput(attrs={'class': 'form-control'}),
+            'ingredient': forms.TextInput(attrs={'class': 'form-control'}),
+            'gamme': forms.TextInput(attrs={'class': 'form-control'}),
+            'categorie': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 
 ### Form Insertion Atelier
@@ -103,6 +125,16 @@ class PosteInsertAtelier(forms.ModelForm):
             'prix': 'Prix',
             'AtelierActif': 'Atelier actif',
             'nomFichier': 'Nom fichier',
+        }
+        widgets = {
+            'titre': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'row': 3, 'class': 'form-control'}),
+            'nbrPersonneMax': forms.NumberInput(attrs={'class': 'form-control'}),
+            'dateDebut': forms.DateInput(attrs={'class': 'form-control'}),
+            'heureDebut': forms.TimeInput(attrs={'class': 'form-control'}),
+            'heureFin': forms.TimeInput(attrs={'class': 'form-control'}),
+            'adresse': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'prix': forms.(attrs={'class': 'form-control'}),
         }
 
 

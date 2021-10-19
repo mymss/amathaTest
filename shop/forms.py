@@ -1,3 +1,5 @@
+from datetime import date
+
 from django import forms
 
 from accounts.models import Client
@@ -17,7 +19,7 @@ class PosteInsertVet(forms.ModelForm):
             'stockMin': 'Stock minimum',
             'stockMax': 'Stock maximum',
             'stockDisponible': 'Stock disponible',
-            'poid': 'Poid',
+            'poid': 'Poid en gramme',
             'produitActif': 'Produit actif',
             'nomFichier': 'Nom fichier',
             'sexe': 'Sexe',
@@ -56,7 +58,7 @@ class PosteInsertProInt(forms.ModelForm):
             'stockMin': 'Stock minimum',
             'stockMax': 'Stock maximum',
             'stockDisponible': 'Stock disponible',
-            'poid': 'Poid',
+            'poid': 'Poid en gramme',
             'produitActif': 'Produit actif',
             'nomFichier': 'Nom fichier',
             'type': 'Type'
@@ -87,7 +89,7 @@ class PosteInsertProCos(forms.ModelForm):
             'stockMin': 'Stock minimum',
             'stockMax': 'Stock maximum',
             'stockDisponible': 'Stock disponible',
-            'poid': 'Poid',
+            'poid': 'Poid en gramme',
             'produitActif': 'Produit actif',
             'nomFichier': 'Nom fichier',
             'ingredient': 'Ingrédients',
@@ -136,6 +138,12 @@ class PosteInsertAtelier(forms.ModelForm):
             'adresse': forms.TextInput(attrs={'class': 'form-control'}),
             'prix': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
         }
+
+        def clean(self):
+            cleaned_data = super().clean()
+            atelierDate = cleaned_data.get("dateDebut")
+            if atelierDate <= date.today():
+                raise forms.ValidationError("La date d'un atelier doit être supérieur à la date d'aujourd'hui")
 
 
 # ###################### TEST INSERTION PHOTO ############################

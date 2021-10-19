@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 
 from django import forms
@@ -119,7 +120,7 @@ class PosteInsertAtelier(forms.ModelForm):
         labels = {
             'titre': 'Titre',
             'description': 'Description',
-            'nbrPersonneMax': 'Nombre de personne',
+            'nbrPersonneMax': 'Nombre de personne maximum',
             'dateDebut': 'Date début',
             'heureDebut': 'Heure début',
             'heureFin': 'Heure fin',
@@ -139,10 +140,22 @@ class PosteInsertAtelier(forms.ModelForm):
             'prix': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
         }
 
-        def clean(self):
-            cleaned_data = super().clean()
-            atelierDate = cleaned_data.get("dateDebut")
-            if atelierDate <= date.today():
+        # def clean_dateDebut(self, *args, **kwargs):
+        #     dateAtelier = self.cleaned_data.get("dateDebut")
+        #     if dateAtelier > datetime.date.today():
+        #         return dateAtelier
+        #     else:
+        #         raise forms.ValidationError("La date d'un atelier doit être supérieur à la date d'aujourd'hui")
+
+        def __init__(self):
+            self.cleaned_data = None
+
+        def clean(self, *args, **kwargs):
+            # cleaned_data = super().clean()
+            dateAtelier = self.cleaned_data
+            if dateAtelier.get('dateAtelier') > datetime.date.today():
+                return dateAtelier
+            else:
                 raise forms.ValidationError("La date d'un atelier doit être supérieur à la date d'aujourd'hui")
 
 

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from accounts.models import Client
 
+
 # Create your models here.
 class Produit(models.Model):
     nom = models.CharField(max_length=50)
@@ -38,6 +39,7 @@ class ProduitInterieur(Produit):
     def __str__(self):
         return self.nom + " " + self.type
 
+
 class Cosmetique(Produit):
     ingredient = models.CharField(max_length=100)
     gamme = models.CharField(max_length=50)
@@ -45,6 +47,7 @@ class Cosmetique(Produit):
 
     def __str__(self):
         return self.nom + " " + self.gamme + " " + self.categorie
+
 
 class Atelier(models.Model):
     titre = models.CharField(max_length=30)
@@ -62,6 +65,7 @@ class Atelier(models.Model):
     def __str__(self):
         return self.titre
 
+
 class Prix(models.Model):
     montant = models.FloatField()
     reduction = models.IntegerField()
@@ -70,6 +74,7 @@ class Prix(models.Model):
 
     def __str__(self):
         return str(self.montant)
+
 
 class Commande(models.Model):
     statutCommande = (('Envoyé', 'Envoyé'),
@@ -85,9 +90,8 @@ class Commande(models.Model):
     enAttente = models.BooleanField(default=False)
     produit = models.ManyToManyField(Produit, through='LigneProduitCommande')
     atelier = models.ManyToManyField(Atelier, through='LigneAtelierCommande')
-    clientId = models.ForeignKey(Client, on_delete=models.SET_NULL, blank=True, null=True,)
+    clientId = models.ForeignKey(Client, on_delete=models.SET_NULL, blank=True, null=True, )
     statut = models.CharField(max_length=10, choices=statutCommande, default='')
-
 
     def __str__(self):
         return str(self.comNumero) + " " + str(self.comTotal) + " " + str(self.comDate)

@@ -230,7 +230,7 @@ class PosteInsertPrix(forms.ModelForm):
             'montant': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
             'reduction': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
             'date': forms.DateInput(attrs={'class': 'form-control'}),
-            'produit': forms.TextInput(attrs={'step': 0.25, 'class': 'form-control'}),
+            'produit': forms.Select(attrs={'class': 'form-control'}),
         }
 
 

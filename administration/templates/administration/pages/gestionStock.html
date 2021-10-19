@@ -3,16 +3,13 @@
 
 <!-- Body -->
 {% block content %}
-
     <br/>
     <div class="container-xxl">
         <div class="container-sm" style="margin-top: 30px">
             <h1>Gestion de stock</h1>
         <hr/>
             <br/>
-
             <div class="border border-2" class="d-grid gap-3" p-3 mb-5>
-
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingOne">
@@ -29,27 +26,29 @@
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
                                         <th>Nom produit</th>
-                                        <th colspan="2">Quantité en stock</th>
+                                        <th colspan="2">Quantité disponible</th>
                                     </tr>
                                     <!-- Boucle pour afficher les nom de vetements -->
                                     {% for vet in vetements %}
+
                                         <tr>
                                             <td for="insertStock" class="col-form-label">
                                                 <a href="{% url 'administration:adminVetDetails' vet.id %}">
                                                     {{ vet.nom }}
                                                 </a>
                                             </td>
-                                            <td for="insertStock"
-                                                class="col-form-label">{{ vet.stockDisponible }}
+                                                 {% if vet.stockMin >= vet.stockDisponible %}
+                                              <td for="insertStock" class="col-form-label" style="color: red;"> Stock faible</td>
+                                                {% else %}
+                                                <td for="insertStock" class="col-form-label">{{ vet.stockDisponible }}
+                                        {% endif %}
                                             </td>
                                             <td align="right"><a href="{% url 'administration:updateStockVet' vet.id %}"
                                                                  class="btn-outline-secondary btn-sm"
                                                                  class="text-decoration-none">Modifier</a>
                                             </td>
                                         </tr>
-
                                         <tr>
-
                                     {% endfor %}
                                 </table>
                             </div>
@@ -74,23 +73,25 @@
                                     </tr>
                                     <!-- Boucle pour afficher les nom de vetements -->
                                     {% for proInt in produitsInterieurs %}
+
                                         <tr>
                                             <td for="insertStock" class="col-form-label">
                                                 <a href="{% url 'administration:adminProIntDetails' proInt.id %}">
                                                     {{ proInt.nom }}
                                                 </a>
                                             </td>
-                                            <td for="insertStock"
-                                                class="col-form-label">{{ proInt.stockDisponible }}
+                                                {% if proInt.stockMin >= proInt.stockDisponible %}
+                                              <td for="insertStock" class="col-form-label" style="color: red;"> Stock faible</td>
+                                                {% else %}
+                                                <td for="insertStock" class="col-form-label">{{ proInt.stockDisponible }}
+                                        {% endif %}
                                             </td>
                                             <td align="right"><a href="{% url 'administration:updateStockProInt' proInt.id %}"
                                                                  class="btn-outline-secondary btn-sm"
                                                                  class="text-decoration-none">Modifier</a>
                                             </td>
                                         </tr>
-
                                         <tr>
-
                                     {% endfor %}
                                 </table>
                             </div>
@@ -121,37 +122,32 @@
                                                     {{ proCos.nom }}
                                                 </a>
                                             </td>
-                                            <td for="insertStock"
-                                                class="col-form-label">{{ proCos.stockDisponible }}
+                                              {% if proCos.stockMin >= proCos.stockDisponible %}
+                                              <td for="insertStock" class="col-form-label" style="color: red;"> Stock faible</td>
+                                                {% else %}
+                                                <td for="insertStock" class="col-form-label">{{ proCos.stockDisponible }}
+                                                {% endif %}
                                             </td>
                                             <td align="right"><a href="{% url 'administration:updateStockProCos' proCos.id %}"
                                                                  class="btn-outline-secondary btn-sm"
                                                                  class="text-decoration-none">Modifier</a>
                                             </td>
                                         </tr>
-
                                         <tr>
-
                                     {% endfor %}
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
     <br/><br/>
-
         <a href="{% url 'administration:accueilAdmin' %}" style="float: right; margin-right: 5%">
             <button type="button" class="btn btn-outline-secondary">
                 Retour accueil
             </button>
         </a>
-
     </div>
     <br/><br/><br/>
     {% include 'shop/layouts/footer_fixed.html' %}

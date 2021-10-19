@@ -10,7 +10,7 @@ class Produit(models.Model):
     stockMin = models.IntegerField()
     stockMax = models.IntegerField()
     stockDisponible = models.IntegerField()
-    poid = models.DecimalField(max_digits=4, decimal_places=2)
+    poid = models.DecimalField(max_digits=6, decimal_places=3)
     favoris = models.ManyToManyField(User, related_name='favoris', blank=True)
     produitActif = models.BooleanField(default=True)
     nomFichier = models.ImageField(blank=True, null=True)

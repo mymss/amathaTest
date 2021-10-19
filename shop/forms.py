@@ -115,7 +115,7 @@ class PosteInsertAtelier(forms.ModelForm):
             'titre', 'description', 'nbrPersonneMax', 'dateDebut', 'heureDebut', 'heureFin', 'adresse', 'prix',
             'AtelierActif', 'nomFichier')
         labels = {
-            'titre' : 'Titre',
+            'titre': 'Titre',
             'description': 'Description',
             'nbrPersonneMax': 'Nombre de personne',
             'dateDebut': 'Date début',
@@ -156,6 +156,9 @@ class PosteUpdateStockVet(forms.ModelForm):
         labels = {
             'stockDisponible': 'Stock disponible',
         }
+        widgets = {
+            'stockDisponible': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
 
 
 ### Form Update Stock Produits Intérieurs
@@ -167,6 +170,9 @@ class PosteUpdateStockProInt(forms.ModelForm):
         labels = {
             'stockDisponible': 'Stock disponible',
         }
+        widgets = {
+            'stockDisponible': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
 
 ### Form Update Stock Vetêment
 class PosteUpdateStockProCos(forms.ModelForm):
@@ -176,6 +182,9 @@ class PosteUpdateStockProCos(forms.ModelForm):
             'stockDisponible',)
         labels = {
             'stockDisponible': 'Stock disponible',
+        }
+        widgets = {
+            'stockDisponible': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -190,6 +199,11 @@ class PosteUpdatePrix(forms.ModelForm):
             'reduction': 'Réduction',
             'date': 'Date',
         }
+        widgets = {
+            'montant': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
+            'reduction': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
+            'date': forms.DateInput(attrs={'class': 'form-control'}),
+        }
 
 
 ### Form Update Prix
@@ -203,6 +217,12 @@ class PosteInsertPrix(forms.ModelForm):
             'reduction': 'Réduction',
             'date': 'Date',
             'produit': 'Nom produit'
+        }
+        widgets = {
+            'montant': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
+            'reduction': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
+            'date': forms.DateInput(attrs={'class': 'form-control'}),
+            'produit': forms.CharField,
         }
 
 

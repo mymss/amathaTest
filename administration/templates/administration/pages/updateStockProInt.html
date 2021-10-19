@@ -10,13 +10,13 @@
             <h1 class="p-3">Modifier le stock</h1>
             <hr/>
 
-            <div class="order-4 p-4 bd-highlight" style=" margin-left: 60px">
+            <div class="order-4 p-4 bd-highlight" style=" margin-left: 10%; width: 50%">
                 <form action="" method="post" enctype="multipart/form-data">
 
                     {% csrf_token %}
                     {{ formUpdateStockProInt.as_p}}
-                    <br/><br/>
-                    <table style="margin-left: 65%;margin-right: 5%;">
+                    <br/>
+                    <table style="margin-left: 45%;margin-right: 5%;">
                         <tr>
                             <th ><input type="submit" value="Modifier" class="btn btn-outline-secondary"></th>
                             <th><a href="{% url 'administration:gestionStock'  %}">
@@ -32,6 +32,7 @@
                             </th>
                         </tr>
                     </table>
+                    <br/>
                 </form>
             </div>
 

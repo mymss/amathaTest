@@ -550,3 +550,17 @@ def searchCommande(request):
             return render(request, "administration/pages/searchCommande.html")
     else:
         return render(request, "shop/pages/accueil.html")
+
+
+####### Bar de Recherche Atelier
+def searchAtelier(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            searched = request.POST['searched']
+            ateliers = Atelier.objects.filter(titre__contains=searched)
+            return render(request, "administration/pages/searchAtelier.html",
+                          {'searched': searched, 'ateliers': ateliers})
+        else:
+            return render(request, "administration/pages/searchAtelier.html")
+    else:
+        return render(request, "shop/pages/accueil.html")

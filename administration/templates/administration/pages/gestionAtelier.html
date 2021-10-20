@@ -27,6 +27,20 @@
                              aria-labelledby="flush-headingThree"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
+
+                                {# ############# Search Bar ####################}
+
+                                <form class="d-flex" method="post" ACTION="{% url 'administration:searchAtelier' %}">
+                                    {% csrf_token %}
+                                    <input class="form-control me-2" type="search"
+                                           placeholder="Cherchez atelier" aria-label="Search" name="searched">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        Recherche
+                                    </button>
+                                </form>
+
+                                {#  #############################################}
+
                                 <table class="table table-bordered" style="width: 500px;">
                                     <tr>
                                         <th colspan="2">Atelier titre</th>
@@ -86,6 +100,6 @@
     </div>
 
     <br/><br/><br/>
-{% include 'shop/layouts/footer_fixed.html' %}
+    {% include 'shop/layouts/footer_fixed.html' %}
 {% endblock content %}
 

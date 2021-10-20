@@ -6,7 +6,7 @@
     {% include 'shop/layouts/searchbar.html' %}
 
     <!-- Carousel -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -41,58 +41,56 @@
         </a>
     </div>
 
-<div style="height:300px"></div>
+    <div style="height:300px"></div>
     <div class="d-flex">
         <hr style=" width: 30%; size:5px;color:#EBA427;margin-left:20px;margin-left:auto;margin-right: 15px; ">
         <p style="padding-top:5px">
-        <h3> · Les nouveautées · </h3></p>
+        <h3> · Les nouveautés · </h3></p>
         <hr style=" width: 30%; size:2px;color:#EBA427;margin-right:auto;margin-left:15px ">
     </div>
+
     <div class="d-flex" style="width:80%;margin:auto;margin-top:10px;text-align:center">
-
-
         {% for produit in produits %}
-
             <div style="width: 20%; margin: auto; padding-top: 20px">
                 {% if produit.nomFichier %}
                     <figure>
-                    <img class="cadreAccueil" src="{% static produit.nomFichier.url %}"
-                         alt="{{ produit.nomFichier.url }}"
-                         style="height:auto;">
+                        {% if produit.typeProd == 'Cosmetique' %}
+                            <a class="text-decoration-none"
+                               href="{% url 'shop:detailsCos' produit.id %}">
+                                <img class="cadreAccueil"
+                                     src="{% static produit.nomFichier.url %}"
+                                     alt="{{ produit.nomFichier.url }}"
+                                     style="height:auto;">
+                                <p>{{ produit.nom }}</p></a>
+                        {% elif produit.typeProd == 'Produit interieur' %}
+                            <a class="text-decoration-none"
+                               href="{% url 'shop:detailsProInt' produit.id %}">
+                                <img class="cadreAccueil"
+                                     src="{% static produit.nomFichier.url %}"
+                                     alt="{{ produit.nomFichier.url }}"
+                                     style="height:auto;">
+                                <p>{{ produit.nom }}</p></a>
+                        {% elif produit.typeProd == 'Vetement' %}
+                            <a class="text-decoration-none"
+                               href="{% url 'shop:detailsVet' produit.id %}">
+                                <img class="cadreAccueil"
+                                     src="{% static produit.nomFichier.url %}"
+                                     alt="{{ produit.nomFichier.url }}"
+                                     style="height:auto;">
+                                <p>{{ produit.nom }}</p></a>
+                        {% endif %}
+                    </figure>
                 {% endif %}
-                <figcaption>   {% for cos in produitsCosmetiques %}
-                    {% if  cos.id == produit.id %}
-                        <a class="text-decoration-none"
-                           href="{% url 'shop:detailsCos' cos.id %}"> {{ produit.nom }} </a>
-                    {% endif %}
-                {% endfor %}
-
-
-                    {% for prodInt in produitsInterieurs %}
-                        {% if prodInt.id == produit.id %}
-                            <a class="text-decoration-none"
-                               href="{% url 'shop:detailsProInt' prodInt.id %}"> {{ produit.nom }} </a>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% for vet in vetements %}
-                        {% if vet.id == produit.id %}
-                            <a class="text-decoration-none"
-                               href="{% url 'shop:detailsVet' vet.id %}"> {{ produit.nom }} </a>
-                        {% endif %}
-                    {% endfor %}
-                </figcaption>
-                </figure>
-
             </div>
         {% endfor %}
     </div>
 
-    <div class="ImagesAccueil d-flex" style="height: 50%">
+    <div class="ImagesAccueil d-flex mt-5" style="height: 50%">
         <table style="height: 100%;width: 20%;margin-left: 30%">
             <tr class="trAccueil">
                 <td id="fondBougies">
-                    <a style="display:inline-block;width:100%;height:100%;" tilte="Nos produits d'interieurs" href="{% url 'shop:produitInterieur' %}">
+                    <a style="display:inline-block;width:100%;height:100%;" title="Nos produits d'interieurs"
+                       href="{% url 'shop:produitInterieur' %}">
                     </a>
                 </td>
             </tr>
@@ -101,7 +99,8 @@
         <table style="height: 100%;width: 20%;margin-left:10px">
             <tr class="trAccueil">
                 <td id="fondTurban">
-                    <a style="display:inline-block;width:100%;height:100%;" title="Nos accessoires" href="{% url 'shop:vetements' %}">
+                    <a style="display:inline-block;width:100%;height:100%;" title="Nos accessoires"
+                       href="{% url 'shop:vetements' %}">
                     </a>
                 </td>
             </tr>
@@ -112,7 +111,8 @@
             </tr>
             <tr class="trAccueil">
                 <td id="fondLogo">
-                    <a style="display:inline-block;width:100%;height:100%;"  title="Nos ateliers"href="{% url 'shop:quiSommesNous' %}">
+                    <a style="display:inline-block;width:100%;height:100%;" title="Nos ateliers"
+                       href="{% url 'shop:quiSommesNous' %}">
                     </a>
                 </td>
             </tr>

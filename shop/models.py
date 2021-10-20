@@ -6,12 +6,16 @@ from accounts.models import Client
 
 # Create your models here.
 class Produit(models.Model):
+    typeProduit = (('Cosmetique', 'Cosmetique'),
+                   ('Produit interieur', 'Produit interieur'),
+                   ('Vetement', 'Vetement'))
     nom = models.CharField(max_length=50)
     description = models.CharField(max_length=150)
     stockMin = models.IntegerField()
     stockMax = models.IntegerField()
     stockDisponible = models.IntegerField()
     poid = models.DecimalField(max_digits=6, decimal_places=3)
+    typeProd = models.CharField(max_length=50, choices=typeProduit , blank=True, null=True)
     favoris = models.ManyToManyField(User, related_name='favoris', blank=True)
     produitActif = models.BooleanField(default=True)
     nomFichier = models.ImageField(blank=True, null=True)

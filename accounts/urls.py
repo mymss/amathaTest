@@ -2,6 +2,7 @@ from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, PasswordUpdateForm
 from . import views
+from .views import VerificationView
 
 
 app_name = 'account'
@@ -24,9 +25,10 @@ urlpatterns = [
     path('favourite_add_atelier/<int:id>', views.favourite_add_atelier, name='favourite_add_atelier'),
     path('favourite_list/', views.favourite_list, name='favourite_list'),
     path('email_change/', views.UpdateEmail, name='email_change'),
-
+    path('activate/<uidb64>/<token>',VerificationView.as_view(),name="activate"),
     ######## Bar de Recherche #########
     path('favourite_add_produit_search/<int:id>', views.favourite_add_produit_search, name='favourite_add_produit_search'),
+
 
     # path('password_change/done/',
     #      auth_views.PasswordChangeDoneView.as_view(template_name='pages/password_change_done.html'),

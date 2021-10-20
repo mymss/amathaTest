@@ -1,8 +1,17 @@
+from django.core.mail import EmailMessage, message
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse
+from amatha import settings
 from .forms import ProfileForm, InfosUpdateForm, UserForm, EmailUpdateForm
 from django.contrib.auth.decorators import login_required
 from shop.models import Produit, Atelier
-
+from django.contrib import messages
+from django.views.generic import View
+from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.sites.shortcuts import get_current_site
+from .utils import token_generator
 
 @login_required
 def favourite_add_cos(request, id):
@@ -101,18 +110,36 @@ def favourite_list(request):
 
 # Register
 
+
 def register(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST)
+        username = request.POST['username']
+        mail = request.POST.get('email')
 
         if form.is_valid():
             user = form.save(commit=False)
+            print(username + mail)
+            #user = form.save(commit=False)
+            #mail = request.POST.get('email')
+            user.is_active= False
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
-
             profile.save()
+            # getting domain we are on
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            domain = get_current_site(request).domain
+            link = reverse('account:activate', kwargs={'uidb64':uidb64,'token':token_generator.make_token(user),})
+            activate_url = 'http://'+domain+link
+
+            email_body = 'Bienvenue '+user.username+' , pour vérifier ton adresse mail et finaliser ton inscription cliques sur ce lien\n'+ activate_url
+            email_subject = 'Activate your account'
+
+            email = EmailMessage(email_subject, email_body,settings.EMAIL_HOST_USER,[mail])
+            email.send(fail_silently=False)
+            messages.success(request, 'Account successfuly created')
             return redirect('account:login')
 
     else:
@@ -125,6 +152,29 @@ def register(request):
     }
 
     return render(request, 'accounts/pages/register.html', context)
+
+
+class VerificationView(View):
+    def get(self, request, uidb64, token):
+        try:
+            id = force_text(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=id)
+
+            if not token_generator.check_token(user,token):
+                return redirect('account:login'+ "?message=" + "Utilisateur déjà authentifié")
+
+            if user.is_active:
+                return redirect('account:login')
+            user.is_active =True
+            user.save()
+
+            messages.success(request,'Votre compte a été activé avec succès')
+            return redirect('account:login')
+
+        except Exception as ex:
+            pass
+        return redirect('login')
+
 
 
 # Infos client

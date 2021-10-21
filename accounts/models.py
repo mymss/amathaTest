@@ -22,3 +22,14 @@ class Client(models.Model):
             return str(self.user.email)
         else:
             return self.nom + " " + self.prenom
+
+    # def ddnMin(self):
+    #     if self.dateNaissance > datetime.date.today():
+    #         return messages.warning(request, 'La date de naissance est erronées.')
+
+
+@receiver(pre_save, sender=User)
+def check_email(sender, instance, **kwargs):
+    email = instance.email
+    if sender.objects.filter(email=email).exclude(username=instance.username).exists():
+        raise ValidationError('Email existant. Revenez en arrière.')

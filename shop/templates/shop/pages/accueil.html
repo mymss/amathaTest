@@ -51,36 +51,37 @@
 
     <div class="d-flex" style="width:80%;margin:auto;margin-top:10px;text-align:center">
         {% for produit in produits %}
+
             <div style="width: 20%; margin: auto; padding-top: 20px">
                 {% if produit.nomFichier %}
                     <figure>
-                        {% if produit.typeProd == 'Cosmetique' %}
-                            <a class="text-decoration-none"
-                               href="{% url 'shop:detailsCos' produit.id %}">
-                                <img class="cadreAccueil"
-                                     src="{% static produit.nomFichier.url %}"
-                                     alt="{{ produit.nomFichier.url }}"
-                                     style="height:auto;">
-                                <p>{{ produit.nom }}</p></a>
-                        {% elif produit.typeProd == 'Produit interieur' %}
-                            <a class="text-decoration-none"
-                               href="{% url 'shop:detailsProInt' produit.id %}">
-                                <img class="cadreAccueil"
-                                     src="{% static produit.nomFichier.url %}"
-                                     alt="{{ produit.nomFichier.url }}"
-                                     style="height:auto;">
-                                <p>{{ produit.nom }}</p></a>
-                        {% elif produit.typeProd == 'Vetement' %}
-                            <a class="text-decoration-none"
-                               href="{% url 'shop:detailsVet' produit.id %}">
-                                <img class="cadreAccueil"
-                                     src="{% static produit.nomFichier.url %}"
-                                     alt="{{ produit.nomFichier.url }}"
-                                     style="height:auto;">
-                                <p>{{ produit.nom }}</p></a>
-                        {% endif %}
-                    </figure>
+                    <img class="cadreAccueil" src="{% static produit.nomFichier.url %}"
+                         alt="{{ produit.nomFichier.url }}"
+                         style="height:auto;">
                 {% endif %}
+                <figcaption>   {% for cos in produitsCosmetiques %}
+                    {% if  cos.id == produit.id %}
+                        <a class="text-decoration-none"
+                           href="{% url 'shop:detailsCos' cos.id %}"> {{ produit.nom }} </a>
+                    {% endif %}
+                {% endfor %}
+
+
+                    {% for prodInt in produitsInterieurs %}
+                        {% if prodInt.id == produit.id %}
+                            <a class="text-decoration-none"
+                               href="{% url 'shop:detailsProInt' prodInt.id %}"> {{ produit.nom }} </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% for vet in vetements %}
+                        {% if vet.id == produit.id %}
+                            <a class="text-decoration-none"
+                               href="{% url 'shop:detailsVet' vet.id %}"> {{ produit.nom }} </a>
+                        {% endif %}
+                    {% endfor %}
+                </figcaption>
+                </figure>
             </div>
         {% endfor %}
     </div>

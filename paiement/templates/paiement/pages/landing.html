@@ -7,7 +7,7 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Produit</th>
+                <th scope="col">Articles</th>
                 <th scope="col">Prix unitaire</th>
                 <th scope="col">Quantité</th>
                 <th scope="col">Total</th>
@@ -17,10 +17,13 @@
             {% for item in panier %}
                 <tr>
                     <th scope="row">{{ forloop.counter }}</th>
-                    {% if item.product %}
+                    {% if item.product  and not item.atelier%}
                         <td>{{ item.product.nom }}</td>
-                    {% else %}
-                        <td>{{ item.atelier.titre }}</td>
+                     {% elif item.atelier and not item.product == 0 %}
+                        <td>{{ item.atelier.titre}}</td>
+                        {% else %}
+                        <td>{{ item.atelier.titre}}</td>
+                        <td>{{ item.product.nom }}</td>
                     {% endif %}
                     <td>{% widthratio item.price item.quantity 1 %}</td>
                     <td>{{ item.quantity }}</td>

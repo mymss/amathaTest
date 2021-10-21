@@ -117,7 +117,7 @@ def register(request):
         profile_form = ProfileForm(request.POST)
         username = request.POST['username']
         mail = request.POST.get('email')
-
+        ddn = request.POST.get('dateNaissance')
         if form.is_valid():
             user = form.save(commit=False)
             print(username + mail)
@@ -139,7 +139,7 @@ def register(request):
 
             email = EmailMessage(email_subject, email_body,settings.EMAIL_HOST_USER,[mail])
             email.send(fail_silently=False)
-            messages.success(request, 'Account successfuly created')
+            messages.success(request, 'Bienvenue, vous avez reçu un mail de confirmation.')
             return redirect('account:login')
 
     else:
@@ -212,6 +212,7 @@ def UpdateEmail(request):
         form = EmailUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Votre mail a bien été mis à jour.')
             return redirect('account:informations')
     else:
         form = EmailUpdateForm(request.POST, instance=request.user)

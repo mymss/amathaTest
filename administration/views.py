@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -55,6 +56,7 @@ def gestionProduit(request):
                        'produitsCosmetiquesGP': produitsCosmetiquesGP, 'prix': prix})
     else:
         return render(request, "shop/pages/accueil.html")
+
 
 ###############################################
 ## View Gestion d'atelier Test
@@ -312,13 +314,16 @@ def insertionProCos(request):
 def insertionAtelier(request):
     if request.method == "POST":
         formInsertAtelier = PosteInsertAtelier(request.POST)
+        date = request.POST['dateDebut']
 
         if formInsertAtelier.is_valid():
             formInsertAtelier = formInsertAtelier.save(commit=False)
             formInsertAtelier.author = request.user
             formInsertAtelier.save()
+            messages.success(request, 'Le nouvel atelier a bien été ajouté ')
 
             return redirect('administration:insertionAtelier')
+
 
     else:
         formInsertAtelier = PosteInsertAtelier()
@@ -513,13 +518,15 @@ def searchVet(request):
     else:
         return render(request, "shop/pages/accueil.html")
 
+
 ####### Bar de Recherche Vetêment
 def searchProCos(request):
     if request.user.is_superuser:
         if request.method == "POST":
             searched = request.POST['searched']
             cosmetique = Cosmetique.objects.filter(nom__contains=searched)
-            return render(request, "administration/pages/searchProCos.html", {'searched': searched, 'cosmetique': cosmetique})
+            return render(request, "administration/pages/searchProCos.html",
+                          {'searched': searched, 'cosmetique': cosmetique})
         else:
             return render(request, "administration/pages/searchProCos.html")
     else:
@@ -532,7 +539,8 @@ def searchProInt(request):
         if request.method == "POST":
             searched = request.POST['searched']
             proInterieur = ProduitInterieur.objects.filter(nom__contains=searched)
-            return render(request, "administration/pages/searchProInt.html", {'searched': searched, 'proInterieur': proInterieur})
+            return render(request, "administration/pages/searchProInt.html",
+                          {'searched': searched, 'proInterieur': proInterieur})
         else:
             return render(request, "administration/pages/searchProInt.html")
     else:

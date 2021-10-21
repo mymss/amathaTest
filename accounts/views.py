@@ -139,12 +139,13 @@ def register(request):
 
             email = EmailMessage(email_subject, email_body,settings.EMAIL_HOST_USER,[mail])
             email.send(fail_silently=False)
-            messages.success(request, 'Account successfuly created')
+            messages.success(request, 'Le compte a bien été créé')
             return redirect('account:login')
 
     else:
         form = UserForm()
         profile_form = ProfileForm()
+        messages.error(request, 'Vérifiez vos information')
 
     context = {
         'form': form,

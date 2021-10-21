@@ -13,7 +13,6 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from .utils import token_generator
 
-
 @login_required
 def favourite_add_cos(request, id):
     produit = Produit.objects.get(id=id)
@@ -165,16 +164,16 @@ class VerificationView(View):
                 return redirect('account:login'+ "?message=" + "Utilisateur déjà authentifié")
 
             if user.is_active:
-                return redirect('account:login')
+                return redirect('shop:accueil')
             user.is_active =True
             user.save()
 
             messages.success(request,'Votre compte a été activé avec succès')
-            return redirect('account:login')
+            return redirect('shop:accueil')
 
         except Exception as ex:
             pass
-        return redirect('login')
+        return redirect('account:login')
 
 
 

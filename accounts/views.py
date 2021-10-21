@@ -134,7 +134,7 @@ def register(request):
             link = reverse('account:activate', kwargs={'uidb64':uidb64,'token':token_generator.make_token(user),})
             activate_url = 'http://'+domain+link
 
-            email_body = 'Bienvenue '+user.username+' , pour vérifier ton adresse mail et finaliser ton inscription cliques sur ce lien\n'+ activate_url
+            email_body = 'Bienvenue '+user.username+' ,pour vérifier ton adresse mail et finaliser ton inscription cliques sur ce lien\n'+ activate_url
             email_subject = 'Activate your account'
 
             email = EmailMessage(email_subject, email_body,settings.EMAIL_HOST_USER,[mail])
@@ -195,6 +195,7 @@ def UpdateInfos(request):
         form = InfosUpdateForm(request.POST, instance=request.user.client)
         if form.is_valid():
             form.save()
+            messages.success(request,'Tes informations ont bien étés modifiées !')
             return redirect('account:informations')
     else:
         form = InfosUpdateForm(request.POST, instance=request.user.client)

@@ -169,11 +169,11 @@ class VerificationView(View):
             user.save()
 
             messages.success(request,'Votre compte a été activé avec succès')
-<<<<<<< Updated upstream
+
             return redirect('shop:accueil')
-=======
+
             return redirect('account:accueil')
->>>>>>> Stashed changes
+
 
         except Exception as ex:
             pass

@@ -1,5 +1,6 @@
 from datetime import date
-from random import random
+import random
+from random import randint
 
 import stripe
 from django.shortcuts import render

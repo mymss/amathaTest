@@ -172,9 +172,6 @@ class VerificationView(View):
 
             return redirect('shop:accueil')
 
-            return redirect('account:accueil')
-
-
         except Exception as ex:
             pass
         return redirect('account:login')

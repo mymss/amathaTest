@@ -317,6 +317,7 @@ def insertionAtelier(request):
         date = request.POST['dateDebut']
 
         if formInsertAtelier.is_valid():
+            dateDebut = formInsertAtelier.changed_data['dateDebut']
             formInsertAtelier = formInsertAtelier.save(commit=False)
             formInsertAtelier.author = request.user
             formInsertAtelier.save()

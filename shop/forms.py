@@ -4,7 +4,7 @@ from datetime import date
 from django import forms
 
 from accounts.models import Client
-from .models import Produit, Vetement, ProduitInterieur, Cosmetique, Atelier, Prix
+from .models import Produit, Vetement, ProduitInterieur, Cosmetique, Atelier, Prix, Commande
 
 
 ### Form Insertion Vetêment
@@ -256,3 +256,17 @@ class PosteDesativerClient(forms.ModelForm):
         labels = {
             'clientActif': 'Client actif'
         }
+
+### Form Update Stock Vetêment
+class PosteUpdateStatutCommande(forms.ModelForm):
+    class Meta:
+        model = Commande
+        fields = (
+            'statut',)
+        labels = {
+            'statut': 'Statut',
+        }
+        widgets = {
+            'statut': forms.Select(attrs={'class': 'form-control'}),
+        }
+

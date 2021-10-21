@@ -13,6 +13,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from .utils import token_generator
 
+
 @login_required
 def favourite_add_cos(request, id):
     produit = Produit.objects.get(id=id)

@@ -2,6 +2,7 @@
 {% load static %}
 
 <!-- Body -->
+{% block title %}Gestion Commande{% endblock title %}
 {% block content %}
 
     <br/>
@@ -47,7 +48,7 @@
                                     <tr>
                                         <th>N° commande</th>
                                         <th>Total</th>
-                                        <th>Satut</th>
+                                        <th colspan="2">Satut</th>
                                         <th colspan="2">Date de commande</th>
                                     </tr>
                                     <!-- Boucle pour afficher les nom de vetements -->
@@ -78,6 +79,11 @@
 
                                             <td for="insertStock" class="col-form-label">
                                                 {{ com.statut }}
+                                            </td>
+                                            <td align="right">
+                                                <a href="{% url 'administration:updateStatutCommande' com.id %}"
+                                                   class="btn-outline-secondary btn-sm"
+                                                   class="text-decoration-none">Modifier statut</a>
                                             </td>
 
                                             <td for="insertStock" class="col-form-label">

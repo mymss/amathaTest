@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 
 from accounts.models import Client
 from shop.forms import PosteInsertVet, PosteInsertProInt, PosteInsertProCos, PosteInsertAtelier, PosteUpdateStockProCos, \
-    PosteUpdateStockProInt, PosteUpdateStockVet, PosteUpdatePrix, PosteDesativerClient, PosteInsertPrix
+    PosteUpdateStockProInt, PosteUpdateStockVet, PosteUpdatePrix, PosteDesativerClient, PosteInsertPrix, \
+    PosteUpdateStatutCommande
 from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, Atelier, Commande, \
     LigneProduitCommande, LigneAtelierCommande
 
@@ -562,5 +563,20 @@ def searchAtelier(request):
                           {'searched': searched, 'ateliers': ateliers})
         else:
             return render(request, "administration/pages/searchAtelier.html")
+    else:
+        return render(request, "shop/pages/accueil.html")
+
+
+####### Modifier statut commande
+def updateStatutCommande(request, id):
+    statutCommande = Commande.objects.get(id=id)
+    formUpdateStatutCommande = PosteUpdateStatutCommande(request.POST or None, instance=statutCommande)
+    if formUpdateStatutCommande.is_valid():
+        formUpdateStatutCommande.save()
+        return redirect('administration:gestionCommande')
+
+    if request.user.is_superuser:
+        return render(request, "administration/pages/updateStatutCommande.html",
+                      {'statutCommande': statutCommande, 'formUpdateStatutCommande': formUpdateStatutCommande})
     else:
         return render(request, "shop/pages/accueil.html")

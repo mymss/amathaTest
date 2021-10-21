@@ -46,4 +46,6 @@ urlpatterns = [
     path('searchCommande', views.searchCommande, name='searchCommande'),
     path('searchAtelier', views.searchAtelier, name='searchAtelier'),
 
+    path('updateStatutCommande/<int:id>', views.updateStatutCommande, name='updateStatutCommande'),
+
 ]

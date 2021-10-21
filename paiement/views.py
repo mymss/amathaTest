@@ -40,6 +40,16 @@ def charge(request):
     listeArticle = []
 
     for item in panier:
+        if item.product:
+            newStock = item.product.stockDisponible - item.quantity
+            item.product.stockDisponible = newStock
+            item.product.save()
+        else:
+            newPlaces = item.atelier.nbrPersonneMax - item.quantity
+            item.atelier.nbrPersonneMax=newPlaces
+            item.atelier.save()
+
+    for item in panier:
         prix_total += item.price
     prix_total = prix_total * 100
 

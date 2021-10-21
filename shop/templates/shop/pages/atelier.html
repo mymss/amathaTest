@@ -27,7 +27,7 @@
                             </span>
                         <div class="card-body">
                             <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' ate.id %}">
-                                <img class="cadre" src="{% static ate.url %}" alt="{{ ateliers.nomFichier }}" style="height:auto;">
+                                <img class="cadre" src="{% static ate.nomFichier.url %}" alt="{{ ateliers.nomFichier }}" style="height:auto;">
                                 <p class="text-uppercase text-center fs-5">
                                     {{ ate.titre }}
                                 </p>

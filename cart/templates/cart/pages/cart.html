@@ -15,10 +15,10 @@
                     <div class="card-body">
                         <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
                             {% if produit.product %}
-                                <img class="cadre" src="{% static produit.product.url %}"
+                                 <img class="cadre" src="{% static produit.product.nomFichier.url %}"
                                      alt="{{ produit.product.nom }}">
                             {% else %}
-                                <img class="cadre" src="{% static produit.atelier.url %}"
+                                <img class="cadre" src="{% static produit.atelier.nomFichier.url %}"
                                      alt="{{ produit.atelier.nom }}">
                             {% endif %}
                             <p class="text-uppercase text-center fs-5">

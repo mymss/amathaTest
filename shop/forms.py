@@ -152,7 +152,7 @@ class PosteInsertAtelier(forms.ModelForm):
 
         def clean(self, *args, **kwargs):
             # cleaned_data = super().clean()
-            dateAtelier = self.cleaned_data
+            dateAtelier = self.cleaned_data['dateDebut']
             if dateAtelier.get('dateAtelier') > datetime.date.today():
                 return dateAtelier
             else:

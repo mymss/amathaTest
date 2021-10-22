@@ -12,8 +12,13 @@
             {% for produit in new %}
                 <div class="card m-3 d-inline-flex" style="width: 25%;">
                     <div class="card-body">
-
+                    {% if produit.typeProduit == Cosmetique %}
                                 <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
+                                 {% elif produit.typeProduit == Vetement %}
+                                 <a class="text-decoration-none" href="{% url 'shop:detailsVet' produit.id %}">
+                                 {% else %}
+                                  <a class="text-decoration-none" href="{% url 'shop:detailsProInt' produit.id %}">
+                                  {% endif %}
                                     {% if nomFichier.url %}
                                 <img class="cadre" src="{% static produit.produit.nomFichier.url %}" alt="{{ produit.nomFichier }}"/>
                                     {% endif %}

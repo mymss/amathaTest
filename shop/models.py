@@ -86,7 +86,7 @@ class Commande(models.Model):
                       ('Annulé', 'Annulé')
                       )
     comNumero = models.IntegerField()
-    comTotal = models.DecimalField(max_digits=5, decimal_places=3)
+    comTotal = models.FloatField()
     # comStaut = models.PositiveSmallIntegerField(choices=StatutChoix)
     comDate = models.DateField(auto_now_add=False)
     comPoidsFinal = models.DecimalField(max_digits=4, decimal_places=2,blank=True, null=True, )

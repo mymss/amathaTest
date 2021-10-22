@@ -53,8 +53,9 @@ header{
 
 #navHeader{
     border-top: 4px solid #EBA427;
+     border-bottom: 4px solid #EBA427;
     background-color: rgba(18, 140, 159, 0.5);
-    margin-bottom: 50px;
+    margin-bottom: 300px;
     /*!*background-color: #128C9F;*!*/
     /*!*border-bottom: 4px solid #EBA427;*!*/
 }

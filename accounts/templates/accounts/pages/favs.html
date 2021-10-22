@@ -15,7 +15,7 @@
 
                                 <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
                                     {% if nomFichier.url %}
-                                <img class="cadre" src="{% static produit.nomFichier.url %}" alt="{{ produit.nomFichier }}"/>
+                                <img class="cadre" src="{% static produit.produit.nomFichier.url %}" alt="{{ produit.nomFichier }}"/>
                                     {% endif %}
                         <p class="text-uppercase text-center fs-5">
                             {{ produit.nom }}
@@ -31,7 +31,7 @@
 
                                 <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' atelier.id %}">
                                     {% if nomFichier.url %}
-                                <img class="cadre" src="{% static atelier.nomFichier.url %}" alt="{{ atelier.nomFichier }}">
+                                <img class="cadre" src="{% static atelier.nomFichier.url %}" alt="{{ atelier.nomFichier }}"/>
                                     {% endif %}
                         <p class="text-uppercase text-center fs-5">
                             {{ atelier.titre }}

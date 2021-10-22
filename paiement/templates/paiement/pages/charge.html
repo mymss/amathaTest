@@ -2,10 +2,17 @@
 {% load static %}
 {% block title %}Paiement effectué {% endblock title %}
 {% block content %}
+     <div class="container">
     <div class="text-center mt-5">
         <h1>Merci pour votre paiement</h1>
         <p>Retour à l'accueil<a href="/"> ici</a>.</p>
+        <p>Vous pouvez trouver l'historique de votre commande depuis ce lien :  <a href="{% url 'shop:commande' %}"> Mes commandes </a>
+        </p>
+        <p>Ou depuis  l'onglet "mon compte/mes commandes" dans la barre de navigation</p>
+        <br/>
+        <br/>
+        <p>A bientôt chez Amatha !</p>
     </div>
-
+</div>
     {% include 'shop/layouts/footer_fixed.html' %}
 {% endblock %}

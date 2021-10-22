@@ -120,14 +120,12 @@ def register(request):
 
         if form.is_valid():
             user = form.save(commit=False)
-            print(username + mail)
-            #user = form.save(commit=False)
-            #mail = request.POST.get('email')
             user.is_active= False
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
+            messages.success(request, 'Pour confirmer votre inscription, nous vous avons envoyé un mail de confirmation d''inscription.')
             # getting domain we are on
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             domain = get_current_site(request).domain
@@ -145,7 +143,6 @@ def register(request):
     else:
         form = UserForm()
         profile_form = ProfileForm()
-        messages.error(request, 'Vérifiez vos information')
 
     context = {
         'form': form,

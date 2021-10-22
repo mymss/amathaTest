@@ -31,11 +31,8 @@
         {% for atelier in newate %}
                 <div class="card m-3 d-inline-flex" style="width: 25%;">
                     <div class="card-body">
-
                                 <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' atelier.id %}">
-                                    {% if nomFichier.url %}
                                 <img class="cadre" src="{% static atelier.nomFichier.url %}" alt="{{ atelier.nomFichier }}">
-                                    {% endif %}
                         <p class="text-uppercase text-center fs-5">
                             {{ atelier.titre }}
                         </p>

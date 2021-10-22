@@ -196,6 +196,13 @@ def atelier(request):
     page_num = request.GET.get('page')
     page_obj = paginator.get_page(page_num)
 
+    num = request.user.pk
+    qsAtelierFavs =Atelier.objects.filter(favorisAtelier=num)
+
+    ateFav = []
+    for atelier in qsAtelierFavs:
+        ateFav.append(Atelier.objects.get(id = atelier.pk))
+
     context = {
         'ateliers': page_obj,
     }

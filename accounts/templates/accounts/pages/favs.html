@@ -12,16 +12,14 @@
             {% for produit in new %}
                 <div class="card m-3 d-inline-flex" style="width: 25%;">
                     <div class="card-body">
-                    {% if produit.typeProduit == "Cosmetique" %}
-                                <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
-                                 {% elif produit.typeProduit == "Vetement" %}
-                                 <a class="text-decoration-none" href="{% url 'shop:detailsVet' produit.id %}">
-                                 {% else %}
-                                  <a class="text-decoration-none" href="{% url 'shop:detailsProInt' produit.id %}">
-                                  {% endif %}
-                                    {% if nomFichier.url %}
-                                <img class="cadre" src="{% static produit.produit.nomFichier.url %}" alt="{{ produit.nomFichier }}"/>
-                                    {% endif %}
+                        {% if produit.typeProd == 'Cosmetique' %}
+                            <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
+                        {% elif produit.typeProd == 'Produit interieur' %}
+                            <a class="text-decoration-none" href="{% url 'shop:detailsProInt' produit.id %}">
+                        {% else %}
+                            <a class="text-decoration-none" href="{% url 'shop:detailsVet' produit.id %}">
+                        {% endif %}
+                        <img class="cadre" src="{% static produit.nomFichier.url %}" alt="{{ produit.nomFichier }}">
                         <p class="text-uppercase text-center fs-5">
                             {{ produit.nom }}
                         </p>
@@ -36,7 +34,7 @@
 
                                 <a class="text-decoration-none" href="{% url 'shop:detailsAtelier' atelier.id %}">
                                     {% if nomFichier.url %}
-                                <img class="cadre" src="{% static atelier.nomFichier.url %}" alt="{{ atelier.nomFichier }}"/>
+                                <img class="cadre" src="{% static atelier.nomFichier.url %}" alt="{{ atelier.nomFichier }}">
                                     {% endif %}
                         <p class="text-uppercase text-center fs-5">
                             {{ atelier.titre }}

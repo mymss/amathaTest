@@ -39,7 +39,6 @@ def accueil(request):
     return render(request, "shop/pages/accueil.html", context)
 
 
-
 def vetements(request):
     vetement = Vetement.objects.all()
     return render(request, '../../shop/templates/shop/layouts/accordionStock.html', {'vetement': vetement})

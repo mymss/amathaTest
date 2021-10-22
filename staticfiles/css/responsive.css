@@ -680,7 +680,7 @@
 @media only screen and (min-width: 992px) {
     /*login*/
     .responsiveLogin{
-        margin-top:150px;
+        margin-top:180px;
     }
     /*accueil*/
     .firstNav {
@@ -695,7 +695,7 @@
 
     .carousel {
         /*margin-top: 300px;*/
-        margin-top: 100px;
+        margin-top: 150px;
         margin-bottom: 20px;
         margin-left: auto;
         margin-right: auto;

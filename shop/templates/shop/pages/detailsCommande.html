@@ -16,7 +16,7 @@
 
                 {% for pro in ligneProCom %}
                     <div class="col-6 col-md-5">
-                        <img src="{% static '{{ pro.produit.nomFichier }}' %}" style="margin-top: 0.5%;margin-bottom: 0;"/>
+                        <img src="{% static pro.produit.nomFichier.url %}" style="margin-top: 0.5%;margin-bottom: 0;"/>
                     </div>
                     <div class="col-sm-6 col-md-3 fs-7 " style="text-align: left;">
                         <p style="margin-top: 0.5%;margin-bottom: 0;font-weight: bold;font-size: 110%;">{{ pro.produit.nom }}</p>
@@ -37,7 +37,7 @@
 
                 {% for ate in ligneAteCom %}
                     <div class="col-6 col-md-5">
-                        <img src="{% static '{{ ate.atelier.nomFichier }}' %}"/>
+                        <img src="{% static ate.atelier.nomFichier.url %}"/>
                     </div>
                     <div class="col-sm-6 col-md-4 fs-7 " style="margin-top: 1%;text-align: left;">
                         <p style="margin-top: 0.5%;margin-bottom: 0;font-weight: bold;font-size: 110%;">

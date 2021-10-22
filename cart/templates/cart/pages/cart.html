@@ -3,7 +3,9 @@
 
 {% block title %}Panier {% endblock title %}
 {% block content %}
+    <div class="responsiveLogin">
     {% if bool == False %}
+
         <div class="containerMax">
         <div class="container">
             <h1>Votre panier</h1>
@@ -61,7 +63,7 @@
     </div>
 {% endif %}
 </div>
-
+</div>
     {% include 'shop/layouts/footer_fixed.html' %}
 
 {% endblock %}

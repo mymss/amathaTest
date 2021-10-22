@@ -678,7 +678,10 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
+    /*login*/
+    .responsiveLogin{
+        margin-top:150px;
+    }
     /*accueil*/
     .firstNav {
         margin-bottom: 19px;

@@ -15,7 +15,7 @@
 
                     <div class="col-6 col-md-5 ">
                         {% if  vetements.nomFichier %}
-                            <img src="{% static vetements.nomFichier %}" alt="{{ vetements.nomFichier }}"
+                            <img src="{% static vetements.nomFichier.url %}" alt="{{ vetements.nomFichier }}"
                                  class="rounded mx-auto d-block"
                                  style=" margin-top: 3%;margin-left: 5%; margin-bottom:3%; width:400px; height: 270px;">
                         {% endif %}

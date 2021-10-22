@@ -14,7 +14,7 @@
                 <div class="row g-0 mx-auto rounded" style="width: 80%;height: 50%; ">
                     <div class="col-6 col-md-5 ">
                         {% if produitInt.nomFichier %}
-                            <img src="{% static produitInt.nomFichier %}" alt="{{ produitInt.nomFichier }}"
+                            <img src="{% static produitInt.nomFichier.url %}" alt="{{ produitInt.nomFichier }}"
                                  class="rounded mx-auto d-block"
                                  style=" margin-top: 3%;margin-left: 5%; margin-bottom:3%; width:400px; height: 270px;">
                         {% endif %}

@@ -17,16 +17,20 @@
             <h2>Détails Client et Commande</h2>
             <hr/>
 
+{#        Déclaration des variables en utilisant java script#}
             <script>
+                {#variable pour compter le nb de commandes#}
                 var cptCommande = 0;
+                {#en cas d'une seule commande#}
                 const commande = "commande";
+                {#en cas de plusieurs commandes#}
                 const commandes = "commandes";
             </script>
 
-
+{#Parcourir les commandes#}
             {% for com in commandes %}
-
                 <script>
+                {#comptage pour les commandes#}
                     var cptCommande = cptCommande + 1;
                 </script>
 
@@ -36,11 +40,13 @@
                 <span style="font-weight: bold">{{ detailsClient.prenom }} {{ detailsClient.nom }}</span> a commandé
                 <span style="color: #CC3434; font-weight: bold">
                         <script>
+                            {#afficher le compteur#}
                             document.write(cptCommande)
                         </script>
                     </span>
 
                 <script>
+                    {#vérifier si il y a une seule ou plusieur commandes#}
                     if (cptCommande <= 1) {
                         document.write(commande)
                     } else {

@@ -19,8 +19,11 @@ from shop.models import Vetement, Produit, Cosmetique, ProduitInterieur, Prix, A
 ###############################################
 def accueilAdmin(request):
     context = {}
+    # vérification si c'est l'admin ou non
     if request.user.is_superuser:
+        # si oui
         return render(request, "administration/pages/accueilAdmin.html", context)
+    # si non
     else:
         return render(request, "shop/pages/accueil.html", context)
 
@@ -29,6 +32,7 @@ def accueilAdmin(request):
 ## View Gestion de Stock Test
 ###############################################
 def gestionStock(request):
+    # déclaration et initialisation des variables
     vetements = Vetement.objects.all()
     produitsInterieurs = ProduitInterieur.objects.all()
     produitsCosmetiques = Cosmetique.objects.all()
@@ -45,6 +49,7 @@ def gestionStock(request):
 ## View Gestion de produit Test
 ###############################################
 def gestionProduit(request):
+    # déclaration et initialisation des variables
     produit = Produit.objects.all()
     vetementsGP = Vetement.objects.all()
     prix = Prix.objects.all()
@@ -62,6 +67,7 @@ def gestionProduit(request):
 ## View Gestion d'atelier Test
 ###############################################
 def gestionAtelier(request):
+    # déclaration et initialisation des variables
     atelier = Atelier.objects.all()
 
     if request.user.is_superuser:
@@ -74,6 +80,7 @@ def gestionAtelier(request):
 ## View Gestion de prix Test
 ###############################################
 def gestionPrix(request):
+    # déclaration et initialisation des variables
     prix = Prix.objects.all()
     produit = Produit.objects.all()
 
@@ -88,6 +95,7 @@ def gestionPrix(request):
 ## View Gestion de client Test
 ###############################################
 def gestionClient(request):
+    # déclaration et initialisation des variables
     client = Client.objects.all()
 
     if request.user.is_superuser:
@@ -100,6 +108,7 @@ def gestionClient(request):
 ## View Gestion de client Test
 ###############################################
 def gestionCommande(request):
+    # déclaration et initialisation des variables
     commandes = Commande.objects.all().order_by('comDate').reverse()
     totalProduit = 0
     totalAtelier = 0
@@ -107,6 +116,7 @@ def gestionCommande(request):
     listeAtelier = []
     totalCommande = []
 
+# calculer le total de chaque commande
     for com in commandes:
         ligneProCom = LigneProduitCommande.objects.filter(commande=com)
         ligneAteCom = LigneAtelierCommande.objects.filter(commande=com)
@@ -122,6 +132,7 @@ def gestionCommande(request):
         listeAtelier.append(totalAtelier)
         totalCommande.append(totalAtelier + totalProduit)
 
+# mettre tout les variables dans le context pour les appeler après
     context = {
         'totalProduit': totalProduit,
         'commandes': commandes,
@@ -138,6 +149,7 @@ def gestionCommande(request):
 
 ### Détails Vetêments Admin
 def adminVetDetails(request, id):
+    # déclaration et initialisation des variables
     detailsVet = Vetement.objects.get(id=id)
 
     if request.user.is_superuser:
@@ -148,6 +160,7 @@ def adminVetDetails(request, id):
 
 ### Détails ProInt Admin
 def adminProIntDetails(request, id):
+    # déclaration et initialisation des variables
     detailsProInt = ProduitInterieur.objects.get(id=id)
 
     if request.user.is_superuser:
@@ -158,6 +171,7 @@ def adminProIntDetails(request, id):
 
 ### Détails ProCos Admin
 def adminProCosDetails(request, id):
+    # déclaration et initialisation des variables
     detailsProCos = Cosmetique.objects.get(id=id)
 
     if request.user.is_superuser:
@@ -168,6 +182,7 @@ def adminProCosDetails(request, id):
 
 ### Détails Atelier Admin
 def adminAtelierDetails(request, id):
+    # déclaration et initialisation des variables
     detailsAtelier = Atelier.objects.get(id=id)
 
     if request.user.is_superuser:
@@ -178,6 +193,7 @@ def adminAtelierDetails(request, id):
 
 ### Détails client Admin
 def adminClientDetails(request, id):
+    # déclaration et initialisation des variables
     detailsClient = Client.objects.get(id=id)
     commandes = Commande.objects.filter(clientId=id).order_by('comDate').reverse()
     totalProduit = 0
@@ -218,6 +234,7 @@ def adminClientDetails(request, id):
 
 ### Détails commande Admin
 def adminCommandeDetails(request, id):
+    # déclaration et initialisation des variables
     detailsCommande = Commande.objects.get(id=id)
     ligneProCom = LigneProduitCommande.objects.filter(commande=id)
     ligneAteCom = LigneAtelierCommande.objects.filter(commande=id)
@@ -240,6 +257,7 @@ def adminCommandeDetails(request, id):
 ## View Insertion Vetêments Test
 ###############################################
 def insertionVetement(request):
+    # récupérer les formulaires dans forms.py
     if request.method == "POST":
         formInsertVet = PosteInsertVet(request.POST, request.FILES)
 
@@ -264,6 +282,7 @@ def insertionVetement(request):
 ## View Insertion Produit Intérieur Test
 ###############################################
 def insertionProInt(request):
+    # récupérer les formulaires dans forms.py
     if request.method == "POST":
         formInsertProInt = PosteInsertProInt(request.POST)
 
@@ -288,6 +307,7 @@ def insertionProInt(request):
 ## View Insertion Produits Cosmétiques Test
 ###############################################
 def insertionProCos(request):
+    # récupérer les formulaires dans forms.py
     if request.method == "POST":
         formInsertProCos = PosteInsertProCos(request.POST)
 
@@ -312,6 +332,7 @@ def insertionProCos(request):
 ## View Insertion Atelier Test
 ###############################################
 def insertionAtelier(request):
+    # récupérer les formulaires dans forms.py
     if request.method == "POST":
         formInsertAtelier = PosteInsertAtelier(request.POST)
         date = request.POST['dateDebut']
@@ -338,8 +359,10 @@ def insertionAtelier(request):
 
 ### Update Vetêment
 def updateVet(request, id):
+    # déclaration et initialisation des variables
     vetementUpdate = Vetement.objects.get(id=id)
     formUpdateVet = PosteInsertVet(request.POST or None, instance=vetementUpdate)
+    # valider la formulaire après la modification
     if formUpdateVet.is_valid():
         formUpdateVet.save()
         return redirect('administration:gestionProduit')
@@ -353,8 +376,10 @@ def updateVet(request, id):
 
 ### Update Produit Intérieur
 def updateProInt(request, id):
+    # déclaration et initialisation des variables
     proIntUpdate = ProduitInterieur.objects.get(id=id)
     formUpdateProInt = PosteInsertProInt(request.POST or None, instance=proIntUpdate)
+    # valider la formulaire après la modification
     if formUpdateProInt.is_valid():
         formUpdateProInt.save()
         return redirect('administration:gestionProduit')
@@ -368,8 +393,10 @@ def updateProInt(request, id):
 
 ### Update Produit Cosmétique
 def updateProCos(request, id):
+    # déclaration et initialisation des variables
     proCosUpdate = Cosmetique.objects.get(id=id)
     formUpdateProCos = PosteInsertProCos(request.POST or None, instance=proCosUpdate)
+    # valider la formulaire après la modification
     if formUpdateProCos.is_valid():
         formUpdateProCos.save()
         return redirect('administration:gestionProduit')
@@ -383,6 +410,7 @@ def updateProCos(request, id):
 
 ## Insertion Prix
 def insertionPrix(request):
+    # récupérer les formulaires dans forms.py
     if request.method == "POST":
         formInsertPrix = PosteInsertPrix(request.POST)
 
@@ -405,9 +433,10 @@ def insertionPrix(request):
 
 ## Update Prix
 def updatePrix(request, id):
-    # produit = Produit.objects.get(id=id)
+    # déclaration et initialisation des variables
     prixUpdate = Prix.objects.get(produit=id)
     formUpdatePrix = PosteUpdatePrix(request.POST or None, instance=prixUpdate)
+    # valider la formulaire après la modification
     if formUpdatePrix.is_valid():
         formUpdatePrix.save()
         return redirect('administration:gestionPrix')
@@ -421,8 +450,10 @@ def updatePrix(request, id):
 
 ### Update Produit Cosmétique
 def updateAtelier(request, id):
+    # déclaration et initialisation des variables
     atelierUpdate = Atelier.objects.get(id=id)
     formUpdateAtelier = PosteInsertAtelier(request.POST or None, instance=atelierUpdate)
+    # valider la formulaire après la modification
     if formUpdateAtelier.is_valid():
         formUpdateAtelier.save()
         return redirect('administration:gestionAtelier')
@@ -436,8 +467,10 @@ def updateAtelier(request, id):
 
 ### Update stock de Vetêment
 def updateStockVet(request, id):
+    # déclaration et initialisation des variables
     stockVetementUpdate = Vetement.objects.get(id=id)
     formUpdateStockVet = PosteUpdateStockVet(request.POST or None, instance=stockVetementUpdate)
+    # valider la formulaire après la modification
     if formUpdateStockVet.is_valid():
         formUpdateStockVet.save()
         return redirect('administration:gestionStock')
@@ -451,8 +484,10 @@ def updateStockVet(request, id):
 
 ### Update stock de Produit Intérieur
 def updateStockProInt(request, id):
+    # déclaration et initialisation des variables
     stockProIntUpdate = ProduitInterieur.objects.get(id=id)
     formUpdateStockProInt = PosteUpdateStockProInt(request.POST or None, instance=stockProIntUpdate)
+    # valider la formulaire après la modification
     if formUpdateStockProInt.is_valid():
         formUpdateStockProInt.save()
         return redirect('administration:gestionStock')
@@ -466,8 +501,10 @@ def updateStockProInt(request, id):
 
 ### Update stock de Produit Cosmétique
 def updateStockProCos(request, id):
+    # déclaration et initialisation des variables
     stockProCosUpdate = Cosmetique.objects.get(id=id)
     formUpdateStockProCos = PosteUpdateStockProCos(request.POST or None, instance=stockProCosUpdate)
+    # valider la formulaire après la modification
     if formUpdateStockProCos.is_valid():
         formUpdateStockProCos.save()
         return redirect('administration:gestionStock')
@@ -481,8 +518,10 @@ def updateStockProCos(request, id):
 
 ## Formation client
 def formationClient(request, id):
+    # déclaration et initialisation des variables
     clientFormation = Client.objects.get(id=id)
     formDesactiverClient = PosteDesativerClient(request.POST or None, instance=clientFormation)
+    # valider la formulaire après la modification
     if formDesactiverClient.is_valid():
         formDesactiverClient.save()
         return redirect('administration:gestionClient')
@@ -509,9 +548,12 @@ def searchClient(request):
 
 ####### Bar de Recherche Vetêment
 def searchVet(request):
+    # Vérifier si c'est ladmin ou non'
     if request.user.is_superuser:
         if request.method == "POST":
+            # déclarer une variable qui prend la valeur écrite dans la bar de recherche
             searched = request.POST['searched']
+            # il filtre les nom de vêtement par le mot écris dans la bar de recherche
             vetement = Vetement.objects.filter(nom__contains=searched)
             return render(request, "administration/pages/searchVet.html", {'searched': searched, 'vetement': vetement})
         else:

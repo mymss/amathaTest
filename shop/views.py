@@ -225,6 +225,10 @@ def detailsAtelier(request, id):
 def commande(request):
     infos = request.user.client
     commandes = Commande.objects.filter(clientId=infos.id)
+    paginator = Paginator(commandes, 6)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
+
     totalProduit = 0
     totalAtelier = 0
     nmbrElementProduit = 0
@@ -264,6 +268,7 @@ def commande(request):
         'totalCommande': totalCommande,
         'listeNbrAtelier': listeNbrAtelier,
         'listeNbrProduit': listeNbrProduit,
+        'commandesPag': page_obj
     }
     return render(request, 'shop/pages/commande.html', context)
 

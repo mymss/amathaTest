@@ -16,10 +16,10 @@
 {% block content %}
 
 
-    <br/><br/><br/>
+    <br/>
 
 
-    <div class="container" style="margin-top: 60px; margin-left: 20%">
+    <div class="container" style="margin-top: 60px; margin: auto">
         {#        <div class="row g-2">#}
         <div class="col-6">
             <a href="{% url 'administration:gestionStock' %}" class="text-decoration-none" class="text-dark">
@@ -61,5 +61,5 @@
 
     <br/><br/><br/>
     <br/><br/><br/>
-    {% include 'shop/layouts/footer_fixed.html' %}
+    {% include 'shop/layouts/footer.html' %}
 {% endblock content %}

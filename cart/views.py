@@ -43,7 +43,7 @@ def add_to_cart_cos(request, id):
     messages.info(request, "Item added to cart.")
     return redirect('shop:cosmetique')
 
-
+@login_required()
 def add_to_cart_proInt(request, id):
     # get the user profile
     user_profile = get_object_or_404(User, id=request.user.id)
@@ -60,7 +60,7 @@ def add_to_cart_proInt(request, id):
     messages.info(request, "Item added to cart.")
     return redirect('shop:produitInterieur')
 
-
+@login_required()
 def add_to_cart_vet(request, id):
     # get the user profile
     user_profile = get_object_or_404(User, id=request.user.id)
@@ -77,7 +77,7 @@ def add_to_cart_vet(request, id):
     messages.info(request, "Item added to cart.")
     return redirect('shop:vetements')
 
-
+@login_required()
 def add_to_cart_atelier(request, id):
     # get the user profile
     user_profile = get_object_or_404(User, id=request.user.id)

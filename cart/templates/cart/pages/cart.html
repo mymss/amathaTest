@@ -16,6 +16,7 @@
                 <div class="card m-3 d-inline-flex" style="width: 25%;">
                     <div class="card-body">
                         <a class="text-decoration-none" href="{% url 'shop:detailsCos' produit.id %}">
+{#                        {% if produit.product.nomFichier and produit.atelier.nomFichier%}#}
                             {% if produit.product %}
                                  <img class="cadre" src="{% static produit.product.nomFichier.url %}"
                                      alt="{{ produit.product.nom }}">
@@ -23,6 +24,7 @@
                                 <img class="cadre" src="{% static produit.atelier.nomFichier.url %}"
                                      alt="{{ produit.atelier.nom }}">
                             {% endif %}
+{#                        {% endif %}#}
                             <p class="text-uppercase text-center fs-5">
                                 {% if produit.product %}
                                     {{ produit.product.nom }}

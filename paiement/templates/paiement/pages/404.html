@@ -1,0 +1,12 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %}Page non trouvée{% endblock title %}
+{% block content %}
+     <div class="container">
+    <div class="text-center mt-5">
+        <h1>Oooops </h1>
+        <p> Il semble que cette page n'existe pas </p>
+    </div>
+</div>
+    {% include 'shop/layouts/footer_fixed.html' %}
+{% endblock %}

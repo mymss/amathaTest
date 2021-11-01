@@ -1,0 +1,13 @@
+{% extends 'shop/layouts/base.html' %}
+{% load static %}
+{% block title %}Problème serveur{% endblock title %}
+{% block content %}
+     <div class="container">
+    <div class="text-center mt-5">
+        <h1>Oooops </h1>
+        <h3> Un problème est survenu ! </h3>
+        <p>Si cette page apparaît, assurez vous que votre carte de paiement soit valide ou approvisionnée puis retentez votre chance...</p>
+    </div>
+</div>
+    {% include 'shop/layouts/footer_fixed.html' %}
+{% endblock %}

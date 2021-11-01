@@ -46,7 +46,7 @@ def charge(request):
             item.product.save()
         else:
             newPlaces = item.atelier.nbrPersonneMax - item.quantity
-            item.atelier.nbrPersonneMax=newPlaces
+            item.atelier.nbrPersonneMax = newPlaces
             item.atelier.save()
 
     for item in panier:
@@ -95,3 +95,11 @@ def charge(request):
         )
 
         return render(request, 'paiement/pages/charge.html')
+
+
+def handler404(request,exception):
+    return render(request, 'paiement/pages/404.html', status=404)
+
+
+def handler500(request):
+    return render(request, 'paiement/pages/500.html', status=500)

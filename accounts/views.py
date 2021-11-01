@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.mail import EmailMessage, message
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -8,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from shop.models import Produit, Atelier
 from django.contrib import messages
 from django.views.generic import View
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
+from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from .utils import token_generator
@@ -117,29 +119,34 @@ def register(request):
         profile_form = ProfileForm(request.POST)
         username = request.POST['username']
         mail = request.POST.get('email')
+        ddn = request.POST.get('dateNaissance')
 
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active= False
-            user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
-            messages.success(request, 'Pour confirmer votre inscription, nous vous avons envoyé un mail de confirmation d''inscription.')
-            # getting domain we are on
-            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-            domain = get_current_site(request).domain
-            link = reverse('account:activate', kwargs={'uidb64':uidb64,'token':token_generator.make_token(user),})
-            activate_url = 'http://'+domain+link
+        if User.objects.filter(email=mail).exclude(username=username).exists():
+            messages.error(request, 'Ce mail est déjà existant !')
+        elif ddn > str(datetime.date.today()):
+            messages.error(request, 'Date de naissance impossible !')
+        else:
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.is_active= False
+                user.save()
+                profile = profile_form.save(commit=False)
+                profile.user = user
+                profile.save()
+                messages.success(request, "Pour confirmer votre inscription, nous vous avons envoyé un mail de confirmation d'inscription.")
+                # getting domain we are on
+                uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+                domain = get_current_site(request).domain
+                link = reverse('account:activate', kwargs={'uidb64':uidb64,'token':token_generator.make_token(user),})
+                activate_url = 'http://'+domain+link
 
-            email_body = 'Bienvenue '+user.username+' ,pour vérifier ton adresse mail et finaliser ton inscription cliques sur ce lien\n'+ activate_url
-            email_subject = 'Activate your account'
+                email_body = 'Bienvenue '+user.username+' ,pour vérifier ton adresse mail et finaliser ton inscription cliques sur ce lien\n'+ activate_url
+                email_subject = 'Activation du compte'
 
-            email = EmailMessage(email_subject, email_body,settings.EMAIL_HOST_USER,[mail])
-            email.send(fail_silently=False)
-            messages.success(request, 'Le compte a bien été créé')
-            return redirect('account:login')
-
+                email = EmailMessage(email_subject, email_body,settings.EMAIL_HOST_USER,[mail])
+                email.send(fail_silently=False)
+                messages.success(request, 'Le compte a bien été créé')
+                return redirect('account:login')
     else:
         form = UserForm()
         profile_form = ProfileForm()
@@ -166,15 +173,13 @@ class VerificationView(View):
             user.is_active =True
             user.save()
 
-            messages.success(request,'Votre compte a été activé avec succès')
+            messages.success(request,'Votre compte a été activé avec succès.')
 
             return redirect('shop:accueil')
 
         except Exception as ex:
             pass
         return redirect('account:login')
-
-
 
 # Infos client
 @login_required

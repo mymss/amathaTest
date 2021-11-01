@@ -244,6 +244,7 @@ class PosteInsertPrix(forms.ModelForm):
             'reduction': forms.NumberInput(attrs={'step': 0.25, 'class': 'form-control'}),
             'date': forms.DateInput(attrs={'class': 'form-control'}),
             'produit': forms.Select(attrs={'class': 'form-control'}),
+            # 'produit': Produit.objects.last().id
         }
 
 

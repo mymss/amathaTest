@@ -116,7 +116,7 @@ def gestionCommande(request):
     listeAtelier = []
     totalCommande = []
 
-# calculer le total de chaque commande
+    # calculer le total de chaque commande
     for com in commandes:
         ligneProCom = LigneProduitCommande.objects.filter(commande=com)
         ligneAteCom = LigneAtelierCommande.objects.filter(commande=com)
@@ -132,7 +132,7 @@ def gestionCommande(request):
         listeAtelier.append(totalAtelier)
         totalCommande.append(totalAtelier + totalProduit)
 
-# mettre tout les variables dans le context pour les appeler après
+    # mettre tout les variables dans le context pour les appeler après
     context = {
         'totalProduit': totalProduit,
         'commandes': commandes,
@@ -410,6 +410,8 @@ def updateProCos(request, id):
 
 ## Insertion Prix
 def insertionPrix(request):
+    ##Récupérer la dernière id
+    # lastPro = Produit.objects.last().id
     # récupérer les formulaires dans forms.py
     if request.method == "POST":
         formInsertPrix = PosteInsertPrix(request.POST)

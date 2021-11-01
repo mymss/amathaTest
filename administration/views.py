@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -337,14 +339,17 @@ def insertionAtelier(request):
         formInsertAtelier = PosteInsertAtelier(request.POST)
         date = request.POST['dateDebut']
 
-        if formInsertAtelier.is_valid():
-            # dateDebut = formInsertAtelier.cleaned_data['dateDebut']
-            formInsertAtelier = formInsertAtelier.save(commit=False)
-            formInsertAtelier.author = request.user
-            formInsertAtelier.save()
-            messages.success(request, 'Le nouvel atelier a bien été ajouté ')
+        if date == str(datetime.datetime.today()) or date < str(datetime.datetime.today()):
+            messages.error(request, "La date doit être supérieure à aujourd'hui")
+        else:
+            if formInsertAtelier.is_valid():
+                # dateDebut = formInsertAtelier.cleaned_data['dateDebut']
+                formInsertAtelier = formInsertAtelier.save(commit=False)
+                formInsertAtelier.author = request.user
+                formInsertAtelier.save()
+                messages.success(request, 'Le nouvel atelier a bien été ajouté ')
 
-            return redirect('administration:insertionAtelier')
+                return redirect('administration:insertionAtelier')
 
 
     else:

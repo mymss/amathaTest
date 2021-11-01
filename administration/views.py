@@ -439,7 +439,7 @@ def updatePrix(request, id):
     # valider la formulaire après la modification
     if formUpdatePrix.is_valid():
         formUpdatePrix.save()
-        return redirect('administration:gestionPrix')
+        return redirect('administration:gestionProduit')
 
     if request.user.is_superuser:
         return render(request, "administration/pages/updatePrix.html",

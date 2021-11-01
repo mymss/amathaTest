@@ -205,17 +205,25 @@ def atelier(request):
 
     context = {
         'ateliers': page_obj,
+        'ateFav': ateFav,
     }
     return render(request, 'shop/pages/atelier.html', context)
 
 
 def detailsAtelier(request, id):
     atel = Atelier.objects.get(id=id)
+
+    num = request.user.pk
+    qsAtelierFavs = Atelier.objects.filter(favorisAtelier=num)
+
+    ateFav = []
+    for atelier in qsAtelierFavs:
+        ateFav.append(Atelier.objects.get(id=atelier.pk))
     context = {
         'atel': atel,
+        'ateFav':ateFav,
     }
     return render(request, 'shop/pages/detailsAtelier.html', context)
-
 
 ###############################################
 # Page Commande + Détail commande

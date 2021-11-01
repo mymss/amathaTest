@@ -27,7 +27,7 @@
 
                         <button type="button" class="btn btn-outline-secondary "><a
                                 href="{% url 'cart:add_to_cart_atelier' atel.id %}"> Ajouter au panier </a></button>
-                        {% if cosmetiques in cosFav %}
+                        {% if atel in ateFav %}
                             <a href="{% url 'account:favourite_add_atelier' atel.id %}">
                                 <i class="fas fa-heart" style="margin-left: 2%;color: black;"></i>
                             </a>

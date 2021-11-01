@@ -23,7 +23,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
-                                <h5 class="shadow-none  bg-light rounded">Vetêments</h5>
+                                <h5 class="shadow-none  bg-light rounded">Accessoires</h5>
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
@@ -36,7 +36,7 @@
                                 <form class="d-flex" method="post" ACTION="{% url 'administration:searchVet' %}">
                                     {% csrf_token %}
                                     <input class="form-control me-2" type="search"
-                                           placeholder="Cherchez vetêment" aria-label="Search" name="searched">
+                                           placeholder="Cherchez accessoire" aria-label="Search" name="searched">
                                     <button class="btn btn-outline-secondary" type="submit">
                                         Recherche
                                     </button>
@@ -88,7 +88,7 @@
                                     <div class="col">
                                         <a href="{% url 'administration:insertionVetement' %}"
                                            class="text-decoration-none">
-                                            <div class="p-3 border bg-light">Créer un nouveau vetêment</div>
+                                            <div class="p-3 border bg-light">Créer un nouveau accessoire</div>
                                         </a>
                                     </div>
 

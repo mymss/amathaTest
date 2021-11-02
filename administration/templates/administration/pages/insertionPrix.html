@@ -20,6 +20,9 @@
                     {% csrf_token %}
 
                     {{ formInsertPrix.as_p }}
+                    <strong><p>Veuillez séléctionner dans la liste déroulante le dernier produit par son nom.</p>
+                    </strong>
+
                     <br/>
                     <input type="submit" class="btn btn-secondary" value="Ajouter">
                 </form>
@@ -27,7 +30,7 @@
         </div>
     </div>
     <br/><br/>
-{% include 'shop/layouts/footer_fixed.html' %}
+    {% include 'shop/layouts/footer_fixed.html' %}
 
 {% endblock content %}
 

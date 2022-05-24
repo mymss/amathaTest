@@ -1,0 +1,4 @@
+{
+  "Interpreter": "myvenv\\Scripts\\python.exe",
+  "TestFramework": "Pytest"
+}
